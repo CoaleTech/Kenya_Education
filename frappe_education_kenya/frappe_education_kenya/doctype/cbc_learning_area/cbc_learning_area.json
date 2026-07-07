@@ -76,7 +76,7 @@
    "fieldname": "applicable_levels",
    "fieldtype": "Table MultiSelect",
    "label": "Applicable CBC Levels",
-   "options": "CBCLearningAreaLevel",
+   "options": "CBC Learning Area Level",
    "reqd": 1
   },
   {
@@ -94,7 +94,7 @@
    "fieldname": "strands",
    "fieldtype": "Table",
    "label": "Strands",
-   "options": "CBCStrand"
+   "options": "CBC Strand"
   }
  ],
  "index_web_pages_for_search": 1,

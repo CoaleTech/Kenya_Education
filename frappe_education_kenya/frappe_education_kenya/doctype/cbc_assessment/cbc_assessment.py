@@ -22,6 +22,13 @@ def _score_to_performance_level(percentage, criteria=None):
 
 	If the Assessment defines its own `performance_level_criteria` rubric
 	rows, those take precedence over the default bands.
+
+	Bands are matched by lower bound only (sorted highest-first), rather than
+	requiring the percentage to fall within an explicit [lower, upper] range.
+	This avoids gaps at fractional boundaries — e.g. a computed percentage of
+	79.9995 sits strictly between PL2's upper bound of 79.999 and PL1's lower
+	bound of 80, and would otherwise match no band at all. Values outside the
+	overall min/max span of the configured bands are rejected as out of range.
 	"""
 	bands = DEFAULT_PERFORMANCE_LEVEL_BANDS
 	if criteria:
@@ -35,8 +42,13 @@ def _score_to_performance_level(percentage, criteria=None):
 		if custom_bands:
 			bands = custom_bands
 
-	for lower, upper, level in bands:
-		if lower <= percentage <= upper:
+	overall_min = min(lower for lower, _upper, _level in bands)
+	overall_max = max(upper for _lower, upper, _level in bands)
+	if percentage < overall_min or percentage > overall_max:
+		return None
+
+	for lower, _upper, level in sorted(bands, key=lambda band: band[0], reverse=True):
+		if percentage >= lower:
 			return level
 	return None
 
