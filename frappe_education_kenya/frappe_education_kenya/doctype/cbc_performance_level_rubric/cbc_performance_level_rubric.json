@@ -1,0 +1,64 @@
+{
+ "actions": [],
+ "creation": "2026-07-07 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "performance_level",
+  "level_label",
+  "descriptor",
+  "column_break_1",
+  "min_score",
+  "max_score"
+ ],
+ "fields": [
+  {
+   "fieldname": "performance_level",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Performance Level",
+   "options": "PL1\nPL2\nPL3\nPL4",
+   "reqd": 1
+  },
+  {
+   "fieldname": "level_label",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Level Label",
+   "read_only": 1
+  },
+  {
+   "fieldname": "descriptor",
+   "fieldtype": "Text",
+   "in_list_view": 1,
+   "label": "Descriptor (What the learner can do)"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "min_score",
+   "fieldtype": "Float",
+   "label": "Min Score"
+  },
+  {
+   "fieldname": "max_score",
+   "fieldtype": "Float",
+   "label": "Max Score"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-07-07 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Frappe Education Kenya",
+ "name": "CBC Performance Level Rubric",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

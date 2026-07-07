@@ -1,0 +1,166 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:template_code",
+ "creation": "2026-07-07 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "template_code",
+  "template_name",
+  "return_type",
+  "frequency",
+  "column_break_1",
+  "is_standard_template",
+  "nemis_upload_format",
+  "template_file",
+  "section_break_schedule",
+  "due_date_rule",
+  "reminder_days_before",
+  "responsible_role",
+  "section_break_sources",
+  "data_sources",
+  "section_break_description",
+  "description",
+  "report_query"
+ ],
+ "fields": [
+  {
+   "fieldname": "template_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Template Code",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "template_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Template Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "return_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Return Type",
+   "options": "Enrolment\nStaff\nInfrastructure\nFinancial\nExamination\nAttendance\nSpecial Needs\nOrphans & Vulnerable\nSchool Feeding\nBoarders\nCo-curricular\nGeneral",
+   "reqd": 1
+  },
+  {
+   "fieldname": "frequency",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Frequency",
+   "options": "Daily\nWeekly\nMonthly\nTermly\nAnnual\nAd-hoc",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_standard_template",
+   "fieldtype": "Check",
+   "label": "Is Standard Template",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "nemis_upload_format",
+   "fieldtype": "Check",
+   "label": "Generates NEMIS-Compatible CSV"
+  },
+  {
+   "fieldname": "template_file",
+   "fieldtype": "Attach",
+   "label": "Official MoE Template File"
+  },
+  {
+   "fieldname": "section_break_schedule",
+   "fieldtype": "Section Break",
+   "label": "Schedule"
+  },
+  {
+   "fieldname": "due_date_rule",
+   "fieldtype": "Data",
+   "label": "Due Date Rule",
+   "description": "e.g., 'End of term + 14 days' or '15th of each month'"
+  },
+  {
+   "fieldname": "reminder_days_before",
+   "fieldtype": "Int",
+   "label": "Reminder Days Before Due"
+  },
+  {
+   "fieldname": "responsible_role",
+   "fieldtype": "Link",
+   "label": "Responsible Role",
+   "options": "Role"
+  },
+  {
+   "fieldname": "section_break_sources",
+   "fieldtype": "Section Break",
+   "label": "Data Sources"
+  },
+  {
+   "fieldname": "data_sources",
+   "fieldtype": "Table",
+   "label": "Data Sources (DocTypes & Fields)",
+   "options": "MoE Data Source"
+  },
+  {
+   "fieldname": "section_break_description",
+   "fieldtype": "Section Break",
+   "label": "Description & Query"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Description"
+  },
+  {
+   "fieldname": "report_query",
+   "fieldtype": "Code",
+   "label": "Report Query (SQL)",
+   "options": "SQL"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-07-07 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Frappe Education Kenya",
+ "name": "MoE Return Template",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "MoE Reporter"
+  },
+  {
+   "read": 1,
+   "role": "Academic Admin"
+  }
+ ],
+ "sort_field": "template_code",
+ "sort_order": "ASC",
+ "states": [],
+ "track_changes": 1
+}

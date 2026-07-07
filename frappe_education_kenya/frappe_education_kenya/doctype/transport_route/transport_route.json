@@ -1,0 +1,170 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:route_code",
+ "creation": "2026-07-07 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "route_code",
+  "route_name",
+  "route_status",
+  "column_break_1",
+  "vehicle",
+  "driver",
+  "sacco_association",
+  "section_break_details",
+  "route_distance_km",
+  "estimated_duration_minutes",
+  "term_fee",
+  "applicable_days",
+  "column_break_2",
+  "pickup_points",
+  "section_break_stats",
+  "total_subscribers",
+  "monthly_revenue"
+ ],
+ "fields": [
+  {
+   "fieldname": "route_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Route Code",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "route_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Route Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "route_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Route Status",
+   "options": "Active\nInactive\nSeasonal",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "vehicle",
+   "fieldtype": "Link",
+   "label": "Assigned Vehicle",
+   "options": "Transport Vehicle"
+  },
+  {
+   "fieldname": "driver",
+   "fieldtype": "Link",
+   "label": "Assigned Driver",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "sacco_association",
+   "fieldtype": "Data",
+   "label": "SACCO Association"
+  },
+  {
+   "fieldname": "section_break_details",
+   "fieldtype": "Section Break",
+   "label": "Route Details"
+  },
+  {
+   "fieldname": "route_distance_km",
+   "fieldtype": "Float",
+   "label": "Route Distance (km)"
+  },
+  {
+   "fieldname": "estimated_duration_minutes",
+   "fieldtype": "Int",
+   "label": "Estimated Duration (minutes)"
+  },
+  {
+   "fieldname": "term_fee",
+   "fieldtype": "Currency",
+   "label": "Term Fee",
+   "reqd": 1
+  },
+  {
+   "fieldname": "applicable_days",
+   "fieldtype": "Select",
+   "label": "Applicable Days",
+   "options": "All School Days\nMonday-Friday\nSpecific Days"
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "pickup_points",
+   "fieldtype": "Table",
+   "label": "Pickup/Drop-off Points",
+   "options": "Transport Pickup Point"
+  },
+  {
+   "fieldname": "section_break_stats",
+   "fieldtype": "Section Break",
+   "label": "Statistics"
+  },
+  {
+   "fieldname": "total_subscribers",
+   "fieldtype": "Int",
+   "label": "Total Subscribers",
+   "read_only": 1
+  },
+  {
+   "fieldname": "monthly_revenue",
+   "fieldtype": "Currency",
+   "label": "Monthly Revenue",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-07-07 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Frappe Education Kenya",
+   "name": "Transport Route",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Transport Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Academic Admin"
+  }
+ ],
+ "sort_field": "route_code",
+ "sort_order": "ASC",
+ "states": [],
+ "track_changes": 1
+}

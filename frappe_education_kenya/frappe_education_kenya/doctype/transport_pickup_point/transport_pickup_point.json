@@ -1,0 +1,62 @@
+{
+ "actions": [],
+ "creation": "2026-07-07 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "pickup_point_name",
+  "sequence_order",
+  "estimated_arrival_time",
+  "column_break_1",
+  "landmark",
+  "gps_coordinates"
+ ],
+ "fields": [
+  {
+   "fieldname": "pickup_point_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Pickup/Drop-off Point",
+   "reqd": 1
+  },
+  {
+   "fieldname": "sequence_order",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Sequence Order"
+  },
+  {
+   "fieldname": "estimated_arrival_time",
+   "fieldtype": "Time",
+   "in_list_view": 1,
+   "label": "Est. Arrival Time"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "landmark",
+   "fieldtype": "Data",
+   "label": "Nearby Landmark"
+  },
+  {
+   "fieldname": "gps_coordinates",
+   "fieldtype": "Data",
+   "label": "GPS Coordinates"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-07-07 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Frappe Education Kenya",
+ "name": "Transport Pickup Point",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

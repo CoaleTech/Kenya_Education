@@ -1,0 +1,7 @@
+[pre_model_sync]
+# Pre-model sync patches run before DocType schemas are updated
+
+[post_model_sync]
+# Post-model sync patches run after DocType schemas are updated
+frappe_education_kenya.patches.v1_0_0.seed_cbc_curriculum_data # 2026-07-07: Seed CBC curriculum learning areas
+frappe_education_kenya.patches.v1_0_0.create_custom_fields_on_student # 2026-07-07: Add Kenya-specific fields to Student

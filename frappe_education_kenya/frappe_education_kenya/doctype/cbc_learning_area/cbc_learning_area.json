@@ -1,0 +1,142 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:learning_area_code",
+ "creation": "2026-07-07 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "learning_area_code",
+  "learning_area_name",
+  "learning_area_category",
+  "column_break_1",
+  "is_core",
+  "is_examinable",
+  "is_standard_fixture",
+  "section_break_levels",
+  "applicable_levels",
+  "section_break_strands",
+  "strand_count",
+  "strands"
+ ],
+ "fields": [
+  {
+   "fieldname": "learning_area_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Learning Area Code",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "learning_area_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Learning Area Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "learning_area_category",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Category",
+   "options": "Languages\nMathematics\nSciences\nHumanities\nCreative Arts\nTechnical\nLife Skills\nReligious Education\nPhysical Education",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "1",
+   "fieldname": "is_core",
+   "fieldtype": "Check",
+   "label": "Is Core (Compulsory)"
+  },
+  {
+   "default": "1",
+   "fieldname": "is_examinable",
+   "fieldtype": "Check",
+   "label": "Is Examinable"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_standard_fixture",
+   "fieldtype": "Check",
+   "label": "Is Standard Fixture",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_levels",
+   "fieldtype": "Section Break",
+   "label": "Applicable Levels"
+  },
+  {
+   "fieldname": "applicable_levels",
+   "fieldtype": "Table MultiSelect",
+   "label": "Applicable CBC Levels",
+   "options": "CBCLearningAreaLevel",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_strands",
+   "fieldtype": "Section Break",
+   "label": "Strands"
+  },
+  {
+   "fieldname": "strand_count",
+   "fieldtype": "Int",
+   "label": "Number of Strands",
+   "read_only": 1
+  },
+  {
+   "fieldname": "strands",
+   "fieldtype": "Table",
+   "label": "Strands",
+   "options": "CBCStrand"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-07-07 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Frappe Education Kenya",
+ "name": "CBC Learning Area",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Academic Admin",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Instructor"
+  }
+ ],
+ "sort_field": "learning_area_code",
+ "sort_order": "ASC",
+ "states": [],
+ "track_changes": 1
+}

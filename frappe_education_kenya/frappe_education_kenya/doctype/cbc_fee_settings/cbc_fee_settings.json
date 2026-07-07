@@ -1,0 +1,157 @@
+{
+ "actions": [],
+ "creation": "2026-07-07 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "fee_components_section",
+  "kenya_fee_components",
+  "section_break_billing",
+  "auto_generate_transport_invoice",
+  "auto_generate_meals_invoice",
+  "billing_day_of_month",
+  "column_break_1",
+  "prorate_for_late_enrolment",
+  "prorate_for_early_withdrawal",
+  "section_break_waivers",
+  "enable_fee_waivers",
+  "waiver_approval_required",
+  "max_waiver_percentage",
+  "section_break_moe_finance",
+  "track_government_capitation",
+  "capitation_per_student",
+  "government_bursary_fund"
+ ],
+ "fields": [
+  {
+   "fieldname": "fee_components_section",
+   "fieldtype": "Section Break",
+   "label": "Kenya-Specific Fee Components"
+  },
+  {
+   "fieldname": "kenya_fee_components",
+   "fieldtype": "Table",
+   "label": "Fee Components",
+   "options": "CBC Fee Component"
+  },
+  {
+   "fieldname": "section_break_billing",
+   "fieldtype": "Section Break",
+   "label": "Billing Automation"
+  },
+  {
+   "default": "1",
+   "fieldname": "auto_generate_transport_invoice",
+   "fieldtype": "Check",
+   "label": "Auto-Generate Transport Invoice"
+  },
+  {
+   "default": "1",
+   "fieldname": "auto_generate_meals_invoice",
+   "fieldtype": "Check",
+   "label": "Auto-Generate Meals Invoice"
+  },
+  {
+   "fieldname": "billing_day_of_month",
+   "fieldtype": "Int",
+   "label": "Billing Day of Month",
+   "description": "Day of month when invoices are generated"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "1",
+   "fieldname": "prorate_for_late_enrolment",
+   "fieldtype": "Check",
+   "label": "Prorate for Late Enrolment"
+  },
+  {
+   "default": "1",
+   "fieldname": "prorate_for_early_withdrawal",
+   "fieldtype": "Check",
+   "label": "Prorate for Early Withdrawal"
+  },
+  {
+   "fieldname": "section_break_waivers",
+   "fieldtype": "Section Break",
+   "label": "Fee Waivers"
+  },
+  {
+   "default": "1",
+   "fieldname": "enable_fee_waivers",
+   "fieldtype": "Check",
+   "label": "Enable Fee Waivers"
+  },
+  {
+   "default": "1",
+   "fieldname": "waiver_approval_required",
+   "fieldtype": "Check",
+   "label": "Waiver Approval Required"
+  },
+  {
+   "fieldname": "max_waiver_percentage",
+   "fieldtype": "Percent",
+   "label": "Maximum Waiver Percentage"
+  },
+  {
+   "fieldname": "section_break_moe_finance",
+   "fieldtype": "Section Break",
+   "label": "Government Funding"
+  },
+  {
+   "default": "0",
+   "fieldname": "track_government_capitation",
+   "fieldtype": "Check",
+   "label": "Track Government Capitation"
+  },
+  {
+   "depends_on": "eval:doc.track_government_capitation",
+   "fieldname": "capitation_per_student",
+   "fieldtype": "Currency",
+   "label": "Capitation Per Student"
+  },
+  {
+   "depends_on": "eval:doc.track_government_capitation",
+   "fieldname": "government_bursary_fund",
+   "fieldtype": "Currency",
+   "label": "Government Bursary Fund"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-07-07 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Frappe Education Kenya",
+ "name": "CBC Fee Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Bursar"
+  },
+  {
+   "read": 1,
+   "role": "Academic Admin"
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

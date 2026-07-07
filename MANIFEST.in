@@ -1,0 +1,10 @@
+include MANIFEST.in
+include license.txt
+include README.md
+include BLUEPRINT.md
+recursive-include frappe_education_kenya *.csv
+recursive-include frappe_education_kenya *.json
+recursive-include frappe_education_kenya *.md
+recursive-include frappe_education_kenya *.txt
+recursive-include frappe_education_kenya *.xml
+recursive-include frappe_education_kenya/public *

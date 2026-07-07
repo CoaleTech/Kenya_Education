@@ -1,0 +1,192 @@
+{
+ "actions": [],
+ "creation": "2026-07-07 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "student_id_section",
+  "require_upin",
+  "require_nemis_number",
+  "require_birth_certificate",
+  "column_break_1",
+  "auto_generate_student_id",
+  "student_id_format",
+  "section_break_cbc",
+  "auto_assign_cbc_level",
+  "default_cbc_level_by_program",
+  "section_break_special_needs",
+  "track_special_needs",
+  "special_needs_categories",
+  "section_break_boarding",
+  "track_boarding_status",
+  "boarding_types",
+  "section_break_transport",
+  "track_transport",
+  "transport_mandatory_for_boarders",
+  "section_break_meals",
+  "track_meal_programme",
+  "default_meal_programme"
+ ],
+ "fields": [
+  {
+   "fieldname": "student_id_section",
+   "fieldtype": "Section Break",
+   "label": "Student Identification"
+  },
+  {
+   "default": "1",
+   "fieldname": "require_upin",
+   "fieldtype": "Check",
+   "label": "Require UPIN (Unique Personal Identifier)"
+  },
+  {
+   "default": "1",
+   "fieldname": "require_nemis_number",
+   "fieldtype": "Check",
+   "label": "Require NEMIS Number"
+  },
+  {
+   "default": "0",
+   "fieldname": "require_birth_certificate",
+   "fieldtype": "Check",
+   "label": "Require Birth Certificate Number"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "1",
+   "fieldname": "auto_generate_student_id",
+   "fieldtype": "Check",
+   "label": "Auto-Generate Student ID"
+  },
+  {
+   "depends_on": "eval:doc.auto_generate_student_id",
+   "fieldname": "student_id_format",
+   "fieldtype": "Data",
+   "label": "Student ID Format",
+   "description": "e.g., SCH-{YYYY}-{#####}"
+  },
+  {
+   "fieldname": "section_break_cbc",
+   "fieldtype": "Section Break",
+   "label": "CBC Level Assignment"
+  },
+  {
+   "default": "1",
+   "fieldname": "auto_assign_cbc_level",
+   "fieldtype": "Check",
+   "label": "Auto-Assign CBC Level from Program"
+  },
+  {
+   "depends_on": "eval:doc.auto_assign_cbc_level",
+   "fieldname": "default_cbc_level_by_program",
+   "fieldtype": "Table",
+   "label": "Program to CBC Level Mapping",
+   "options": "CBC Program Level Mapping"
+  },
+  {
+   "fieldname": "section_break_special_needs",
+   "fieldtype": "Section Break",
+   "label": "Special Needs Tracking"
+  },
+  {
+   "default": "1",
+   "fieldname": "track_special_needs",
+   "fieldtype": "Check",
+   "label": "Track Special Needs"
+  },
+  {
+   "depends_on": "eval:doc.track_special_needs",
+   "fieldname": "special_needs_categories",
+   "fieldtype": "Table MultiSelect",
+   "label": "Special Needs Categories",
+   "options": "CBC Special Needs Category"
+  },
+  {
+   "fieldname": "section_break_boarding",
+   "fieldtype": "Section Break",
+   "label": "Boarding Status"
+  },
+  {
+   "default": "1",
+   "fieldname": "track_boarding_status",
+   "fieldtype": "Check",
+   "label": "Track Boarding Status"
+  },
+  {
+   "depends_on": "eval:doc.track_boarding_status",
+   "fieldname": "boarding_types",
+   "fieldtype": "Table MultiSelect",
+   "label": "Boarding Types",
+   "options": "CBC Boarding Type"
+  },
+  {
+   "fieldname": "section_break_transport",
+   "fieldtype": "Section Break",
+   "label": "Transport Integration"
+  },
+  {
+   "default": "0",
+   "fieldname": "track_transport",
+   "fieldtype": "Check",
+   "label": "Track Transport for Students"
+  },
+  {
+   "default": "0",
+   "fieldname": "transport_mandatory_for_boarders",
+   "fieldtype": "Check",
+   "label": "Transport Mandatory for Boarders"
+  },
+  {
+   "fieldname": "section_break_meals",
+   "fieldtype": "Section Break",
+   "label": "Meals Integration"
+  },
+  {
+   "default": "0",
+   "fieldname": "track_meal_programme",
+   "fieldtype": "Check",
+   "label": "Track Meal Programme for Students"
+  },
+  {
+   "depends_on": "eval:doc.track_meal_programme",
+   "fieldname": "default_meal_programme",
+   "fieldtype": "Link",
+   "label": "Default Meal Programme",
+   "options": "Meal Programme"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-07-07 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Frappe Education Kenya",
+ "name": "CBC Student Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Academic Admin"
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

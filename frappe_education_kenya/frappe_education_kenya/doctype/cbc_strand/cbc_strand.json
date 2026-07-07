@@ -1,0 +1,108 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:strand_code",
+ "creation": "2026-07-07 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "strand_code",
+  "strand_name",
+  "learning_area",
+  "cbc_level",
+  "column_break_1",
+  "sub_strand_count",
+  "description"
+ ],
+ "fields": [
+  {
+   "fieldname": "strand_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Strand Code",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "strand_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Strand Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "learning_area",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Learning Area",
+   "options": "CBC Learning Area",
+   "reqd": 1
+  },
+  {
+   "fieldname": "cbc_level",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "CBC Level",
+   "options": "CBC Level",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "sub_strand_count",
+   "fieldtype": "Int",
+   "label": "Number of Sub-Strands",
+   "read_only": 1
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text",
+   "label": "Description"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-07-07 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Frappe Education Kenya",
+ "name": "CBC Strand",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Academic Admin",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Instructor"
+  }
+ ],
+ "sort_field": "strand_code",
+ "sort_order": "ASC",
+ "states": [],
+ "track_changes": 1
+}

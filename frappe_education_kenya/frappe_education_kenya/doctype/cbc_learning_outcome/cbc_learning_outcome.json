@@ -1,0 +1,112 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:outcome_code",
+ "creation": "2026-07-07 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "outcome_code",
+  "outcome_description",
+  "sub_strand",
+  "column_break_1",
+  "suggested_resources",
+  "suggested_assessment_methods",
+  "section_break_pl",
+  "performance_level_indicators"
+ ],
+ "fields": [
+  {
+   "fieldname": "outcome_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Outcome Code",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "outcome_description",
+   "fieldtype": "Text",
+   "in_list_view": 1,
+   "label": "Outcome Description",
+   "reqd": 1
+  },
+  {
+   "fieldname": "sub_strand",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Sub-Strand",
+   "options": "CBC Sub Strand",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "suggested_resources",
+   "fieldtype": "Text",
+   "label": "Suggested Resources"
+  },
+  {
+   "fieldname": "suggested_assessment_methods",
+   "fieldtype": "Select",
+   "label": "Suggested Assessment Methods",
+   "options": "\nObservation\nOral Questioning\nWritten Test\nPractical Activity\nProject\nPortfolio\nPeer Assessment\nSelf Assessment"
+  },
+  {
+   "fieldname": "section_break_pl",
+   "fieldtype": "Section Break",
+   "label": "Performance Level Indicators"
+  },
+  {
+   "fieldname": "performance_level_indicators",
+   "fieldtype": "Table",
+   "label": "Performance Level Indicators",
+   "options": "CBC Performance Level Rubric"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-07-07 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Frappe Education Kenya",
+ "name": "CBC Learning Outcome",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Academic Admin",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Instructor"
+  }
+ ],
+ "sort_field": "outcome_code",
+ "sort_order": "ASC",
+ "states": [],
+ "track_changes": 1
+}

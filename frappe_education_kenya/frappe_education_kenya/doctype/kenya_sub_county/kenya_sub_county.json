@@ -1,0 +1,76 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-07-07 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "sub_county_name",
+  "county",
+  "column_break_1",
+  "constituency",
+  "ward"
+ ],
+ "fields": [
+  {
+   "fieldname": "sub_county_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Sub-County Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "county",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "County",
+   "options": "Kenya County",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "constituency",
+   "fieldtype": "Data",
+   "label": "Constituency"
+  },
+  {
+   "fieldname": "ward",
+   "fieldtype": "Data",
+   "label": "Ward"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-07-07 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Frappe Education Kenya",
+ "name": "Kenya Sub County",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "All"
+  }
+ ],
+ "sort_field": "sub_county_name",
+ "sort_order": "ASC",
+ "states": [],
+ "track_changes": 1
+}

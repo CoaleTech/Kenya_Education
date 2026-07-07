@@ -1,0 +1,226 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:CBC-RES-{YYYY}-{#####}",
+ "creation": "2026-07-07 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "student",
+  "student_name",
+  "assessment",
+  "assessment_name",
+  "cbc_level",
+  "learning_area",
+  "column_break_1",
+  "assessment_date",
+  "assessed_by",
+  "instructor_name",
+  "section_break_result",
+  "raw_score",
+  "maximum_score",
+  "score_percentage",
+  "performance_level",
+  "performance_level_label",
+  "section_break_feedback",
+  "competence_comment",
+  "teacher_remarks",
+  "parent_remarks",
+  "section_break_moe",
+  "reported_to_moe",
+  "moe_report_date"
+ ],
+ "fields": [
+  {
+   "fieldname": "student",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Student",
+   "options": "Student",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "student.student_name",
+   "fieldname": "student_name",
+   "fieldtype": "Data",
+   "label": "Student Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "assessment",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Assessment",
+   "options": "CBC Assessment",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "assessment.assessment_name",
+   "fieldname": "assessment_name",
+   "fieldtype": "Data",
+   "label": "Assessment Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "assessment.cbc_level",
+   "fieldname": "cbc_level",
+   "fieldtype": "Link",
+   "label": "CBC Level",
+   "options": "CBC Level",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "assessment.learning_area",
+   "fieldname": "learning_area",
+   "fieldtype": "Link",
+   "label": "Learning Area",
+   "options": "CBC Learning Area",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "assessment_date",
+   "fieldtype": "Date",
+   "label": "Assessment Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "assessed_by",
+   "fieldtype": "Link",
+   "label": "Assessed By",
+   "options": "Instructor"
+  },
+  {
+   "fetch_from": "assessed_by.instructor_name",
+   "fieldname": "instructor_name",
+   "fieldtype": "Data",
+   "label": "Instructor Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_result",
+   "fieldtype": "Section Break",
+   "label": "Result"
+  },
+  {
+   "fieldname": "raw_score",
+   "fieldtype": "Float",
+   "label": "Raw Score"
+  },
+  {
+   "fetch_from": "assessment.maximum_score",
+   "fieldname": "maximum_score",
+   "fieldtype": "Float",
+   "label": "Maximum Score",
+   "read_only": 1
+  },
+  {
+   "fieldname": "score_percentage",
+   "fieldtype": "Percent",
+   "label": "Score Percentage",
+   "read_only": 1
+  },
+  {
+   "fieldname": "performance_level",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Performance Level",
+   "options": "\nPL1\nPL2\nPL3\nPL4"
+  },
+  {
+   "fieldname": "performance_level_label",
+   "fieldtype": "Data",
+   "label": "Performance Level Label",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_feedback",
+   "fieldtype": "Section Break",
+   "label": "Feedback"
+  },
+  {
+   "fieldname": "competence_comment",
+   "fieldtype": "Text",
+   "label": "Competence Comment"
+  },
+  {
+   "fieldname": "teacher_remarks",
+   "fieldtype": "Text",
+   "label": "Teacher Remarks"
+  },
+  {
+   "fieldname": "parent_remarks",
+   "fieldtype": "Text",
+   "label": "Parent Remarks"
+  },
+  {
+   "fieldname": "section_break_moe",
+   "fieldtype": "Section Break",
+   "label": "MoE Reporting"
+  },
+  {
+   "default": "0",
+   "fieldname": "reported_to_moe",
+   "fieldtype": "Check",
+   "label": "Reported to MoE"
+  },
+  {
+   "fieldname": "moe_report_date",
+   "fieldtype": "Date",
+   "label": "MoE Report Date"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-07-07 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Frappe Education Kenya",
+ "name": "CBC Assessment Result",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Academic Admin",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Instructor",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

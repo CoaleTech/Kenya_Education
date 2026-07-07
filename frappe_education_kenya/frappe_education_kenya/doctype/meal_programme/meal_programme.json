@@ -1,0 +1,175 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:programme_name",
+ "creation": "2026-07-07 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "programme_name",
+  "programme_type",
+  "programme_status",
+  "column_break_1",
+  "meals_per_day",
+  "meal_types",
+  "dietary_category",
+  "section_break_provider",
+  "provider_name",
+  "provider_contact",
+  "provider_contract",
+  "column_break_2",
+  "term_cost",
+  "government_contribution",
+  "parent_contribution",
+  "section_break_nutrition",
+  "nutritional_targets",
+  "special_dietary_provisions"
+ ],
+ "fields": [
+  {
+   "fieldname": "programme_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Programme Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "programme_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Programme Type",
+   "options": "Government Funded (NSNP)\nParent Funded\nMixed Funding\nExternal Provider\nFaith-Based Sponsored\nNGO Sponsored",
+   "reqd": 1
+  },
+  {
+   "fieldname": "programme_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Active\nInactive\nPilot\nSuspended",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "meals_per_day",
+   "fieldtype": "Int",
+   "label": "Meals Per Day",
+   "reqd": 1
+  },
+  {
+   "fieldname": "meal_types",
+   "fieldtype": "MultiSelect",
+   "label": "Meal Types",
+   "options": "Breakfast\nMid-Morning Snack\nLunch\nEvening Tea\nDinner",
+   "reqd": 1
+  },
+  {
+   "fieldname": "dietary_category",
+   "fieldtype": "Select",
+   "label": "Dietary Category",
+   "options": "Regular\nSpecial Diet\nMedical\nReligious (Halal)\nReligious (Kosher)\nVegetarian\nVegan"
+  },
+  {
+   "fieldname": "section_break_provider",
+   "fieldtype": "Section Break",
+   "label": "Provider Information"
+  },
+  {
+   "fieldname": "provider_name",
+   "fieldtype": "Data",
+   "label": "Provider Name"
+  },
+  {
+   "fieldname": "provider_contact",
+   "fieldtype": "Data",
+   "label": "Provider Contact"
+  },
+  {
+   "fieldname": "provider_contract",
+   "fieldtype": "Attach",
+   "label": "Provider Contract"
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "term_cost",
+   "fieldtype": "Currency",
+   "label": "Cost Per Student Per Term"
+  },
+  {
+   "fieldname": "government_contribution",
+   "fieldtype": "Currency",
+   "label": "Government Contribution"
+  },
+  {
+   "fieldname": "parent_contribution",
+   "fieldtype": "Currency",
+   "label": "Parent Contribution",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_nutrition",
+   "fieldtype": "Section Break",
+   "label": "Nutritional Information"
+  },
+  {
+   "fieldname": "nutritional_targets",
+   "fieldtype": "Text",
+   "label": "Nutritional Targets (calories, protein, etc.)"
+  },
+  {
+   "fieldname": "special_dietary_provisions",
+   "fieldtype": "Text",
+   "label": "Special Dietary Provisions"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-07-07 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Frappe Education Kenya",
+ "name": "Meal Programme",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Catering Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Academic Admin"
+  }
+ ],
+ "sort_field": "programme_name",
+ "sort_order": "ASC",
+ "states": [],
+ "track_changes": 1
+}

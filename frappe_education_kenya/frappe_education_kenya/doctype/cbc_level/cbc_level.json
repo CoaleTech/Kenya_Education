@@ -1,0 +1,145 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:level_code",
+ "creation": "2026-07-07 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "level_code",
+  "level_name",
+  "education_sector",
+  "column_break_1",
+  "years_of_study",
+  "sequence_order",
+  "moef_level_code",
+  "section_break_exam",
+  "is_transition_level",
+  "examination_body",
+  "national_exam_name",
+  "section_break_fixture",
+  "is_standard_fixture"
+ ],
+ "fields": [
+  {
+   "fieldname": "level_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Level Code",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "level_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Level Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "education_sector",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Education Sector",
+   "options": "Pre-Primary\nPrimary\nJunior Secondary\nSenior Secondary",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "years_of_study",
+   "fieldtype": "Int",
+   "label": "Years of Study",
+   "reqd": 1
+  },
+  {
+   "fieldname": "sequence_order",
+   "fieldtype": "Int",
+   "label": "Sequence Order",
+   "reqd": 1
+  },
+  {
+   "fieldname": "moef_level_code",
+   "fieldtype": "Data",
+   "label": "MoE Level Code",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_exam",
+   "fieldtype": "Section Break",
+   "label": "Examination Details"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_transition_level",
+   "fieldtype": "Check",
+   "label": "Is Transition Level (Has National Exam)"
+  },
+  {
+   "depends_on": "eval:doc.is_transition_level",
+   "fieldname": "examination_body",
+   "fieldtype": "Select",
+   "label": "Examination Body",
+   "options": "\nKNAT\nLNEC\nKNEC"
+  },
+  {
+   "depends_on": "eval:doc.is_transition_level",
+   "fieldname": "national_exam_name",
+   "fieldtype": "Data",
+   "label": "National Exam Name"
+  },
+  {
+   "fieldname": "section_break_fixture",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_standard_fixture",
+   "fieldtype": "Check",
+   "label": "Is Standard Fixture",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-07-07 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Frappe Education Kenya",
+ "name": "CBC Level",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Academic Admin",
+   "share": 1
+  },
+  {
+   "read": 1,
+   "role": "Instructor"
+  }
+ ],
+ "sort_field": "sequence_order",
+ "sort_order": "ASC",
+ "states": [],
+ "track_changes": 1
+}

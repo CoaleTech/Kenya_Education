@@ -1,0 +1,79 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:county_code",
+ "creation": "2026-07-07 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "county_code",
+  "county_name",
+  "column_break_1",
+  "region",
+  "capital_town"
+ ],
+ "fields": [
+  {
+   "fieldname": "county_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "County Code",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "county_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "County Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "region",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Region",
+   "options": "Coast\nNorth Eastern\nEastern\nCentral\nRift Valley\nWestern\nNyanza\nNairobi"
+  },
+  {
+   "fieldname": "capital_town",
+   "fieldtype": "Data",
+   "label": "Capital Town"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-07-07 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Frappe Education Kenya",
+ "name": "Kenya County",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "All"
+  }
+ ],
+ "sort_field": "county_code",
+ "sort_order": "ASC",
+ "states": [],
+ "track_changes": 1
+}

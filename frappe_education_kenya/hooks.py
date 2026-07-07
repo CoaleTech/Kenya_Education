@@ -1,258 +1,172 @@
+"""
+Frappe Education Kenya — App Configuration
+
+A custom Frappe application that extends Frappe Education with full alignment
+to Kenya's Competency-Based Curriculum (CBC) and Ministry of Education compliance.
+
+Covers: ECDE (2 years), Primary (6 years), Junior Secondary (3 years),
+        Senior Secondary (3 years) — the full 2-6-3-3 structure.
+
+Modules:
+    - CBC Curriculum: Learning areas, strands, assessments, performance levels
+    - Transport Management: Routes, vehicles, student subscriptions
+    - Meals & Food Services: Feeding programmes, daily records, subscriptions
+    - MoE Compliance: Automated EMIS/NEMIS reporting and return submissions
+    - Student Lifecycle: Kenya-specific student data, transitions, special needs
+"""
+
 app_name = "frappe_education_kenya"
-app_title = "Frappe Education Kenya"
-app_publisher = "CoaleTech"
-app_description = "Education Kenya Localization"
-app_email = "info@coale.tech"
+app_title = "Education Kenya"
+app_publisher = "Frappe Education Kenya Team"
+app_description = "Kenya CBC-aligned education management with MoE compliance, transport, and meals"
+app_email = "dev@frappeeducationkenya.com"
 app_license = "mit"
+app_version = "1.0.0"
 
-# Apps
-# ------------------
+# ──────────────────────────────────────────────────────────────────────────────
+# REQUIRED APPS
+# ──────────────────────────────────────────────────────────────────────────────
+# This app extends frappe/education — it MUST be installed
+required_apps = ["frappe", "erpnext", "education"]
 
-# required_apps = []
+# ──────────────────────────────────────────────────────────────────────────────
+# MODULES
+# ──────────────────────────────────────────────────────────────────────────────
+app_include_js = "/assets/frappe_education_kenya/js/education_kenya.js"
+app_include_css = "/assets/frappe_education_kenya/css/education_kenya.css"
 
-# Each item in the list will be shown as an app in the apps page
-# add_to_apps_screen = [
-# 	{
-# 		"name": "frappe_education_kenya",
-# 		"logo": "/assets/frappe_education_kenya/logo.png",
-# 		"title": "Frappe Education Kenya",
-# 		"route": "/frappe_education_kenya",
-# 		"has_permission": "frappe_education_kenya.api.permission.has_app_permission"
-# 	}
-# ]
-
-# Includes in <head>
-# ------------------
-
-# include js, css files in header of desk.html
-# app_include_css = "/assets/frappe_education_kenya/css/frappe_education_kenya.css"
-# app_include_js = "/assets/frappe_education_kenya/js/frappe_education_kenya.js"
-
-# include js, css files in header of web template
-# web_include_css = "/assets/frappe_education_kenya/css/frappe_education_kenya.css"
-# web_include_js = "/assets/frappe_education_kenya/js/frappe_education_kenya.js"
-
-# include custom scss in every website theme (without file extension ".scss")
-# website_theme_scss = "frappe_education_kenya/public/scss/website"
-
-# include js, css files in header of web form
-# webform_include_js = {"doctype": "public/js/doctype.js"}
-# webform_include_css = {"doctype": "public/css/doctype.css"}
-
-# include js in page
-# page_js = {"page" : "public/js/file.js"}
-
-# include js in doctype views
-# doctype_js = {"doctype" : "public/js/doctype.js"}
-# doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
-# doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
-# doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
-
-# Svg Icons
-# ------------------
-# include app icons in desk
-# app_include_icons = "frappe_education_kenya/public/icons.svg"
-
-# Home Pages
-# ----------
-
-# application home page (will override Website Settings)
-# home_page = "login"
-
-# website user home page (by Role)
-# role_home_page = {
-# 	"Role": "home_page"
-# }
-
-# Generators
-# ----------
-
-# automatically create page for each record of this doctype
-# website_generators = ["Web Page"]
-
-# automatically load and sync documents of this doctype from downstream apps
-# importable_doctypes = [doctype_1]
-
-# Jinja
-# ----------
-
-# add methods and filters to jinja environment
-# jinja = {
-# 	"methods": "frappe_education_kenya.utils.jinja_methods",
-# 	"filters": "frappe_education_kenya.utils.jinja_filters"
-# }
-
-# Installation
-# ------------
-
-# before_install = "frappe_education_kenya.install.before_install"
-# after_install = "frappe_education_kenya.install.after_install"
-
-# Uninstallation
-# ------------
-
-# before_uninstall = "frappe_education_kenya.uninstall.before_uninstall"
-# after_uninstall = "frappe_education_kenya.uninstall.after_uninstall"
-
-# Integration Setup
-# ------------------
-# To set up dependencies/integrations with other apps
-# Name of the app being installed is passed as an argument
-
-# before_app_install = "frappe_education_kenya.utils.before_app_install"
-# after_app_install = "frappe_education_kenya.utils.after_app_install"
-
-# Integration Cleanup
-# -------------------
-# To clean up dependencies/integrations with other apps
-# Name of the app being uninstalled is passed as an argument
-
-# before_app_uninstall = "frappe_education_kenya.utils.before_app_uninstall"
-# after_app_uninstall = "frappe_education_kenya.utils.after_app_uninstall"
-
-# Build
-# ------------------
-# To hook into the build process
-
-# after_build = "frappe_education_kenya.build.after_build"
-
-# Desk Notifications
-# ------------------
-# See frappe.core.notifications.get_notification_config
-
-# notification_config = "frappe_education_kenya.notifications.get_notification_config"
-
-# Permissions
-# -----------
-# Permissions evaluated in scripted ways
-
-# permission_query_conditions = {
-# 	"Event": "frappe.desk.doctype.event.event.get_permission_query_conditions",
-# }
+# ──────────────────────────────────────────────────────────────────────────────
+# DESKTOP ICONS & WORKSPACES
+# ──────────────────────────────────────────────────────────────────────────────
 #
-# has_permission = {
-# 	"Event": "frappe.desk.doctype.event.event.has_permission",
-# }
-
-# Document Events
-# ---------------
-# Hook on document methods and events
-
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
-
-# Scheduled Tasks
-# ---------------
-
-# scheduler_events = {
-# 	"all": [
-# 		"frappe_education_kenya.tasks.all"
-# 	],
-# 	"daily": [
-# 		"frappe_education_kenya.tasks.daily"
-# 	],
-# 	"hourly": [
-# 		"frappe_education_kenya.tasks.hourly"
-# 	],
-# 	"weekly": [
-# 		"frappe_education_kenya.tasks.weekly"
-# 	],
-# 	"monthly": [
-# 		"frappe_education_kenya.tasks.monthly"
-# 	],
-# }
-
-# Testing
-# -------
-
-# before_tests = "frappe_education_kenya.install.before_tests"
-
-# Extend DocType Class
-# ------------------------------
+# The app provides a "Kenya Education" workspace that groups all
+# Kenya-specific functionality alongside the default Education workspace.
 #
-# Specify custom mixins to extend the standard doctype controller.
-# extend_doctype_class = {
-# 	"Task": "frappe_education_kenya.custom.task.CustomTaskMixin"
-# }
-
-# Overriding Methods
-# ------------------------------
+# Workspaces are defined in:
+#   frappe_education_kenya/workspace/kenya_education/
 #
-# override_whitelisted_methods = {
-# 	"frappe.desk.doctype.event.event.get_events": "frappe_education_kenya.event.get_events"
-# }
-#
-# each overriding function accepts a `data` argument;
-# generated from the base implementation of the doctype dashboard,
-# along with any modifications made in other Frappe apps
-# override_doctype_dashboards = {
-# 	"Task": "frappe_education_kenya.task.get_dashboard_data"
-# }
+# ──────────────────────────────────────────────────────────────────────────────
 
-# exempt linked doctypes from being automatically cancelled
-#
-# auto_cancel_exempted_doctypes = ["Auto Repeat"]
+# ──────────────────────────────────────────────────────────────────────────────
+# DOC EVENTS — Server Scripts
+# ──────────────────────────────────────────────────────────────────────────────
+# Hooks that run on DocType events to enforce CBC logic and MoE compliance
 
-# Ignore links to specified DocTypes when deleting documents
-# -----------------------------------------------------------
+doc_events = {
+    # When a Student is created/updated, validate Kenya-specific fields
+    "Student": {
+        "validate": "frappe_education_kenya.frappe_education_kenya.doctype.cbc_student_settings.cbc_student_settings.validate_student_kenya_fields",
+        "on_update": "frappe_education_kenya.frappe_education_kenya.doctype.cbc_student_settings.cbc_student_settings.sync_student_to_nemis_fields",
+    },
+    # When an Assessment Result is submitted, map to CBC Performance Levels
+    "Assessment Result": {
+        "validate": "frappe_education_kenya.frappe_education_kenya.doctype.cbc_assessment.cbc_assessment.map_assessment_to_performance_level",
+        "on_submit": "frappe_education_kenya.frappe_education_kenya.doctype.cbc_assessment.cbc_assessment.after_assessment_result_submit",
+    },
+    # When a Fee Structure is created, auto-add transport/meal components if applicable
+    "Fee Structure": {
+        "validate": "frappe_education_kenya.frappe_education_kenya.doctype.cbc_fee_settings.cbc_fee_settings.validate_kenya_fee_structure",
+    },
+    # When Program Enrollment happens, auto-create CBC level progression record
+    "Program Enrollment": {
+        "on_submit": "frappe_education_kenya.frappe_education_kenya.doctype.student_transition.student_transition.after_program_enrollment",
+    },
+}
 
-# ignore_links_on_delete = ["Communication", "ToDo"]
+# ──────────────────────────────────────────────────────────────────────────────
+# SCHEDULED TASKS
+# ──────────────────────────────────────────────────────────────────────────────
+# Background jobs for MoE reporting, reminders, and data maintenance
 
-# Request Events
-# ----------------
-# before_request = ["frappe_education_kenya.utils.before_request"]
-# after_request = ["frappe_education_kenya.utils.after_request"]
+scheduler_events = {
+    "daily": [
+        # Check for upcoming MoE report deadlines and notify responsible staff
+        "frappe_education_kenya.frappe_education_kenya.doctype.moe_return_submission.moe_return_submission.check_upcoming_deadlines",
+        # Generate daily attendance summary for MoE reporting
+        "frappe_education_kenya.frappe_education_kenya.doctype.moe_return_submission.moe_return_submission.generate_daily_attendance_snapshot",
+    ],
+    "weekly": [
+        # Validate NEMIS data completeness and flag incomplete records
+        "frappe_education_kenya.frappe_education_kenya.doctype.cbc_student_settings.cbc_student_settings.validate_nemis_data_completeness",
+    ],
+    "monthly": [
+        # Auto-generate monthly MoE enrolment return draft
+        "frappe_education_kenya.frappe_education_kenya.doctype.moe_return_submission.moe_return_submission.auto_generate_monthly_enrolment_return",
+    ],
+    "cron": {
+        # Transport insurance and inspection expiry checks — every Monday at 8am
+        "0 8 * * 1": [
+            "frappe_education_kenya.frappe_education_kenya.doctype.transport_vehicle.transport_vehicle.check_vehicle_compliance",
+        ],
+    },
+}
 
-# Job Events
-# ----------
-# before_job = ["frappe_education_kenya.utils.before_job"]
-# after_job = ["frappe_education_kenya.utils.after_job"]
+# ──────────────────────────────────────────────────────────────────────────────
+# FIXTURES
+# ──────────────────────────────────────────────────────────────────────────────
+# Seed data exported with the app — CBC curriculum, MoE templates, counties, etc.
 
-# User Data Protection
-# --------------------
+fixtures = [
+    # CBC Curriculum fixtures
+    {"dt": "CBC Level", "filters": [["is_standard_fixture", "=", 1]]},
+    {"dt": "CBC Learning Area", "filters": [["is_standard_fixture", "=", 1]]},
+    {"dt": "CBC Strand", "filters": [["is_standard_fixture", "=", 1]]},
+    {"dt": "CBC Sub Strand", "filters": [["is_standard_fixture", "=", 1]]},
+    {"dt": "CBC Learning Outcome", "filters": [["is_standard_fixture", "=", 1]]},
+    # MoE Compliance fixtures
+    {"dt": "MoE Return Template", "filters": [["is_standard_template", "=", 1]]},
+    # Kenya geographic data
+    {"dt": "Kenya County", "filters": []},
+    {"dt": "Kenya Sub County", "filters": []},
+    # Kenya-specific settings
+    {"dt": "Education Kenya Settings", "filters": []},
+    # Custom fields (exported as Property Setters)
+    "Custom Field",
+    "Property Setter",
+]
 
-# user_data_fields = [
-# 	{
-# 		"doctype": "{doctype_1}",
-# 		"filter_by": "{filter_by}",
-# 		"redact_fields": ["{field_1}", "{field_2}"],
-# 		"partial": 1,
-# 	},
-# 	{
-# 		"doctype": "{doctype_2}",
-# 		"filter_by": "{filter_by}",
-# 		"partial": 1,
-# 	},
-# 	{
-# 		"doctype": "{doctype_3}",
-# 		"strict": False,
-# 	},
-# 	{
-# 		"doctype": "{doctype_4}"
-# 	}
-# ]
+# ──────────────────────────────────────────────────────────────────────────────
+# BEFORE INSTALL / AFTER INSTALL
+# ──────────────────────────────────────────────────────────────────────────────
 
-# Authentication and authorization
-# --------------------------------
+before_install = "frappe_education_kenya.install.before_install"
+after_install = "frappe_education_kenya.install.after_install"
+after_migrate = "frappe_education_kenya.install.after_migrate"
 
-# auth_hooks = [
-# 	"frappe_education_kenya.auth.validate"
-# ]
+# ──────────────────────────────────────────────────────────────────────────────
+# PERMISSIONS
+# ──────────────────────────────────────────────────────────────────────────────
 
-# Automatically update python controller files with type annotations for this app.
-# export_python_type_annotations = True
+has_permission = {
+    "Transport Route": "frappe_education_kenya.frappe_education_kenya.permissions.has_transport_permission",
+    "Transport Vehicle": "frappe_education_kenya.frappe_education_kenya.permissions.has_transport_permission",
+    "Daily Meal Record": "frappe_education_kenya.frappe_education_kenya.permissions.has_meals_permission",
+    "MoE Return Submission": "frappe_education_kenya.frappe_education_kenya.permissions.has_moe_permission",
+}
 
-# default_log_clearing_doctypes = {
-# 	"Logging DocType Name": 30  # days to retain logs
-# }
+# ──────────────────────────────────────────────────────────────────────────────
+# JINJA FILTERS (for report templates)
+# ──────────────────────────────────────────────────────────────────────────────
 
-# Translation
-# ------------
-# List of apps whose translatable strings should be excluded from this app's translations.
-# ignore_translatable_strings_from = []
+jinja = {
+    "methods": [
+        "frappe_education_kenya.frappe_education_kenya.utils.jinja_filters.format_moe_date",
+        "frappe_education_kenya.frappe_education_kenya.utils.jinja_filters.format_nemis_id",
+        "frappe_education_kenya.frappe_education_kenya.utils.jinja_filters.performance_level_label",
+        "frappe_education_kenya.frappe_education_kenya.utils.jinja_filters.cbc_level_name",
+    ]
+}
 
+# ──────────────────────────────────────────────────────────────────────────────
+# TRANSLATIONS
+# ──────────────────────────────────────────────────────────────────────────────
+
+# Primary language is English; Kiswahili translations welcome via community
+translations = ["en", "sw"]
+
+# ──────────────────────────────────────────────────────────────────────────────
+# BOOTSTRAP CONTEXT
+# ──────────────────────────────────────────────────────────────────────────────
+
+web_include_js = "/assets/frappe_education_kenya/js/portal_kenya.js"
+web_include_css = "/assets/frappe_education_kenya/css/portal_kenya.css"

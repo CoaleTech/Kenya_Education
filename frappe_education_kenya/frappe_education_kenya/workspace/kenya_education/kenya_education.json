@@ -1,0 +1,198 @@
+{
+ "charts": [],
+ "content": "[{\"type\": \"header\", \"data\": {\"text\": \"Frappe Education Kenya\", \"level\": 2}}, {\"type\": \"paragraph\", \"data\": {\"text\": \"Kenya CBC-aligned education management with MoE compliance, transport, and meals modules.\"}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"CBC Levels\", \"col\": 4}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Learning Areas\", \"col\": 4}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"CBC Assessments\", \"col\": 4}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Assessment Results\", \"col\": 4}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Transport Routes\", \"col\": 4}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Transport Vehicles\", \"col\": 4}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Meal Programmes\", \"col\": 4}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Daily Meal Records\", \"col\": 4}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"MoE Return Templates\", \"col\": 4}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"MoE Submissions\", \"col\": 4}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Student Transitions\", \"col\": 4}}]",
+ "creation": "2026-07-07 00:00:00.000000",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "education",
+ "is_hidden": 0,
+ "label": "Kenya Education",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "CBC Curriculum",
+   "link_count": 0,
+   "link_to": "CBC Level",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Learning Areas",
+   "link_count": 0,
+   "link_to": "CBC Learning Area",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Assessments",
+   "link_count": 0,
+   "link_to": "CBC Assessment",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Assessment Results",
+   "link_count": 0,
+   "link_to": "CBC Assessment Result",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Transport",
+   "link_count": 0,
+   "link_to": "Transport Route",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Meals",
+   "link_count": 0,
+   "link_to": "Meal Programme",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "MoE Compliance",
+   "link_count": 0,
+   "link_to": "MoE Return Template",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2026-07-07 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Frappe Education Kenya",
+ "name": "Kenya Education",
+ "number_cards": [],
+ "parent_page": "Education",
+ "public": 1,
+ "quick_lists": [],
+ "restrict_to_domain": "",
+ "roles": [],
+ "sequence_id": 20.0,
+ "shortcuts": [
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "format": null,
+   "label": "CBC Levels",
+   "link_to": "CBC Level",
+   "stats_filter": null,
+   "type": "DocType"
+  },
+  {
+   "color": "Blue",
+   "doc_view": "List",
+   "format": null,
+   "label": "Learning Areas",
+   "link_to": "CBC Learning Area",
+   "stats_filter": null,
+   "type": "DocType"
+  },
+  {
+   "color": "Orange",
+   "doc_view": "List",
+   "format": null,
+   "label": "CBC Assessments",
+   "link_to": "CBC Assessment",
+   "stats_filter": null,
+   "type": "DocType"
+  },
+  {
+   "color": "Purple",
+   "doc_view": "List",
+   "format": null,
+   "label": "Assessment Results",
+   "link_to": "CBC Assessment Result",
+   "stats_filter": null,
+   "type": "DocType"
+  },
+  {
+   "color": "Yellow",
+   "doc_view": "List",
+   "format": null,
+   "label": "Transport Routes",
+   "link_to": "Transport Route",
+   "stats_filter": null,
+   "type": "DocType"
+  },
+  {
+   "color": "Cyan",
+   "doc_view": "List",
+   "format": null,
+   "label": "Transport Vehicles",
+   "link_to": "Transport Vehicle",
+   "stats_filter": null,
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "format": null,
+   "label": "Meal Programmes",
+   "link_to": "Meal Programme",
+   "stats_filter": null,
+   "type": "DocType"
+  },
+  {
+   "color": "Blue",
+   "doc_view": "List",
+   "format": null,
+   "label": "Daily Meal Records",
+   "link_to": "Daily Meal Record",
+   "stats_filter": null,
+   "type": "DocType"
+  },
+  {
+   "color": "Red",
+   "doc_view": "List",
+   "format": null,
+   "label": "MoE Return Templates",
+   "link_to": "MoE Return Template",
+   "stats_filter": null,
+   "type": "DocType"
+  },
+  {
+   "color": "Orange",
+   "doc_view": "List",
+   "format": null,
+   "label": "MoE Submissions",
+   "link_to": "MoE Return Submission",
+   "stats_filter": null,
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "format": null,
+   "label": "Student Transitions",
+   "link_to": "Student Transition",
+   "stats_filter": null,
+   "type": "DocType"
+  }
+ ],
+ "title": "Kenya Education"
+}

@@ -1,0 +1,89 @@
+/**
+ * Frappe Education Kenya — Custom Styles
+ *
+ * Kenya-specific UI enhancements and branding.
+ */
+
+/* Kenya Education Module Branding */
+[data-workspace="Kenya Education"] .layout-side-section {
+    background: linear-gradient(135deg, #006600 0%, #009900 100%);
+}
+
+/* Performance Level Color Coding */
+.cbc-pl1 { color: #006600; font-weight: bold; }  /* Exceeds Expectations - Green */
+.cbc-pl2 { color: #0066cc; font-weight: bold; }  /* Meets Expectations - Blue */
+.cbc-pl3 { color: #cc6600; font-weight: bold; }  /* Approaches Expectations - Orange */
+.cbc-pl4 { color: #cc0000; font-weight: bold; }  /* Below Expectations - Red */
+
+/* Assessment Result Cards */
+.assessment-result-card {
+    border-left: 4px solid #ddd;
+    padding: 12px;
+    margin-bottom: 8px;
+    background: #fafafa;
+    border-radius: 4px;
+}
+
+.assessment-result-card.pl1 { border-left-color: #006600; }
+.assessment-result-card.pl2 { border-left-color: #0066cc; }
+.assessment-result-card.pl3 { border-left-color: #cc6600; }
+.assessment-result-card.pl4 { border-left-color: #cc0000; }
+
+/* Transport Route Status Indicators */
+.route-status-active { color: #006600; }
+.route-status-inactive { color: #cc0000; }
+.route-status-seasonal { color: #cc6600; }
+
+/* Vehicle Compliance Status */
+.vehicle-compliant { color: #006600; }
+.vehicle-expiring-soon { color: #cc6600; }
+.vehicle-expired { color: #cc0000; }
+
+/* Meal Record Quality Ratings */
+.meal-quality-excellent { color: #006600; }
+.meal-quality-good { color: #0066cc; }
+.meal-quality-fair { color: #cc6600; }
+.meal-quality-poor { color: #cc0000; }
+
+/* MoE Submission Status */
+.moe-status-draft { color: #666; }
+.moe-status-ready { color: #0066cc; }
+.moe-status-submitted { color: #006600; }
+.moe-status-acknowledged { color: #006600; font-weight: bold; }
+.moe-status-rejected { color: #cc0000; }
+.moe-status-overdue { color: #cc0000; font-weight: bold; }
+
+/* Kenya Flag Colors Accent */
+.kenya-accent-green { color: #006600; }
+.kenya-accent-red { color: #cc0000; }
+.kenya-accent-black { color: #000000; }
+
+/* Dashboard Widgets */
+.kenya-dashboard-widget {
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.kenya-dashboard-widget .widget-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 12px;
+    border-bottom: 2px solid #006600;
+    padding-bottom: 8px;
+}
+
+.kenya-dashboard-widget .widget-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: #006600;
+}
+
+.kenya-dashboard-widget .widget-subtitle {
+    font-size: 12px;
+    color: #666;
+    margin-top: 4px;
+}

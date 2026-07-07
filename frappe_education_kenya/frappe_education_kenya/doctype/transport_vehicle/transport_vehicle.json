@@ -1,0 +1,180 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:vehicle_registration",
+ "creation": "2026-07-07 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "vehicle_registration",
+  "vehicle_type",
+  "vehicle_status",
+  "column_break_1",
+  "seating_capacity",
+  "gps_tracking_enabled",
+  "sacco_association",
+  "section_break_compliance",
+  "insurance_provider",
+  "insurance_policy_number",
+  "insurance_expiry",
+  "insurance_certificate",
+  "column_break_2",
+  "inspection_certificate",
+  "ntsa_inspection_date",
+  "ntsa_inspection_expiry",
+  "section_break_assignment",
+  "assigned_driver",
+  "assigned_routes"
+ ],
+ "fields": [
+  {
+   "fieldname": "vehicle_registration",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Vehicle Registration (Number Plate)",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "vehicle_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Vehicle Type",
+   "options": "School Bus\nVan\nMatatu\nCoaster\nMinibus\nOther",
+   "reqd": 1
+  },
+  {
+   "fieldname": "vehicle_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Vehicle Status",
+   "options": "Active\nMaintenance\nRetired\nSold",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "seating_capacity",
+   "fieldtype": "Int",
+   "label": "Seating Capacity",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "gps_tracking_enabled",
+   "fieldtype": "Check",
+   "label": "GPS Tracking Enabled"
+  },
+  {
+   "fieldname": "sacco_association",
+   "fieldtype": "Data",
+   "label": "SACCO Association"
+  },
+  {
+   "fieldname": "section_break_compliance",
+   "fieldtype": "Section Break",
+   "label": "Compliance & Documentation"
+  },
+  {
+   "fieldname": "insurance_provider",
+   "fieldtype": "Data",
+   "label": "Insurance Provider"
+  },
+  {
+   "fieldname": "insurance_policy_number",
+   "fieldtype": "Data",
+   "label": "Insurance Policy Number"
+  },
+  {
+   "fieldname": "insurance_expiry",
+   "fieldtype": "Date",
+   "label": "Insurance Expiry Date"
+  },
+  {
+   "fieldname": "insurance_certificate",
+   "fieldtype": "Attach",
+   "label": "Insurance Certificate"
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "inspection_certificate",
+   "fieldtype": "Attach",
+   "label": "NTSA Inspection Certificate"
+  },
+  {
+   "fieldname": "ntsa_inspection_date",
+   "fieldtype": "Date",
+   "label": "Last NTSA Inspection"
+  },
+  {
+   "fieldname": "ntsa_inspection_expiry",
+   "fieldtype": "Date",
+   "label": "NTSA Inspection Expiry"
+  },
+  {
+   "fieldname": "section_break_assignment",
+   "fieldtype": "Section Break",
+   "label": "Assignment"
+  },
+  {
+   "fieldname": "assigned_driver",
+   "fieldtype": "Link",
+   "label": "Assigned Driver",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "assigned_routes",
+   "fieldtype": "Table MultiSelect",
+   "label": "Assigned Routes",
+   "options": "Transport Vehicle Route"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-07-07 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Frappe Education Kenya",
+ "name": "Transport Vehicle",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Transport Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Academic Admin"
+  }
+ ],
+ "sort_field": "vehicle_registration",
+ "sort_order": "ASC",
+ "states": [],
+ "track_changes": 1
+}
