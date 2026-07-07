@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"type\": \"header\", \"data\": {\"text\": \"Frappe Education Kenya\", \"level\": 2}}, {\"type\": \"paragraph\", \"data\": {\"text\": \"Kenya CBC-aligned education management with MoE compliance, transport, and meals modules.\"}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"CBC Levels\", \"col\": 4}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Learning Areas\", \"col\": 4}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"CBC Assessments\", \"col\": 4}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Assessment Results\", \"col\": 4}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Transport Routes\", \"col\": 4}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Transport Vehicles\", \"col\": 4}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Meal Programmes\", \"col\": 4}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Daily Meal Records\", \"col\": 4}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"MoE Return Templates\", \"col\": 4}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"MoE Submissions\", \"col\": 4}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Student Transitions\", \"col\": 4}}]",
+ "content": "[{\"id\": \"hdr1\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>Frappe Education Kenya</b></span>\", \"level\": 2, \"col\": 12}}, {\"id\": \"para2\", \"type\": \"paragraph\", \"data\": {\"text\": \"Kenya CBC-aligned education management: curriculum &amp; assessment, student lifecycle, transport, meals, and MoE/NEMIS compliance reporting.\", \"col\": 12}}, {\"id\": \"spacer3\", \"type\": \"spacer\", \"data\": {\"col\": 12}}, {\"id\": \"hdr4\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\", \"level\": 3, \"col\": 12}}, {\"id\": \"sc5\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"CBC Levels\", \"col\": 3}}, {\"id\": \"sc6\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Learning Areas\", \"col\": 3}}, {\"id\": \"sc7\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"CBC Assessments\", \"col\": 3}}, {\"id\": \"sc8\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Assessment Results\", \"col\": 3}}, {\"id\": \"sc9\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Student Transitions\", \"col\": 3}}, {\"id\": \"sc10\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Transport Routes\", \"col\": 3}}, {\"id\": \"sc11\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Transport Vehicles\", \"col\": 3}}, {\"id\": \"sc12\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Meal Programmes\", \"col\": 3}}, {\"id\": \"sc13\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Daily Meal Records\", \"col\": 3}}, {\"id\": \"sc14\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"MoE Return Templates\", \"col\": 3}}, {\"id\": \"sc15\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"MoE Submissions\", \"col\": 3}}, {\"id\": \"sc16\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Education Kenya Settings\", \"col\": 3}}, {\"id\": \"spacer17\", \"type\": \"spacer\", \"data\": {\"col\": 12}}, {\"id\": \"hdr18\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>Masters &amp; Settings</b></span>\", \"level\": 3, \"col\": 12}}, {\"id\": \"card19\", \"type\": \"card\", \"data\": {\"card_name\": \"CBC Curriculum\", \"col\": 4}}, {\"id\": \"card20\", \"type\": \"card\", \"data\": {\"card_name\": \"CBC Assessment\", \"col\": 4}}, {\"id\": \"card21\", \"type\": \"card\", \"data\": {\"card_name\": \"Student Lifecycle\", \"col\": 4}}, {\"id\": \"card22\", \"type\": \"card\", \"data\": {\"card_name\": \"Transport\", \"col\": 4}}, {\"id\": \"card23\", \"type\": \"card\", \"data\": {\"card_name\": \"Meals & Feeding\", \"col\": 4}}, {\"id\": \"card24\", \"type\": \"card\", \"data\": {\"card_name\": \"MoE Compliance\", \"col\": 4}}, {\"id\": \"card25\", \"type\": \"card\", \"data\": {\"card_name\": \"Geography\", \"col\": 4}}, {\"id\": \"card26\", \"type\": \"card\", \"data\": {\"card_name\": \"Settings\", \"col\": 4}}]",
  "creation": "2026-07-07 00:00:00.000000",
  "custom_blocks": [],
  "docstatus": 0,
@@ -15,6 +15,15 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "CBC Curriculum",
+   "link_count": 5,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "CBC Level",
    "link_count": 0,
    "link_to": "CBC Level",
    "link_type": "DocType",
@@ -24,7 +33,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Learning Areas",
+   "label": "CBC Learning Area",
    "link_count": 0,
    "link_to": "CBC Learning Area",
    "link_type": "DocType",
@@ -34,7 +43,46 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Assessments",
+   "label": "CBC Strand",
+   "link_count": 0,
+   "link_to": "CBC Strand",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "CBC Sub Strand",
+   "link_count": 0,
+   "link_to": "CBC Sub Strand",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "CBC Learning Outcome",
+   "link_count": 0,
+   "link_to": "CBC Learning Outcome",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "CBC Assessment",
+   "link_count": 2,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "CBC Assessment",
    "link_count": 0,
    "link_to": "CBC Assessment",
    "link_type": "DocType",
@@ -44,7 +92,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Assessment Results",
+   "label": "CBC Assessment Result",
    "link_count": 0,
    "link_to": "CBC Assessment Result",
    "link_type": "DocType",
@@ -54,7 +102,45 @@
   {
    "hidden": 0,
    "is_query_report": 0,
+   "label": "Student Lifecycle",
+   "link_count": 2,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Student Transition",
+   "link_count": 0,
+   "link_to": "Student Transition",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "CBC Student Settings",
+   "link_count": 0,
+   "link_to": "CBC Student Settings",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
    "label": "Transport",
+   "link_count": 3,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Transport Route",
    "link_count": 0,
    "link_to": "Transport Route",
    "link_type": "DocType",
@@ -64,7 +150,36 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Meals",
+   "label": "Transport Vehicle",
+   "link_count": 0,
+   "link_to": "Transport Vehicle",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Transport Subscription",
+   "link_count": 0,
+   "link_to": "Transport Subscription",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Meals & Feeding",
+   "link_count": 3,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Meal Programme",
    "link_count": 0,
    "link_to": "Meal Programme",
    "link_type": "DocType",
@@ -74,9 +189,106 @@
   {
    "hidden": 0,
    "is_query_report": 0,
+   "label": "Daily Meal Record",
+   "link_count": 0,
+   "link_to": "Daily Meal Record",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Student Meal Subscription",
+   "link_count": 0,
+   "link_to": "Student Meal Subscription",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
    "label": "MoE Compliance",
+   "link_count": 2,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "MoE Return Template",
    "link_count": 0,
    "link_to": "MoE Return Template",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "MoE Return Submission",
+   "link_count": 0,
+   "link_to": "MoE Return Submission",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Geography",
+   "link_count": 2,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Kenya County",
+   "link_count": 0,
+   "link_to": "Kenya County",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Kenya Sub County",
+   "link_count": 0,
+   "link_to": "Kenya Sub County",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Settings",
+   "link_count": 2,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Education Kenya Settings",
+   "link_count": 0,
+   "link_to": "Education Kenya Settings",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "CBC Fee Settings",
+   "link_count": 0,
+   "link_to": "CBC Fee Settings",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -127,6 +339,15 @@
    "format": null,
    "label": "Assessment Results",
    "link_to": "CBC Assessment Result",
+   "stats_filter": null,
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "format": null,
+   "label": "Student Transitions",
+   "link_to": "Student Transition",
    "stats_filter": null,
    "type": "DocType"
   },
@@ -186,10 +407,10 @@
   },
   {
    "color": "Grey",
-   "doc_view": "List",
+   "doc_view": "",
    "format": null,
-   "label": "Student Transitions",
-   "link_to": "Student Transition",
+   "label": "Education Kenya Settings",
+   "link_to": "Education Kenya Settings",
    "stats_filter": null,
    "type": "DocType"
   }
