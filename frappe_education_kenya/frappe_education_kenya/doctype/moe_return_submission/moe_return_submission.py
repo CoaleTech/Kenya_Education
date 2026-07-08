@@ -31,7 +31,9 @@ def check_upcoming_deadlines():
 		if not submission.due_date:
 			continue
 
-		reminder_days = frappe.db.get_value("MoE Return Template", submission.template, "reminder_days_before") or 0
+		reminder_days = (
+			frappe.db.get_value("MoE Return Template", submission.template, "reminder_days_before") or 0
+		)
 		reminder_start = add_days(getdate(submission.due_date), -int(reminder_days))
 
 		if getdate(today()) >= reminder_start:
@@ -39,10 +41,14 @@ def check_upcoming_deadlines():
 				"MoE Return Submission",
 				submission.name,
 				"submission_status",
-				"Overdue" if getdate(today()) > getdate(submission.due_date) else submission.get("submission_status"),
+				"Overdue"
+				if getdate(today()) > getdate(submission.due_date)
+				else submission.get("submission_status"),
 				update_modified=False,
 			)
-			responsible_role = frappe.db.get_value("MoE Return Template", submission.template, "responsible_role")
+			responsible_role = frappe.db.get_value(
+				"MoE Return Template", submission.template, "responsible_role"
+			)
 			if responsible_role:
 				users = frappe.get_all(
 					"Has Role", filters={"role": responsible_role, "parenttype": "User"}, fields=["parent"]

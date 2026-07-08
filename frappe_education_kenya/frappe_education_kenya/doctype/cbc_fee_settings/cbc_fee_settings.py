@@ -22,16 +22,20 @@ def validate_kenya_fee_structure(doc, method=None):
 
 	if fee_category == "Transport Fee" and not settings.get("auto_generate_transport_invoice"):
 		frappe.msgprint(
-			_("Transport Fee auto-invoicing is disabled in CBC Fee Settings. "
-			  "This Fee Structure will not be applied automatically."),
+			_(
+				"Transport Fee auto-invoicing is disabled in CBC Fee Settings. "
+				"This Fee Structure will not be applied automatically."
+			),
 			indicator="orange",
 			alert=True,
 		)
 
 	if fee_category == "Meals Fee" and not settings.get("auto_generate_meals_invoice"):
 		frappe.msgprint(
-			_("Meals Fee auto-invoicing is disabled in CBC Fee Settings. "
-			  "This Fee Structure will not be applied automatically."),
+			_(
+				"Meals Fee auto-invoicing is disabled in CBC Fee Settings. "
+				"This Fee Structure will not be applied automatically."
+			),
 			indicator="orange",
 			alert=True,
 		)

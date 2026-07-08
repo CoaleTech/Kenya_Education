@@ -1,11 +1,9 @@
 """Tests for Student Transition auto-creation on Program Enrollment submit."""
 
 import frappe
+from education.education.test_utils import create_academic_year, create_student
 from frappe.tests.utils import FrappeTestCase
 from frappe.utils import add_days, nowdate
-
-from education.education.test_utils import create_academic_year, create_student
-
 
 TEST_PROGRAM_A = "Test CBC Grade 6 Program"
 TEST_PROGRAM_B = "Test CBC Grade 7 Program"
@@ -69,9 +67,7 @@ class TestStudentTransition(FrappeTestCase):
 		# Calling the hook again manually for the same enrollment should not duplicate
 		after_program_enrollment(pe)
 
-		transitions = frappe.get_all(
-			"Student Transition", filters={"student": self.student.name}
-		)
+		transitions = frappe.get_all("Student Transition", filters={"student": self.student.name})
 		self.assertEqual(len(transitions), 1)
 
 	def test_second_enrollment_records_progression_from_previous_level(self):

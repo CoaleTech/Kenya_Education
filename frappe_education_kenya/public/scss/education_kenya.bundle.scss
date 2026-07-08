@@ -1,0 +1,155 @@
+/**
+ * Frappe Education Kenya — Desk Styles
+ *
+ * Built on the Frappe Espresso design system: every surface, spacing, radius
+ * and text style references the framework's CSS custom properties so the app
+ * follows desk theming (including dark mode) instead of hardcoded values.
+ * Only the Kenya national-flag brand constants are literal, and they are
+ * declared once as custom properties below.
+ */
+
+:root {
+	// Kenya flag brand constants (used sparingly, for accents only)
+	--kenya-flag-green: #006600;
+	--kenya-flag-red: #bb0000;
+	--kenya-flag-black: #000000;
+}
+
+/* CBC Performance Level color coding (PL1 best -> PL4 lowest) */
+.cbc-pl1 {
+	color: var(--green-700);
+	font-weight: var(--weight-bold);
+}
+.cbc-pl2 {
+	color: var(--blue-600);
+	font-weight: var(--weight-bold);
+}
+.cbc-pl3 {
+	color: var(--orange-600);
+	font-weight: var(--weight-bold);
+}
+.cbc-pl4 {
+	color: var(--red-600);
+	font-weight: var(--weight-bold);
+}
+
+/* Assessment result cards */
+.assessment-result-card {
+	border-left: 4px solid var(--border-color);
+	padding: var(--padding-md);
+	margin-bottom: var(--margin-xs);
+	background: var(--subtle-accent);
+	border-radius: var(--border-radius);
+
+	&.pl1 {
+		border-left-color: var(--green-700);
+	}
+	&.pl2 {
+		border-left-color: var(--blue-600);
+	}
+	&.pl3 {
+		border-left-color: var(--orange-600);
+	}
+	&.pl4 {
+		border-left-color: var(--red-600);
+	}
+}
+
+/* Transport route status */
+.route-status-active {
+	color: var(--green-700);
+}
+.route-status-inactive {
+	color: var(--red-600);
+}
+.route-status-seasonal {
+	color: var(--orange-600);
+}
+
+/* Vehicle compliance status */
+.vehicle-compliant {
+	color: var(--green-700);
+}
+.vehicle-expiring-soon {
+	color: var(--orange-600);
+}
+.vehicle-expired {
+	color: var(--red-600);
+}
+
+/* Meal record quality ratings */
+.meal-quality-excellent {
+	color: var(--green-700);
+}
+.meal-quality-good {
+	color: var(--blue-600);
+}
+.meal-quality-fair {
+	color: var(--orange-600);
+}
+.meal-quality-poor {
+	color: var(--red-600);
+}
+
+/* MoE submission status */
+.moe-status-draft {
+	color: var(--text-muted);
+}
+.moe-status-ready {
+	color: var(--blue-600);
+}
+.moe-status-submitted {
+	color: var(--green-700);
+}
+.moe-status-acknowledged {
+	color: var(--green-700);
+	font-weight: var(--weight-bold);
+}
+.moe-status-rejected {
+	color: var(--red-600);
+}
+.moe-status-overdue {
+	color: var(--red-600);
+	font-weight: var(--weight-bold);
+}
+
+/* Kenya flag accents (brand, not theme) */
+.kenya-accent-green {
+	color: var(--kenya-flag-green);
+}
+.kenya-accent-red {
+	color: var(--kenya-flag-red);
+}
+.kenya-accent-black {
+	color: var(--kenya-flag-black);
+}
+
+/* Dashboard widgets */
+.kenya-dashboard-widget {
+	background: var(--card-bg);
+	border: 1px solid var(--border-color);
+	border-radius: var(--border-radius);
+	padding: var(--padding-lg);
+	margin-bottom: var(--margin-md);
+
+	.widget-title {
+		font-size: var(--text-md);
+		font-weight: var(--weight-semibold);
+		color: var(--text-color);
+		margin-bottom: var(--margin-sm);
+		border-bottom: 2px solid var(--green-700);
+		padding-bottom: var(--padding-sm);
+	}
+
+	.widget-value {
+		font-size: var(--text-5xl);
+		font-weight: var(--weight-bold);
+		color: var(--green-700);
+	}
+
+	.widget-subtitle {
+		font-size: var(--text-xs);
+		color: var(--text-muted);
+		margin-top: var(--margin-xs);
+	}
+}

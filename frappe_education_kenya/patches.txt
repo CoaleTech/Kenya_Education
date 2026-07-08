@@ -4,3 +4,6 @@
 
 [post_model_sync]
 # Patches added in this section will be executed after doctypes are migrated
+frappe_education_kenya.patches.v1_0_0.create_custom_fields_on_student
+frappe_education_kenya.patches.v1_0_0.seed_cbc_curriculum_data
+frappe_education_kenya.patches.v1_0_0.remove_parallel_assessment_fee_doctypes

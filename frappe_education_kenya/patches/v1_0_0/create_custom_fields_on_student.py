@@ -9,6 +9,7 @@ import frappe
 
 
 def execute():
-    """Create custom fields on Student DocType."""
-    from frappe_education_kenya.install import create_custom_fields
-    create_custom_fields()
+	"""Create custom fields on Student DocType."""
+	from frappe_education_kenya.install import create_custom_fields
+
+	create_custom_fields()

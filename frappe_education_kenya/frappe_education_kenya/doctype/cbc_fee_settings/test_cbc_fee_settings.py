@@ -43,11 +43,7 @@ class TestCBCFeeSettingsValidation(FrappeTestCase):
 		validate_kenya_fee_structure(doc)  # should not raise
 
 	def tearDown(self):
-		frappe.db.set_value(
-			"CBC Fee Settings", None, "auto_generate_transport_invoice", self._orig_transport
-		)
-		frappe.db.set_value(
-			"CBC Fee Settings", None, "auto_generate_meals_invoice", self._orig_meals
-		)
+		frappe.db.set_value("CBC Fee Settings", None, "auto_generate_transport_invoice", self._orig_transport)
+		frappe.db.set_value("CBC Fee Settings", None, "auto_generate_meals_invoice", self._orig_meals)
 		frappe.clear_cache(doctype="CBC Fee Settings")
 		frappe.db.rollback()

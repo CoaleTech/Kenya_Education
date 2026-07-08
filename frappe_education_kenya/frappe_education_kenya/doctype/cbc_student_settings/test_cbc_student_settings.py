@@ -9,7 +9,6 @@ from frappe_education_kenya.frappe_education_kenya.doctype.cbc_student_settings.
 	validate_student_kenya_fields,
 )
 
-
 TEST_EMAIL = "kenya.student.settings.test@example.com"
 
 

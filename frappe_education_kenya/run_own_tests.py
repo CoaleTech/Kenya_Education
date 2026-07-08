@@ -12,9 +12,8 @@ import unittest
 
 import frappe
 
-
 TEST_MODULES = [
-	"frappe_education_kenya.frappe_education_kenya.doctype.cbc_assessment.test_cbc_assessment",
+	"frappe_education_kenya.frappe_education_kenya.tests.test_assessment",
 	"frappe_education_kenya.frappe_education_kenya.doctype.student_transition.test_student_transition",
 	"frappe_education_kenya.frappe_education_kenya.doctype.moe_return_submission.test_moe_return_submission",
 	"frappe_education_kenya.frappe_education_kenya.doctype.transport_vehicle.test_transport_vehicle",

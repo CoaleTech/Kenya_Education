@@ -157,14 +157,13 @@ frappe_education_kenya/
 │   │   ├── cbc_learning_area/
 │   │   ├── cbc_strand/
 │   │   ├── cbc_sub_strand/
-│   │   ├── cbc_learning_outcome/
-│   │   ├── cbc_assessment/
-│   │   ├── cbc_assessment_result/
+│   │   ├── cbc_learning_outcome/   # includes Performance Level Rubric (PL1-PL4)
 │   │   ├── student_transition/
 │   │   ├── transport_route/
 │   │   ├── transport_vehicle/
 │   │   ├── transport_subscription/
 │   │   ├── meal_programme/
+│   │   ├── meal_type/              # + meal_type_item (Table MultiSelect master)
 │   │   ├── daily_meal_record/
 │   │   ├── student_meal_subscription/
 │   │   ├── moe_return_template/
@@ -175,9 +174,12 @@ frappe_education_kenya/
 │   │   ├── cbc_student_settings/
 │   │   └── cbc_fee_settings/
 │   ├── patches/              # Database migration patches
-│   ├── public/               # Static assets (JS, CSS)
+│   ├── assessment.py         # CBC Performance Level mapping (Grading Scale based)
+│   ├── workspace_home.py     # Folds Kenya content + analytics into Education home
+│   ├── public/
+│   │   ├── js/education_kenya.bundle.js     # Desk bundle (esbuild)
+│   │   └── scss/education_kenya.bundle.scss # Espresso-token styles
 │   ├── templates/            # Jinja templates
-│   ├── www/                  # Portal pages
 │   ├── install.py            # Installation hooks
 │   └── hooks.py              # Frappe app hooks
 ├── pyproject.toml            # Package configuration

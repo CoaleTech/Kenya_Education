@@ -8,7 +8,6 @@ with the relevant Kenya role can view or edit them.
 import frappe
 
 
-
 def has_transport_permission(doc, user=None, permission_type=None):
 	"""Restrict Transport Route / Transport Vehicle access to transport staff."""
 	user = user or frappe.session.user

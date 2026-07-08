@@ -63,9 +63,9 @@
   },
   {
    "fieldname": "meal_types",
-   "fieldtype": "MultiSelect",
+   "fieldtype": "Table MultiSelect",
    "label": "Meal Types",
-   "options": "Breakfast\nMid-Morning Snack\nLunch\nEvening Tea\nDinner",
+   "options": "Meal Type Item",
    "reqd": 1
   },
   {

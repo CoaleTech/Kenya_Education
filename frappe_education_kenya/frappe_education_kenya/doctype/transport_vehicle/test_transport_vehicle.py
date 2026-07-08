@@ -45,18 +45,14 @@ class TestTransportVehicleCompliance(FrappeTestCase):
 		# Should not raise
 		check_vehicle_compliance()
 
-		errors = frappe.get_all(
-			"Error Log", filters={"method": ["like", "%Transport vehicle compliance%"]}
-		)
+		errors = frappe.get_all("Error Log", filters={"method": ["like", "%Transport vehicle compliance%"]})
 		self.assertGreaterEqual(len(errors), 1)
 
 	def test_no_vehicles_no_error(self):
 		frappe.db.delete("Transport Vehicle")
 		frappe.db.delete("Error Log")
 		check_vehicle_compliance()
-		errors = frappe.get_all(
-			"Error Log", filters={"method": ["like", "%Transport vehicle compliance%"]}
-		)
+		errors = frappe.get_all("Error Log", filters={"method": ["like", "%Transport vehicle compliance%"]})
 		self.assertEqual(len(errors), 0)
 
 	def tearDown(self):

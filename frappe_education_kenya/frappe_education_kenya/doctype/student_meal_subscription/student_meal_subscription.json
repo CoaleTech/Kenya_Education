@@ -61,9 +61,9 @@
   },
   {
    "fieldname": "included_meals",
-   "fieldtype": "MultiSelect",
+   "fieldtype": "Table MultiSelect",
    "label": "Included Meals",
-   "options": "Breakfast\nMid-Morning Snack\nLunch\nEvening Tea\nDinner",
+   "options": "Meal Type Item",
    "reqd": 1
   },
   {

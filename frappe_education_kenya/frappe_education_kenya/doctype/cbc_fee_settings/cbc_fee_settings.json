@@ -5,8 +5,6 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "fee_components_section",
-  "kenya_fee_components",
   "section_break_billing",
   "auto_generate_transport_invoice",
   "auto_generate_meals_invoice",
@@ -24,17 +22,6 @@
   "government_bursary_fund"
  ],
  "fields": [
-  {
-   "fieldname": "fee_components_section",
-   "fieldtype": "Section Break",
-   "label": "Kenya-Specific Fee Components"
-  },
-  {
-   "fieldname": "kenya_fee_components",
-   "fieldtype": "Table",
-   "label": "Fee Components",
-   "options": "CBC Fee Component"
-  },
   {
    "fieldname": "section_break_billing",
    "fieldtype": "Section Break",

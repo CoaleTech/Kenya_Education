@@ -26,7 +26,10 @@ def check_vehicle_compliance():
 
 	expiring, expired = [], []
 	for vehicle in vehicles:
-		for field, label in (("insurance_expiry", "insurance"), ("ntsa_inspection_expiry", "NTSA inspection")):
+		for field, label in (
+			("insurance_expiry", "insurance"),
+			("ntsa_inspection_expiry", "NTSA inspection"),
+		):
 			expiry = vehicle.get(field)
 			if not expiry:
 				continue
