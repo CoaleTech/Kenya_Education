@@ -2,14 +2,14 @@
 name = "frappe_education_kenya"
 description = "Kenya CBC-aligned education management extension for Frappe Education"
 readme = "README.md"
-license = { text = "MIT" }
+license = { text = "GPL-3.0" }
 authors = [
-    { name = "Frappe Education Kenya Team", email = "dev@frappeeducationkenya.com" }
+    { name = "CoaleTech", email = "support@coale.tech" }
 ]
 keywords = ["frappe", "education", "kenya", "cbc", "school-management"]
 classifiers = [
     "Development Status :: 4 - Beta",
-    "License :: OSI Approved :: MIT License",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",

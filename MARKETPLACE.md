@@ -30,4 +30,4 @@ Available on the Frappe Cloud Marketplace. Frappe Education (and ERPNext) are pr
 
 ## License
 
-MIT
+GPL-3.0

@@ -19,10 +19,10 @@ from . import __version__ as app_version
 
 app_name = "frappe_education_kenya"
 app_title = "Education Kenya"
-app_publisher = "Frappe Education Kenya Team"
+app_publisher = "CoaleTech"
 app_description = "Kenya CBC-aligned education management with MoE compliance, transport, and meals"
-app_email = "dev@frappeeducationkenya.com"
-app_license = "mit"
+app_email = "support@coale.tech"
+app_license = "gpl-3.0"
 
 # ──────────────────────────────────────────────────────────────────────────────
 # REQUIRED APPS
