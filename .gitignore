@@ -53,3 +53,9 @@ jspm_packages/
 
 # Aider AI Chat
 .aider*
+# Local tooling artifacts (graphify / MCP / caches)
+graphify-out/
+.graphifyignore
+.mcp.json
+.ruff_cache/
+.code-review-graph/

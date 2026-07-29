@@ -28,7 +28,7 @@ app_license = "mit"
 # REQUIRED APPS
 # ──────────────────────────────────────────────────────────────────────────────
 # This app extends frappe/education — it MUST be installed ("frappe" is implicit)
-required_apps = ["erpnext", "education"]
+required_apps = ["frappe/erpnext", "frappe/education"]
 
 # ──────────────────────────────────────────────────────────────────────────────
 # DESK ASSETS
