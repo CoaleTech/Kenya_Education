@@ -1,0 +1,15 @@
+[
+ {
+  "doctype": "Print Format",
+  "name": "Exam Paper (Locked)",
+  "doc_type": "Exam Paper",
+  "module": "Frappe Education Kenya",
+  "standard": "No",
+  "custom_format": 1,
+  "print_format_type": "Jinja",
+  "disabled": 0,
+  "html": "<div class=\"print-heading\"><h2>{{ doc.title }}</h2></div>\n<p><strong>{{ _(\"Course\") }}:</strong> {{ doc.course }} &nbsp; <strong>{{ _(\"Class\") }}:</strong> {{ doc.student_group }}</p>\n<p><strong>{{ _(\"Date\") }}:</strong> {{ frappe.format_value(doc.exam_date, {\"fieldtype\": \"Date\"}) }} &nbsp; <strong>{{ _(\"Duration (minutes)\") }}:</strong> {{ doc.duration_minutes }} &nbsp; <strong>{{ _(\"Total Marks\") }}:</strong> {{ doc.total_marks }}</p>\n{% for question in doc.exam_questions %}\n<div class=\"exam-question\">\n{% if question.section %}<h3>{{ question.section }}</h3>{% endif %}\n<p><strong>{{ loop.index }}. ({{ question.marks }} {{ _(\"marks\") }})</strong></p>\n{{ question.question }}\n<ol type=\"A\">{% for option in question.options %}<li>{{ option }}</li>{% endfor %}</ol>\n</div>\n{% endfor %}\n",
+  "css": ".exam-question { page-break-inside: avoid; margin-bottom: var(--margin-lg); }",
+  "raw_printing": 0
+ }
+]

@@ -1,0 +1,126 @@
+{
+ "doctype": "DocType",
+ "name": "Bursary Award",
+ "module": "Frappe Education Kenya",
+ "engine": "InnoDB",
+ "autoname": "format:EDK-BA-{#####}",
+ "field_order": [
+  "sponsor",
+  "student",
+  "amount",
+  "basis",
+  "valid_from",
+  "valid_to",
+  "pledge",
+  "workflow_state",
+  "allocated_amount",
+  "allocations"
+ ],
+ "fields": [
+  {
+   "fieldname": "sponsor",
+   "label": "Sponsor",
+   "fieldtype": "Link",
+   "reqd": 1,
+   "in_list_view": 1,
+   "options": "Bursary Sponsor"
+  },
+  {
+   "fieldname": "student",
+   "label": "Student",
+   "fieldtype": "Link",
+   "reqd": 1,
+   "in_list_view": 1,
+   "options": "Student"
+  },
+  {
+   "fieldname": "amount",
+   "label": "Amount",
+   "fieldtype": "Currency",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "basis",
+   "label": "Basis",
+   "fieldtype": "Small Text",
+   "reqd": 1
+  },
+  {
+   "fieldname": "valid_from",
+   "label": "Valid From",
+   "fieldtype": "Date",
+   "default": "Today",
+   "reqd": 1
+  },
+  {
+   "fieldname": "valid_to",
+   "label": "Valid To",
+   "fieldtype": "Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "pledge",
+   "label": "Pledge",
+   "fieldtype": "Link",
+   "options": "Fee Pledge"
+  },
+  {
+   "fieldname": "workflow_state",
+   "label": "Workflow State",
+   "fieldtype": "Link",
+   "default": "Draft",
+   "read_only": 1,
+   "in_list_view": 1,
+   "options": "Workflow State"
+  },
+  {
+   "fieldname": "allocated_amount",
+   "label": "Allocated Amount",
+   "fieldtype": "Currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "allocations",
+   "label": "Allocations",
+   "fieldtype": "Table",
+   "read_only": 1,
+   "options": "Bursary Allocation"
+  }
+ ],
+ "permissions": [
+  {
+   "role": "Bursar",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "permlevel": 0
+  },
+  {
+   "role": "Head Teacher",
+   "read": 1,
+   "write": 1,
+   "create": 0,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "permlevel": 0
+  },
+  {
+   "role": "Guardian",
+   "read": 1,
+   "write": 0,
+   "create": 0,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "permlevel": 0
+  }
+ ],
+ "track_changes": 1,
+ "istable": 0,
+ "editable_grid": 1
+}

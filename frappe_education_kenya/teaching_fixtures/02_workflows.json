@@ -1,0 +1,219 @@
+[
+ {
+  "doctype": "Workflow",
+  "workflow_name": "Kenya Scheme of Work Approval",
+  "document_type": "Scheme of Work",
+  "is_active": 1,
+  "workflow_state_field": "workflow_state",
+  "send_email_alert": 0,
+  "enable_action_confirmation": 1,
+  "states": [
+   {
+    "state": "Draft",
+    "doc_status": "0",
+    "allow_edit": "Instructor"
+   },
+   {
+    "state": "Submitted",
+    "doc_status": "0",
+    "allow_edit": "Head Teacher"
+   },
+   {
+    "state": "Approved",
+    "doc_status": "0",
+    "allow_edit": "Head Teacher"
+   },
+   {
+    "state": "Returned",
+    "doc_status": "0",
+    "allow_edit": "Instructor"
+   }
+  ],
+  "transitions": [
+   {
+    "state": "Draft",
+    "action": "Submit for Approval",
+    "next_state": "Submitted",
+    "allowed": "Instructor",
+    "allow_self_approval": 1
+   },
+   {
+    "state": "Returned",
+    "action": "Submit for Approval",
+    "next_state": "Submitted",
+    "allowed": "Instructor",
+    "allow_self_approval": 1
+   },
+   {
+    "state": "Submitted",
+    "action": "Approve",
+    "next_state": "Approved",
+    "allowed": "Head Teacher",
+    "allow_self_approval": 1
+   },
+   {
+    "state": "Submitted",
+    "action": "Return",
+    "next_state": "Returned",
+    "allowed": "Head Teacher",
+    "allow_self_approval": 1
+   },
+   {
+    "state": "Approved",
+    "action": "Revise",
+    "next_state": "Returned",
+    "allowed": "Head Teacher",
+    "allow_self_approval": 1
+   }
+  ]
+ },
+ {
+  "doctype": "Workflow",
+  "workflow_name": "Kenya Lesson Plan Approval",
+  "document_type": "Lesson Plan",
+  "is_active": 1,
+  "workflow_state_field": "workflow_state",
+  "send_email_alert": 0,
+  "enable_action_confirmation": 1,
+  "states": [
+   {
+    "state": "Draft",
+    "doc_status": "0",
+    "allow_edit": "Instructor"
+   },
+   {
+    "state": "Submitted",
+    "doc_status": "0",
+    "allow_edit": "Academic Admin"
+   },
+   {
+    "state": "Approved",
+    "doc_status": "0",
+    "allow_edit": "Academic Admin"
+   },
+   {
+    "state": "Returned",
+    "doc_status": "0",
+    "allow_edit": "Instructor"
+   }
+  ],
+  "transitions": [
+   {
+    "state": "Draft",
+    "action": "Submit for Approval",
+    "next_state": "Submitted",
+    "allowed": "Instructor",
+    "allow_self_approval": 1
+   },
+   {
+    "state": "Returned",
+    "action": "Submit for Approval",
+    "next_state": "Submitted",
+    "allowed": "Instructor",
+    "allow_self_approval": 1
+   },
+   {
+    "state": "Submitted",
+    "action": "Approve",
+    "next_state": "Approved",
+    "allowed": "Academic Admin",
+    "allow_self_approval": 1
+   },
+   {
+    "state": "Submitted",
+    "action": "Return",
+    "next_state": "Returned",
+    "allowed": "Academic Admin",
+    "allow_self_approval": 1
+   },
+   {
+    "state": "Approved",
+    "action": "Revise",
+    "next_state": "Returned",
+    "allowed": "Academic Admin",
+    "allow_self_approval": 1
+   }
+  ]
+ },
+ {
+  "doctype": "Workflow",
+  "workflow_name": "Kenya Exam Paper Approval",
+  "document_type": "Exam Paper",
+  "is_active": 1,
+  "workflow_state_field": "workflow_state",
+  "send_email_alert": 0,
+  "enable_action_confirmation": 1,
+  "states": [
+   {
+    "state": "Draft",
+    "doc_status": "0",
+    "allow_edit": "Instructor"
+   },
+   {
+    "state": "In Review",
+    "doc_status": "0",
+    "allow_edit": "Academic Admin"
+   },
+   {
+    "state": "Approved",
+    "doc_status": "0",
+    "allow_edit": "Academic Admin"
+   },
+   {
+    "state": "Locked",
+    "doc_status": "0",
+    "allow_edit": "System Manager"
+   },
+   {
+    "state": "Released",
+    "doc_status": "0",
+    "allow_edit": "System Manager"
+   }
+  ],
+  "transitions": [
+   {
+    "state": "Draft",
+    "action": "Submit for Review",
+    "next_state": "In Review",
+    "allowed": "Instructor",
+    "allow_self_approval": 1
+   },
+   {
+    "state": "In Review",
+    "action": "Approve",
+    "next_state": "Approved",
+    "allowed": "Academic Admin",
+    "allow_self_approval": 1
+   },
+   {
+    "state": "In Review",
+    "action": "Return",
+    "next_state": "Draft",
+    "allowed": "Academic Admin",
+    "allow_self_approval": 1
+   },
+   {
+    "state": "Approved",
+    "action": "Return",
+    "next_state": "Draft",
+    "allowed": "Academic Admin",
+    "allow_self_approval": 1
+   },
+   {
+    "state": "Approved",
+    "action": "Lock",
+    "next_state": "Locked",
+    "allowed": "Academic Admin",
+    "allow_self_approval": 1
+   },
+   {
+    "state": "Locked",
+    "action": "Release",
+    "next_state": "Released",
+    "allowed": "System Manager",
+    "allow_self_approval": 1,
+    "condition": "doc.release_on and frappe.utils.get_datetime(doc.release_on) <= frappe.utils.now_datetime()"
+   }
+  ]
+ }
+]

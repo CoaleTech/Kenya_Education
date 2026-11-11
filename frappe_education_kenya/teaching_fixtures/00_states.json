@@ -1,0 +1,30 @@
+[
+ {
+  "doctype": "Workflow State",
+  "workflow_state_name": "Draft"
+ },
+ {
+  "doctype": "Workflow State",
+  "workflow_state_name": "Submitted"
+ },
+ {
+  "doctype": "Workflow State",
+  "workflow_state_name": "Approved"
+ },
+ {
+  "doctype": "Workflow State",
+  "workflow_state_name": "Returned"
+ },
+ {
+  "doctype": "Workflow State",
+  "workflow_state_name": "In Review"
+ },
+ {
+  "doctype": "Workflow State",
+  "workflow_state_name": "Locked"
+ },
+ {
+  "doctype": "Workflow State",
+  "workflow_state_name": "Released"
+ }
+]

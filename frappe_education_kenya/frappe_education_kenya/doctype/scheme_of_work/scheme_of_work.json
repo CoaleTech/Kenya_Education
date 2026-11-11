@@ -1,0 +1,103 @@
+{
+ "doctype": "DocType",
+ "name": "Scheme of Work",
+ "module": "Frappe Education Kenya",
+ "engine": "InnoDB",
+ "field_order": [
+  "instructor",
+  "course",
+  "academic_term",
+  "weeks",
+  "workflow_state"
+ ],
+ "fields": [
+  {
+   "fieldname": "instructor",
+   "fieldtype": "Link",
+   "label": "Instructor",
+   "options": "Instructor",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "course",
+   "fieldtype": "Link",
+   "label": "Course",
+   "options": "Course",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "academic_term",
+   "fieldtype": "Link",
+   "label": "Academic Term",
+   "options": "Academic Term",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "weeks",
+   "fieldtype": "Table",
+   "label": "Weeks",
+   "options": "Scheme Week",
+   "reqd": 1
+  },
+  {
+   "fieldname": "workflow_state",
+   "fieldtype": "Link",
+   "label": "Workflow State",
+   "options": "Workflow State",
+   "default": "Draft",
+   "read_only": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "no_copy": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "print": 1,
+   "report": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1
+  },
+  {
+   "role": "Instructor",
+   "read": 1,
+   "print": 1,
+   "report": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0
+  },
+  {
+   "role": "Academic Admin",
+   "read": 1,
+   "print": 1,
+   "report": 1,
+   "write": 1,
+   "create": 0,
+   "delete": 0
+  },
+  {
+   "role": "Head Teacher",
+   "read": 1,
+   "print": 1,
+   "report": 1,
+   "write": 1,
+   "create": 0,
+   "delete": 0
+  }
+ ],
+ "actions": [],
+ "links": [],
+ "states": [],
+ "autoname": "format:EDK-SOW-{YYYY}-{#####}",
+ "track_changes": 1,
+ "allow_rename": 0
+}

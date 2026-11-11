@@ -1,0 +1,18 @@
+{
+ "doctype": "Report",
+ "name": "Pledge Status",
+ "report_name": "Pledge Status",
+ "ref_doctype": "Fee Pledge",
+ "report_type": "Script Report",
+ "is_standard": "Yes",
+ "module": "Frappe Education Kenya",
+ "disabled": 0,
+ "roles": [
+  {
+   "role": "Bursar"
+  },
+  {
+   "role": "Head Teacher"
+  }
+ ]
+}

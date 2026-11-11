@@ -1,0 +1,23 @@
+{
+ "doctype": "Report",
+ "name": "Pathway Placement by Combination",
+ "report_name": "Pathway Placement by Combination",
+ "ref_doctype": "CBC Subject Combination",
+ "report_type": "Script Report",
+ "is_standard": "Yes",
+ "module": "Frappe Education Kenya",
+ "disabled": 0,
+ "prepared_report": 0,
+ "add_total_row": 0,
+ "roles": [
+  {
+   "role": "Academic Admin"
+  },
+  {
+   "role": "Head Teacher"
+  },
+  {
+   "role": "Instructor"
+  }
+ ]
+}

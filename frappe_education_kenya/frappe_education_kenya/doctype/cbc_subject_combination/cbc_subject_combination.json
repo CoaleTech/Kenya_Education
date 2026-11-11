@@ -1,0 +1,102 @@
+{
+ "doctype": "DocType",
+ "name": "CBC Subject Combination",
+ "module": "Frappe Education Kenya",
+ "engine": "InnoDB",
+ "actions": [],
+ "links": [],
+ "states": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1,
+ "field_order": [
+  "combination_name",
+  "pathway",
+  "track",
+  "capacity",
+  "enabled",
+  "subjects"
+ ],
+ "fields": [
+  {
+   "fieldname": "combination_name",
+   "fieldtype": "Data",
+   "label": "Combination Name",
+   "reqd": 1,
+   "unique": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "pathway",
+   "fieldtype": "Link",
+   "label": "Pathway",
+   "options": "CBC Pathway",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "track",
+   "fieldtype": "Autocomplete",
+   "label": "Track",
+   "reqd": 1,
+   "in_list_view": 1,
+   "description": "Choose a track belonging to the pathway. Only school-confirmed tracks may be enabled."
+  },
+  {
+   "fieldname": "capacity",
+   "fieldtype": "Int",
+   "label": "Capacity per Academic Year",
+   "reqd": 1,
+   "default": "0",
+   "non_negative": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "Available for Choices",
+   "default": "0",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "subjects",
+   "fieldtype": "Table",
+   "label": "Subjects",
+   "options": "Combination Subject",
+   "reqd": 1
+  }
+ ],
+ "autoname": "field:combination_name",
+ "title_field": "combination_name",
+ "permissions": [
+  {
+   "role": "Academic Admin",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "report": 1,
+   "print": 1
+  },
+  {
+   "role": "Head Teacher",
+   "read": 1,
+   "report": 1,
+   "print": 1
+  },
+  {
+   "role": "Instructor",
+   "read": 1,
+   "report": 1
+  },
+  {
+   "role": "Guardian",
+   "read": 1
+  },
+  {
+   "role": "Student",
+   "read": 1
+  }
+ ],
+ "index_web_pages_for_search": 0
+}

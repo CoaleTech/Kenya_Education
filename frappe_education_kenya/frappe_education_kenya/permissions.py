@@ -16,6 +16,8 @@ def has_transport_permission(doc, user=None, permission_type=None):
 	allowed_roles = {"System Manager", "Kenya System Administrator", "Head Teacher", "Transport Manager"}
 	if _user_has_role_for(user, allowed_roles):
 		return True
+	if permission_type in {"read", "select", "report", "print"} and _user_has_role_for(user, {"Bursar"}):
+		return True
 	return False
 
 

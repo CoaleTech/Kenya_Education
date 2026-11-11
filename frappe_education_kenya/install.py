@@ -9,10 +9,6 @@ and configures role permissions.
 import frappe
 from frappe import _
 
-from frappe_education_kenya.frappe_education_kenya.workspace_home import (
-	merge_kenya_home_into_education,
-)
-
 
 def before_install():
 	"""
@@ -26,6 +22,7 @@ def before_install():
 				"Please install it first: bench get-app education && bench --site [site] install-app education"
 			)
 		)
+	create_roles()
 
 
 def after_install():
@@ -44,8 +41,9 @@ def after_install():
 		seed_kenya_counties()
 		seed_moe_templates()
 		create_default_settings()
-		setup_unified_navigation()
-		merge_kenya_home_into_education()
+		from frappe_education_kenya.school_operations import setup
+
+		setup()
 
 		frappe.db.commit()
 		frappe.logger().info("Frappe Education Kenya installation completed successfully.")
@@ -59,14 +57,15 @@ def after_install():
 def after_migrate():
 	"""
 	Post-migration tasks.
-	Ensures custom fields exist after framework upgrades and keeps the Kenya
-	navigation folded into the single shared "Education" desk app.
+	Ensures custom fields exist after framework upgrades.
 	"""
+	create_roles()
 	create_custom_fields()
 	seed_cbc_grading_scale()
 	seed_meal_types()
-	setup_unified_navigation()
-	merge_kenya_home_into_education()
+	from frappe_education_kenya.school_operations import setup
+
+	setup()
 	frappe.db.commit()
 
 
@@ -313,6 +312,10 @@ def create_roles():
 		{"role_name": "MoE Reporter", "desk_access": 1},
 		{"role_name": "Kitchen Staff", "desk_access": 1},
 		{"role_name": "Academic Admin", "desk_access": 1},
+		{"role_name": "Librarian", "desk_access": 1},
+		{"role_name": "Bursar", "desk_access": 1},
+		{"role_name": "Head Teacher", "desk_access": 1},
+		{"role_name": "Education Manager", "desk_access": 1},
 	]
 
 	for role_data in roles:
@@ -737,178 +740,3 @@ def seed_cbc_grading_scale():
 		)
 	scale.insert(ignore_permissions=True)
 	scale.submit()
-
-
-# ──────────────────────────────────────────────────────────────────────────────
-# UNIFIED DESK NAVIGATION
-# ──────────────────────────────────────────────────────────────────────────────
-# Frappe Education is the PRIMARY app; this app only localises it for Kenya.
-# We therefore keep a SINGLE "Education" desk surface instead of a second app
-# tile / sidebar:
-#   1. the "Kenya Education" workspace is nested under the "Education" workspace,
-#   2. Kenya links are folded into the shared "Education" workspace sidebar,
-#   3. the auto-created standalone "Kenya Education" desktop icon + sidebar are
-#      suppressed.
-# This runs on install AND on every migrate, and is fully idempotent.
-
-# Kenya links are folded into the shared Education sidebar as collapsible
-# domain groups, mirroring the base sidebar taxonomy (Section Break + child
-# links). Group labels must stay distinct from the base Education section
-# labels (Admissions, Academics, Assessment, Fee Management, Attendance,
-# Tools, Setup, Reports) — the fold truncates on them for idempotency.
-# (group label, lucide icon, [(link label, doctype), ...])
-KENYA_SIDEBAR_GROUPS = [
-	(
-		"CBC Curriculum",
-		"book-open",
-		[
-			("CBC Level", "CBC Level"),
-			("CBC Learning Area", "CBC Learning Area"),
-			("CBC Strand", "CBC Strand"),
-			("CBC Sub Strand", "CBC Sub Strand"),
-			("CBC Learning Outcome", "CBC Learning Outcome"),
-		],
-	),
-	(
-		"Student Lifecycle",
-		"arrow-right-left",
-		[
-			("Student Transition", "Student Transition"),
-			("CBC Student Settings", "CBC Student Settings"),
-		],
-	),
-	(
-		"Transport",
-		"bus",
-		[
-			("Transport Route", "Transport Route"),
-			("Transport Vehicle", "Transport Vehicle"),
-			("Transport Subscription", "Transport Subscription"),
-		],
-	),
-	(
-		"Meals & Feeding",
-		"utensils",
-		[
-			("Meal Programme", "Meal Programme"),
-			("Meal Type", "Meal Type"),
-			("Daily Meal Record", "Daily Meal Record"),
-			("Student Meal Subscription", "Student Meal Subscription"),
-		],
-	),
-	(
-		"MoE Compliance",
-		"landmark",
-		[
-			("MoE Return Template", "MoE Return Template"),
-			("MoE Return Submission", "MoE Return Submission"),
-		],
-	),
-	(
-		"Kenya Setup",
-		"map-pin",
-		[
-			("Kenya County", "Kenya County"),
-			("Kenya Sub County", "Kenya Sub County"),
-			("Education Kenya Settings", "Education Kenya Settings"),
-			("CBC Fee Settings", "CBC Fee Settings"),
-		],
-	),
-]
-
-# Section labels that mark the start of the Kenya block. Includes the legacy
-# flat section so upgrades from the single-section layout are cleaned up too.
-_KENYA_SECTION_LABELS = {label for label, _icon, _links in KENYA_SIDEBAR_GROUPS} | {"Kenya CBC & Compliance"}
-
-
-def setup_unified_navigation():
-	"""Fold Kenya navigation into the single 'Education' desk app. Idempotent."""
-	_fold_kenya_into_education_sidebar()
-	_suppress_standalone_kenya_nav()
-	_clear_nav_cache()
-
-
-def _fold_kenya_into_education_sidebar():
-	"""Inject the Kenya domain groups into the shared Education sidebar."""
-	if not frappe.db.exists("Workspace Sidebar", "Education"):
-		return
-	sidebar = frappe.get_doc("Workspace Sidebar", "Education")
-
-	# Remove any previously-injected Kenya block. It is always appended last,
-	# so truncate from the first Kenya section header to the end of the list —
-	# this never disturbs base items even when they link to the same doctypes.
-	items = list(sidebar.items)
-	for idx, item in enumerate(items):
-		if item.type == "Section Break" and item.label in _KENYA_SECTION_LABELS:
-			items = items[:idx]
-			break
-	sidebar.items = items
-
-	for group_label, icon, links in KENYA_SIDEBAR_GROUPS:
-		sidebar.append(
-			"items",
-			{
-				"type": "Section Break",
-				"label": group_label,
-				"icon": icon,
-				"indent": 1,
-				"collapsible": 1,
-				"keep_closed": 1,
-				"show_arrow": 0,
-				"child": 0,
-				"link_type": "DocType",
-			},
-		)
-		for label, link_to in links:
-			sidebar.append(
-				"items",
-				{
-					"type": "Link",
-					"label": label,
-					"link_to": link_to,
-					"link_type": "DocType",
-					"indent": 0,
-					"collapsible": 1,
-					"keep_closed": 0,
-					"show_arrow": 0,
-					"child": 1,
-				},
-			)
-
-	sidebar.save(ignore_permissions=True)
-
-
-def _suppress_standalone_kenya_nav():
-	"""Neutralise the auto-created standalone Kenya tile + sidebar so only the
-	single 'Education' desk surface remains. Idempotent."""
-	has_education_sidebar = frappe.db.exists("Workspace Sidebar", "Education")
-
-	if frappe.db.exists("Desktop Icon", "Kenya Education"):
-		icon = frappe.get_doc("Desktop Icon", "Kenya Education")
-		icon.hidden = 1
-		# Nest under the Education app tile so it never floats even if unhidden.
-		if frappe.db.exists("Desktop Icon", {"label": "Education", "icon_type": "App"}):
-			icon.parent_icon = "Education"
-		# Repoint the (Dynamic) link to the surviving Education sidebar so it
-		# never dangles once the standalone Kenya sidebar is removed. The icon
-		# stays hidden and only guards against auto re-creation.
-		if has_education_sidebar:
-			icon.link_type = "Workspace Sidebar"
-			icon.link_to = "Education"
-		icon.save(ignore_permissions=True)
-
-	if frappe.db.exists("Workspace Sidebar", "Kenya Education"):
-		try:
-			frappe.delete_doc("Workspace Sidebar", "Kenya Education", ignore_permissions=True, force=True)
-		except Exception:
-			frappe.clear_messages()
-
-
-def _clear_nav_cache():
-	try:
-		from frappe.desk.doctype.desktop_icon.desktop_icon import clear_desktop_icons_cache
-
-		clear_desktop_icons_cache()
-	except Exception:
-		pass
-	frappe.clear_cache()

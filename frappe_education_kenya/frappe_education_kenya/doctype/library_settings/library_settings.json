@@ -1,0 +1,66 @@
+{
+ "doctype": "DocType",
+ "name": "Library Settings",
+ "module": "Frappe Education Kenya",
+ "engine": "InnoDB",
+ "field_order": [
+  "loan_days",
+  "max_loans_student",
+  "max_loans_staff",
+  "fine_per_day",
+  "fine_item"
+ ],
+ "fields": [
+  {
+   "fieldname": "loan_days",
+   "fieldtype": "Int",
+   "label": "Loan Days",
+   "default": "14",
+   "reqd": 1
+  },
+  {
+   "fieldname": "max_loans_student",
+   "fieldtype": "Int",
+   "label": "Maximum Student Loans",
+   "default": "3",
+   "reqd": 1
+  },
+  {
+   "fieldname": "max_loans_staff",
+   "fieldtype": "Int",
+   "label": "Maximum Staff Loans",
+   "default": "5",
+   "reqd": 1
+  },
+  {
+   "fieldname": "fine_per_day",
+   "fieldtype": "Currency",
+   "label": "Fine per Overdue Day",
+   "default": "0",
+   "reqd": 1
+  },
+  {
+   "fieldname": "fine_item",
+   "fieldtype": "Link",
+   "label": "Fine Item",
+   "options": "Item",
+   "description": "Enabled, non-stock sales item. Employee fines remain record-only."
+  }
+ ],
+ "permissions": [
+  {
+   "role": "Librarian",
+   "read": 1,
+   "write": 1
+  },
+  {
+   "role": "Head Teacher",
+   "read": 1,
+   "write": 1
+  }
+ ],
+ "track_changes": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "issingle": 1
+}

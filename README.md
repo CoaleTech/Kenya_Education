@@ -45,7 +45,7 @@ It **extends** the base Education app in place rather than replacing it: one uni
 - **Meals & food services** — NSNP-compatible feeding programmes, daily meal records, and student meal subscriptions
 - **Kenya-specific student data** — UPIN and NEMIS tracking, county/sub-county/ward residence, special-needs and boarder/day-scholar classification
 - **Localised fees** — CBC fee components, transport/meal fee automation, and government capitation tracking wired into the base Fee Structure
-- **Single unified desk** — folds Kenya links and CBC analytics into the shared Education workspace instead of adding a competing app tile or second sidebar
+- **Companion desk navigation** — one Education sidebar: the Kenya links are appended to it by a site-layer `Custom Sidebar` fixture (no app tile, no dock entry, no second sidebar, no edits to the Education app). The Education Kenya workspace carries the CBC number cards and charts
 - **29 DocTypes** across curriculum, student lifecycle, school operations, MoE compliance, and finance
 - **25 unit tests** — all passing
 
@@ -158,10 +158,13 @@ frappe_education_kenya/
 │   ├── doctype/            # 29 DocTypes: CBC curriculum, student lifecycle,
 │   │                       #   transport, meals, MoE compliance, finance
 │   ├── assessment.py       # CBC Performance Level mapping (grading-scale based)
-│   ├── workspace_home.py   # Folds Kenya content + analytics into Education home
-│   ├── install.py          # Install / migrate hooks (unified navigation)
+│   ├── dashboard_chart/ number_card/ workspace/
+│   │                       # Standard Desk analytics + Kenya home workspace
+│   ├── fixtures/custom_sidebar.json
+│   │                       # Kenya links appended to the Education sidebar
+│   ├── install.py          # Install / migrate hooks
 │   ├── patches/            # Database migration patches
-│   ├── public/             # Desk bundle (esbuild) + Espresso-token styles
+│   ├── public/             # Desk bundle (esbuild)
 │   ├── templates/          # Jinja templates
 │   └── hooks.py            # Frappe app hooks
 ├── pyproject.toml

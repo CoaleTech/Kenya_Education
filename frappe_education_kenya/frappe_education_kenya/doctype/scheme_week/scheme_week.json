@@ -1,0 +1,53 @@
+{
+ "doctype": "DocType",
+ "name": "Scheme Week",
+ "module": "Frappe Education Kenya",
+ "engine": "InnoDB",
+ "field_order": [
+  "week_no",
+  "strand",
+  "outcomes",
+  "activities",
+  "assessment"
+ ],
+ "fields": [
+  {
+   "fieldname": "week_no",
+   "fieldtype": "Int",
+   "label": "Week No",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "strand",
+   "fieldtype": "Data",
+   "label": "Strand",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "outcomes",
+   "fieldtype": "Text Editor",
+   "label": "Outcomes",
+   "reqd": 1
+  },
+  {
+   "fieldname": "activities",
+   "fieldtype": "Text Editor",
+   "label": "Activities"
+  },
+  {
+   "fieldname": "assessment",
+   "fieldtype": "Text Editor",
+   "label": "Assessment"
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "permissions": [],
+ "actions": [],
+ "links": [],
+ "states": [],
+ "istable": 1,
+ "editable_grid": 1
+}

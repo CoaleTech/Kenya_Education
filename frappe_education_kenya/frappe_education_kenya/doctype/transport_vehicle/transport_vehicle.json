@@ -137,7 +137,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-07-07 00:00:00.000000",
+ "modified": "2026-11-10 12:00:00.000000",
  "modified_by": "Administrator",
  "module": "Frappe Education Kenya",
  "name": "Transport Vehicle",
@@ -171,6 +171,10 @@
   {
    "read": 1,
    "role": "Academic Admin"
+  },
+  {
+   "role": "Head Teacher",
+   "select": 1
   }
  ],
  "sort_field": "vehicle_registration",

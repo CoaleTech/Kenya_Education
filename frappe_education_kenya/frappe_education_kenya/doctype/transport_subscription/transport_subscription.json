@@ -11,12 +11,18 @@
   "student_name",
   "route",
   "route_name",
+  "trip_type",
   "column_break_1",
   "pickup_point",
   "subscription_term",
   "subscription_status",
   "section_break_fee",
   "fee_amount",
+  "net_amount",
+  "discount_type",
+  "discount_value",
+  "discount_reason",
+  "discount_approved_by",
   "payment_status",
   "sales_invoice",
   "column_break_2",
@@ -56,6 +62,15 @@
    "read_only": 1
   },
   {
+   "fieldname": "trip_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Trip Type",
+   "options": "One Way Morning\nOne Way Evening\nTwo Way",
+   "default": "Two Way",
+   "reqd": 1
+  },
+  {
    "fieldname": "column_break_1",
    "fieldtype": "Column Break"
   },
@@ -85,11 +100,47 @@
    "label": "Fee Details"
   },
   {
-   "fetch_from": "route.term_fee",
    "fieldname": "fee_amount",
    "fieldtype": "Currency",
-   "label": "Fee Amount",
-   "reqd": 1
+   "label": "Gross Fare",
+   "read_only": 1
+  },
+  {
+   "fieldname": "net_amount",
+   "fieldtype": "Currency",
+   "label": "Net Fare",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "discount_type",
+   "fieldtype": "Select",
+   "label": "Discount Type",
+   "options": "None\nPercent\nAmount",
+   "default": "None",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "discount_value",
+   "fieldtype": "Currency",
+   "label": "Discount Value",
+   "default": "0",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "discount_reason",
+   "fieldtype": "Small Text",
+   "label": "Discount Reason",
+   "mandatory_depends_on": "eval:doc.discount_value > 0",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "discount_approved_by",
+   "fieldtype": "Link",
+   "options": "User",
+   "label": "Discount Approved By",
+   "read_only": 1,
+   "permlevel": 1
   },
   {
    "fieldname": "payment_status",
@@ -170,6 +221,28 @@
    "role": "Bursar",
    "share": 1,
    "write": 1
+  },
+  {
+   "read": 1,
+   "write": 1,
+   "role": "Head Teacher"
+  },
+  {
+   "read": 1,
+   "write": 1,
+   "permlevel": 1,
+   "role": "Bursar"
+  },
+  {
+   "read": 1,
+   "write": 1,
+   "permlevel": 1,
+   "role": "Head Teacher"
+  },
+  {
+   "read": 1,
+   "permlevel": 1,
+   "role": "Transport Manager"
   }
  ],
  "sort_field": "modified",

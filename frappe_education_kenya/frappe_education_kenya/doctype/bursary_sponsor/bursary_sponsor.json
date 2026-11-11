@@ -1,0 +1,59 @@
+{
+ "doctype": "DocType",
+ "name": "Bursary Sponsor",
+ "module": "Frappe Education Kenya",
+ "engine": "InnoDB",
+ "autoname": "format:EDK-BS-{#####}",
+ "field_order": [
+  "sponsor_name",
+  "customer",
+  "contact"
+ ],
+ "fields": [
+  {
+   "fieldname": "sponsor_name",
+   "label": "Sponsor Name",
+   "fieldtype": "Data",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "customer",
+   "label": "Customer",
+   "fieldtype": "Link",
+   "reqd": 1,
+   "options": "Customer"
+  },
+  {
+   "fieldname": "contact",
+   "label": "Contact",
+   "fieldtype": "Small Text"
+  }
+ ],
+ "permissions": [
+  {
+   "role": "Bursar",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "permlevel": 0
+  },
+  {
+   "role": "Head Teacher",
+   "read": 1,
+   "write": 0,
+   "create": 0,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "permlevel": 0
+  }
+ ],
+ "track_changes": 1,
+ "istable": 0,
+ "editable_grid": 1,
+ "title_field": "sponsor_name"
+}

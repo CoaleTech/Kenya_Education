@@ -1,0 +1,108 @@
+{
+ "creation": "2026-11-10 00:00:00.000000",
+ "modified": "2026-11-10 00:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "row_format": "Dynamic",
+ "states": [],
+ "links": [],
+ "actions": [],
+ "doctype": "DocType",
+ "name": "Timetable Run",
+ "module": "Frappe Education Kenya",
+ "engine": "InnoDB",
+ "field_order": [
+  "academic_term",
+  "status",
+  "max_backtracks",
+  "generated_on",
+  "generation_error",
+  "slots",
+  "conflicts"
+ ],
+ "fields": [
+  {
+   "fieldname": "academic_term",
+   "fieldtype": "Link",
+   "label": "Academic Term",
+   "reqd": 1,
+   "in_list_view": 1,
+   "options": "Academic Term"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "default": "Draft",
+   "reqd": 1,
+   "read_only": 1,
+   "in_list_view": 1,
+   "options": "Draft\nGenerated\nPublished\nFailed"
+  },
+  {
+   "fieldname": "max_backtracks",
+   "fieldtype": "Int",
+   "label": "Max Backtracks",
+   "default": "1000",
+   "reqd": 1
+  },
+  {
+   "fieldname": "generated_on",
+   "fieldtype": "Datetime",
+   "label": "Generated On",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "generation_error",
+   "fieldtype": "Small Text",
+   "label": "Generation Error",
+   "read_only": 1
+  },
+  {
+   "fieldname": "slots",
+   "fieldtype": "Table",
+   "label": "Slots",
+   "read_only": 1,
+   "options": "Timetable Slot"
+  },
+  {
+   "fieldname": "conflicts",
+   "fieldtype": "Table",
+   "label": "Conflicts",
+   "read_only": 1,
+   "options": "Timetable Conflict"
+  }
+ ],
+ "permissions": [
+  {
+   "role": "Academic Admin",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "print": 1,
+   "report": 1,
+   "export": 1,
+   "delete": 1
+  },
+  {
+   "role": "Head Teacher",
+   "read": 1,
+   "print": 1,
+   "report": 1
+  },
+  {
+   "role": "Instructor",
+   "read": 1,
+   "print": 1,
+   "report": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1,
+ "autoname": "format:EDK-TT-RUN-{#####}",
+ "title_field": "academic_term",
+ "show_title_field_in_link": 0,
+ "search_fields": "academic_term,status"
+}

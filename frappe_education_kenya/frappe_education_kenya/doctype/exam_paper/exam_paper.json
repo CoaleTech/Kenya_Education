@@ -1,0 +1,159 @@
+{
+ "doctype": "DocType",
+ "name": "Exam Paper",
+ "module": "Frappe Education Kenya",
+ "engine": "InnoDB",
+ "field_order": [
+  "title",
+  "instructor",
+  "course",
+  "student_group",
+  "exam_date",
+  "duration_minutes",
+  "total_marks",
+  "items",
+  "release_on",
+  "workflow_state"
+ ],
+ "fields": [
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "label": "Title",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "instructor",
+   "fieldtype": "Link",
+   "label": "Instructor",
+   "options": "Instructor",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "course",
+   "fieldtype": "Link",
+   "label": "Course",
+   "options": "Course",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "student_group",
+   "fieldtype": "Link",
+   "label": "Student Group",
+   "options": "Student Group",
+   "reqd": 1
+  },
+  {
+   "fieldname": "exam_date",
+   "fieldtype": "Date",
+   "label": "Exam Date",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "duration_minutes",
+   "fieldtype": "Int",
+   "label": "Duration Minutes",
+   "reqd": 1
+  },
+  {
+   "fieldname": "total_marks",
+   "fieldtype": "Float",
+   "label": "Total Marks",
+   "read_only": 1
+  },
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Items",
+   "options": "Exam Paper Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "release_on",
+   "fieldtype": "Datetime",
+   "label": "Release On",
+   "description": "Students and guardians can read only after this time AND the Release workflow action."
+  },
+  {
+   "fieldname": "workflow_state",
+   "fieldtype": "Link",
+   "label": "Workflow State",
+   "options": "Workflow State",
+   "default": "Draft",
+   "read_only": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "no_copy": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "print": 1,
+   "report": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1
+  },
+  {
+   "role": "Instructor",
+   "read": 1,
+   "print": 1,
+   "report": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0
+  },
+  {
+   "role": "Academic Admin",
+   "read": 1,
+   "print": 1,
+   "report": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0
+  },
+  {
+   "role": "Head Teacher",
+   "read": 1,
+   "print": 1,
+   "report": 1,
+   "write": 0,
+   "create": 0,
+   "delete": 0
+  },
+  {
+   "role": "Student",
+   "read": 1,
+   "print": 1,
+   "report": 1,
+   "write": 0,
+   "create": 0,
+   "delete": 0
+  },
+  {
+   "role": "Guardian",
+   "read": 1,
+   "print": 1,
+   "report": 1,
+   "write": 0,
+   "create": 0,
+   "delete": 0
+  }
+ ],
+ "actions": [],
+ "links": [],
+ "states": [],
+ "autoname": "format:EDK-EXAM-{YYYY}-{#####}",
+ "track_changes": 0,
+ "allow_rename": 0,
+ "title_field": "title",
+ "default_print_format": "Exam Paper (Locked)"
+}

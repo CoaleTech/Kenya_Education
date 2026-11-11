@@ -1,0 +1,107 @@
+{
+ "doctype": "Workflow",
+ "name": "Kenya Electronic Collection",
+ "workflow_name": "Kenya Electronic Collection",
+ "document_type": "Electronic Collection",
+ "is_active": 1,
+ "workflow_state_field": "workflow_state",
+ "send_email_alert": 0,
+ "states": [
+  {
+   "state": "New",
+   "doc_status": "0",
+   "allow_edit": "Bursar"
+  },
+  {
+   "state": "Matched",
+   "doc_status": "0",
+   "allow_edit": "Bursar"
+  },
+  {
+   "state": "Needs Review",
+   "doc_status": "0",
+   "allow_edit": "Bursar"
+  },
+  {
+   "state": "Approved",
+   "doc_status": "0",
+   "allow_edit": "Bursar"
+  },
+  {
+   "state": "Posted",
+   "doc_status": "0",
+   "allow_edit": "Bursar"
+  },
+  {
+   "state": "Rejected",
+   "doc_status": "0",
+   "allow_edit": "Bursar"
+  }
+ ],
+ "transitions": [
+  {
+   "state": "New",
+   "action": "Reject Collection",
+   "next_state": "Rejected",
+   "allowed": "Bursar",
+   "allow_self_approval": 1,
+   "condition": ""
+  },
+  {
+   "state": "Matched",
+   "action": "Reject Collection",
+   "next_state": "Rejected",
+   "allowed": "Bursar",
+   "allow_self_approval": 1,
+   "condition": ""
+  },
+  {
+   "state": "Needs Review",
+   "action": "Reject Collection",
+   "next_state": "Rejected",
+   "allowed": "Bursar",
+   "allow_self_approval": 1,
+   "condition": ""
+  },
+  {
+   "state": "New",
+   "action": "Match Collection",
+   "next_state": "Matched",
+   "allowed": "Bursar",
+   "allow_self_approval": 1,
+   "condition": ""
+  },
+  {
+   "state": "New",
+   "action": "Review Collection",
+   "next_state": "Needs Review",
+   "allowed": "Bursar",
+   "allow_self_approval": 1,
+   "condition": ""
+  },
+  {
+   "state": "Matched",
+   "action": "Review Collection",
+   "next_state": "Needs Review",
+   "allowed": "Bursar",
+   "allow_self_approval": 1,
+   "condition": ""
+  },
+  {
+   "state": "Needs Review",
+   "action": "Match Collection",
+   "next_state": "Matched",
+   "allowed": "Bursar",
+   "allow_self_approval": 1,
+   "condition": ""
+  },
+  {
+   "state": "Matched",
+   "action": "Approve Collection",
+   "next_state": "Approved",
+   "allowed": "Bursar",
+   "allow_self_approval": 1,
+   "condition": ""
+  }
+ ]
+}

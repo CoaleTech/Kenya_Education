@@ -4,6 +4,8 @@ import frappe
 from frappe import _
 from frappe.model.document import Document
 
+from frappe_education_kenya.learner_ids import validate_identifiers
+
 
 class CBCStudentSettings(Document):
 	pass
@@ -21,6 +23,7 @@ def validate_student_kenya_fields(doc, method=None):
 	warning rather than a hard validation error, since schools may
 	onboard students before NEMIS registration completes.
 	"""
+	validate_identifiers(doc, method)
 	settings = _get_settings()
 
 	if settings.get("require_upin") and not doc.get("kenya_upin"):

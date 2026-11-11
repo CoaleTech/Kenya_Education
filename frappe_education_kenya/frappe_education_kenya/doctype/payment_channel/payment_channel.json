@@ -1,0 +1,77 @@
+{
+ "doctype": "DocType",
+ "name": "Payment Channel",
+ "module": "Frappe Education Kenya",
+ "engine": "InnoDB",
+ "autoname": "format:EDK-PC-{#####}",
+ "field_order": [
+  "provider",
+  "shortcode",
+  "bank_account",
+  "mode_of_payment",
+  "ingress_token",
+  "enabled"
+ ],
+ "fields": [
+  {
+   "fieldname": "provider",
+   "label": "Provider",
+   "fieldtype": "Select",
+   "reqd": 1,
+   "in_list_view": 1,
+   "options": "M-Pesa Paybill\nKCB\nCo-operative Bank"
+  },
+  {
+   "fieldname": "shortcode",
+   "label": "Shortcode",
+   "fieldtype": "Data",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "bank_account",
+   "label": "Bank Account",
+   "fieldtype": "Link",
+   "reqd": 1,
+   "options": "Account"
+  },
+  {
+   "fieldname": "mode_of_payment",
+   "label": "Mode of Payment",
+   "fieldtype": "Link",
+   "reqd": 1,
+   "options": "Mode of Payment"
+  },
+  {
+   "fieldname": "ingress_token",
+   "label": "Ingress Token",
+   "fieldtype": "Password"
+  },
+  {
+   "fieldname": "enabled",
+   "label": "Enabled",
+   "fieldtype": "Check",
+   "default": "0"
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "permlevel": 0
+  },
+  {
+   "role": "Bursar",
+   "select": 1,
+   "permlevel": 0
+  }
+ ],
+ "track_changes": 1,
+ "istable": 0,
+ "editable_grid": 1
+}

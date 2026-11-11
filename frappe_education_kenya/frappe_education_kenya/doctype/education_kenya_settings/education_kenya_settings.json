@@ -21,11 +21,6 @@
   "school_email",
   "school_phone",
   "section_break_academic",
-  "current_academic_year",
-  "current_term",
-  "term_start_date",
-  "term_end_date",
-  "column_break_3",
   "enable_cbc_assessments",
   "enable_transport",
   "enable_meals",
@@ -34,7 +29,16 @@
   "default_currency",
   "default_fee_account",
   "default_transport_account",
-  "default_meals_account"
+  "default_meals_account",
+  "company",
+  "cost_center",
+  "default_payment_account",
+  "default_payment_mode",
+  "transport_item",
+  "section_break_communications",
+  "pledge_reminder_days",
+  "enable_pledge_reminders",
+  "enable_scheduled_messages"
  ],
  "fields": [
   {
@@ -122,32 +126,6 @@
    "label": "Academic Settings"
   },
   {
-   "fieldname": "current_academic_year",
-   "fieldtype": "Link",
-   "label": "Current Academic Year",
-   "options": "Academic Year"
-  },
-  {
-   "fieldname": "current_term",
-   "fieldtype": "Link",
-   "label": "Current Term",
-   "options": "Academic Term"
-  },
-  {
-   "fieldname": "term_start_date",
-   "fieldtype": "Date",
-   "label": "Term Start Date"
-  },
-  {
-   "fieldname": "term_end_date",
-   "fieldtype": "Date",
-   "label": "Term End Date"
-  },
-  {
-   "fieldname": "column_break_3",
-   "fieldtype": "Column Break"
-  },
-  {
    "default": "1",
    "fieldname": "enable_cbc_assessments",
    "fieldtype": "Check",
@@ -199,6 +177,60 @@
    "fieldtype": "Link",
    "label": "Default Meals Account",
    "options": "Account"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company"
+  },
+  {
+   "fieldname": "cost_center",
+   "fieldtype": "Link",
+   "label": "Cost Center",
+   "options": "Cost Center"
+  },
+  {
+   "fieldname": "default_payment_account",
+   "fieldtype": "Link",
+   "label": "Default Payment Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "default_payment_mode",
+   "fieldtype": "Link",
+   "label": "Default Mode of Payment",
+   "options": "Mode of Payment"
+  },
+  {
+   "fieldname": "transport_item",
+   "fieldtype": "Link",
+   "label": "Transport Invoice Item",
+   "options": "Item"
+  },
+  {
+   "fieldname": "section_break_communications",
+   "fieldtype": "Section Break",
+   "label": "Parent Communications"
+  },
+  {
+   "fieldname": "pledge_reminder_days",
+   "fieldtype": "Int",
+   "label": "Pledge Reminder Days Before Due",
+   "default": "3",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "enable_pledge_reminders",
+   "fieldtype": "Check",
+   "label": "Enable Pledge Reminders",
+   "default": "0"
+  },
+  {
+   "fieldname": "enable_scheduled_messages",
+   "fieldtype": "Check",
+   "label": "Enable Scheduled Messages",
+   "default": "0"
   }
  ],
  "index_web_pages_for_search": 1,

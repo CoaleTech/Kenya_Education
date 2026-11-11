@@ -1,0 +1,18 @@
+{
+ "doctype": "Report",
+ "name": "Unmatched Collections",
+ "report_name": "Unmatched Collections",
+ "ref_doctype": "Electronic Collection",
+ "report_type": "Script Report",
+ "is_standard": "Yes",
+ "module": "Frappe Education Kenya",
+ "disabled": 0,
+ "roles": [
+  {
+   "role": "Bursar"
+  },
+  {
+   "role": "Head Teacher"
+  }
+ ]
+}

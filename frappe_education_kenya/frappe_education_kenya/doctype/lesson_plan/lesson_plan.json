@@ -1,0 +1,137 @@
+{
+ "doctype": "DocType",
+ "name": "Lesson Plan",
+ "module": "Frappe Education Kenya",
+ "engine": "InnoDB",
+ "field_order": [
+  "instructor",
+  "course",
+  "lesson_date",
+  "scheme_of_work",
+  "scheme_week",
+  "objectives",
+  "activities",
+  "resources",
+  "reflection",
+  "workflow_state"
+ ],
+ "fields": [
+  {
+   "fieldname": "instructor",
+   "fieldtype": "Link",
+   "label": "Instructor",
+   "options": "Instructor",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "course",
+   "fieldtype": "Link",
+   "label": "Course",
+   "options": "Course",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "lesson_date",
+   "fieldtype": "Date",
+   "label": "Lesson Date",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "scheme_of_work",
+   "fieldtype": "Link",
+   "label": "Scheme Of Work",
+   "options": "Scheme of Work",
+   "reqd": 1
+  },
+  {
+   "fieldname": "scheme_week",
+   "fieldtype": "Data",
+   "label": "Scheme Week",
+   "read_only": 1,
+   "reqd": 1,
+   "description": "Choose a week from the approved Scheme of Work using Choose Scheme Week."
+  },
+  {
+   "fieldname": "objectives",
+   "fieldtype": "Text Editor",
+   "label": "Objectives",
+   "reqd": 1
+  },
+  {
+   "fieldname": "activities",
+   "fieldtype": "Text Editor",
+   "label": "Activities",
+   "reqd": 1
+  },
+  {
+   "fieldname": "resources",
+   "fieldtype": "Text Editor",
+   "label": "Resources"
+  },
+  {
+   "fieldname": "reflection",
+   "fieldtype": "Text Editor",
+   "label": "Reflection"
+  },
+  {
+   "fieldname": "workflow_state",
+   "fieldtype": "Link",
+   "label": "Workflow State",
+   "options": "Workflow State",
+   "default": "Draft",
+   "read_only": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "no_copy": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "print": 1,
+   "report": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1
+  },
+  {
+   "role": "Instructor",
+   "read": 1,
+   "print": 1,
+   "report": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0
+  },
+  {
+   "role": "Academic Admin",
+   "read": 1,
+   "print": 1,
+   "report": 1,
+   "write": 1,
+   "create": 0,
+   "delete": 0
+  },
+  {
+   "role": "Head Teacher",
+   "read": 1,
+   "print": 1,
+   "report": 1,
+   "write": 0,
+   "create": 0,
+   "delete": 0
+  }
+ ],
+ "actions": [],
+ "links": [],
+ "states": [],
+ "autoname": "format:EDK-LESSON-{YYYY}-{#####}",
+ "track_changes": 1,
+ "allow_rename": 0
+}

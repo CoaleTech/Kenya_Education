@@ -1,0 +1,65 @@
+{
+ "doctype": "DocType",
+ "name": "CBC Pathway",
+ "module": "Frappe Education Kenya",
+ "engine": "InnoDB",
+ "actions": [],
+ "links": [],
+ "states": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1,
+ "field_order": [
+  "pathway_name",
+  "tracks"
+ ],
+ "fields": [
+  {
+   "fieldname": "pathway_name",
+   "fieldtype": "Data",
+   "label": "Pathway",
+   "reqd": 1,
+   "unique": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "tracks",
+   "fieldtype": "Table",
+   "label": "Tracks",
+   "options": "CBC Track",
+   "description": "Seeded track labels are editable drafts, not confirmed official terminology. Confirm each with the school before enabling combinations."
+  }
+ ],
+ "autoname": "field:pathway_name",
+ "title_field": "pathway_name",
+ "permissions": [
+  {
+   "role": "Academic Admin",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "report": 1,
+   "print": 1
+  },
+  {
+   "role": "Head Teacher",
+   "read": 1,
+   "report": 1,
+   "print": 1
+  },
+  {
+   "role": "Instructor",
+   "read": 1,
+   "report": 1
+  },
+  {
+   "role": "Guardian",
+   "read": 1
+  },
+  {
+   "role": "Student",
+   "read": 1
+  }
+ ],
+ "index_web_pages_for_search": 0
+}

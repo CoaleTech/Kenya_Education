@@ -1,0 +1,222 @@
+{
+ "doctype": "DocType",
+ "name": "Student Pathway Choice",
+ "module": "Frappe Education Kenya",
+ "engine": "InnoDB",
+ "actions": [],
+ "links": [],
+ "states": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1,
+ "field_order": [
+  "student",
+  "academic_year",
+  "workflow_state",
+  "first_choice",
+  "second_choice",
+  "rationale",
+  "guardian_consent",
+  "guardian_consent_record",
+  "review_section",
+  "kjsea_basis",
+  "placement",
+  "approved_by",
+  "placed_by",
+  "override_section",
+  "override_reason",
+  "override_by",
+  "active_key"
+ ],
+ "fields": [
+  {
+   "fieldname": "student",
+   "fieldtype": "Link",
+   "label": "Student",
+   "options": "Student",
+   "reqd": 1,
+   "set_only_once": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "academic_year",
+   "fieldtype": "Link",
+   "label": "Academic Year",
+   "options": "Academic Year",
+   "reqd": 1,
+   "set_only_once": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "workflow_state",
+   "fieldtype": "Link",
+   "label": "Workflow State",
+   "options": "Workflow State",
+   "default": "Draft",
+   "read_only": 1,
+   "no_copy": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "first_choice",
+   "fieldtype": "Link",
+   "label": "First Choice",
+   "options": "CBC Subject Combination",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "second_choice",
+   "fieldtype": "Link",
+   "label": "Second Choice",
+   "options": "CBC Subject Combination"
+  },
+  {
+   "fieldname": "rationale",
+   "fieldtype": "Small Text",
+   "label": "Rationale"
+  },
+  {
+   "fieldname": "guardian_consent",
+   "fieldtype": "Check",
+   "label": "Verified Guardian Consent",
+   "read_only": 1,
+   "default": "0",
+   "description": "Computed from the latest active Data Sharing consent of a guardian linked to this student. A checkbox alone cannot grant consent."
+  },
+  {
+   "fieldname": "guardian_consent_record",
+   "fieldtype": "Link",
+   "label": "Consent Evidence",
+   "options": "Guardian Consent",
+   "read_only": 1,
+   "no_copy": 1
+  },
+  {
+   "fieldname": "review_section",
+   "fieldtype": "Section Break",
+   "label": "Academic Review",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "kjsea_basis",
+   "fieldtype": "Int",
+   "label": "KJSEA Score Basis",
+   "read_only": 1,
+   "permlevel": 1,
+   "description": "Server-derived from the protected Student KJSEA score; frozen on submission."
+  },
+  {
+   "fieldname": "placement",
+   "fieldtype": "Link",
+   "label": "Placement",
+   "options": "CBC Subject Combination",
+   "permlevel": 1,
+   "in_list_view": 1,
+   "description": "Save the selection before using Place or Override Place in the native workflow."
+  },
+  {
+   "fieldname": "approved_by",
+   "fieldtype": "Link",
+   "label": "Approved By",
+   "options": "User",
+   "read_only": 1,
+   "no_copy": 1
+  },
+  {
+   "fieldname": "placed_by",
+   "fieldtype": "Link",
+   "label": "Placed By",
+   "options": "User",
+   "read_only": 1,
+   "no_copy": 1
+  },
+  {
+   "fieldname": "override_section",
+   "fieldtype": "Section Break",
+   "label": "Head Teacher Override",
+   "permlevel": 2
+  },
+  {
+   "fieldname": "override_reason",
+   "fieldtype": "Small Text",
+   "label": "Override Reason",
+   "permlevel": 2,
+   "description": "Required for every Head Teacher override; also permits a full or non-preferred combination. Save before Override Place."
+  },
+  {
+   "fieldname": "override_by",
+   "fieldtype": "Link",
+   "label": "Overridden By",
+   "options": "User",
+   "read_only": 1,
+   "no_copy": 1
+  },
+  {
+   "fieldname": "active_key",
+   "fieldtype": "Data",
+   "label": "Active Student-Year Key",
+   "unique": 1,
+   "read_only": 1,
+   "hidden": 1,
+   "no_copy": 1
+  }
+ ],
+ "autoname": "format:EDK-PCH-{YYYY}-{#####}",
+ "title_field": "student",
+ "permissions": [
+  {
+   "role": "Guardian",
+   "read": 1,
+   "create": 1,
+   "write": 1
+  },
+  {
+   "role": "Student",
+   "read": 1,
+   "create": 1,
+   "write": 1
+  },
+  {
+   "role": "Academic Admin",
+   "read": 1,
+   "write": 1,
+   "report": 1,
+   "print": 1
+  },
+  {
+   "role": "Head Teacher",
+   "read": 1,
+   "write": 1,
+   "report": 1,
+   "print": 1
+  },
+  {
+   "role": "Instructor",
+   "read": 1,
+   "report": 1
+  },
+  {
+   "role": "Academic Admin",
+   "read": 1,
+   "permlevel": 1,
+   "write": 1
+  },
+  {
+   "role": "Head Teacher",
+   "read": 1,
+   "permlevel": 1,
+   "write": 1
+  },
+  {
+   "role": "Head Teacher",
+   "read": 1,
+   "permlevel": 2,
+   "write": 1
+  }
+ ],
+ "index_web_pages_for_search": 0
+}

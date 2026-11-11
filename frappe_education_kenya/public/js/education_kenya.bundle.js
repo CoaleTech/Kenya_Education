@@ -3,7 +3,6 @@
  *
  * Client-side logic for Kenya-specific features:
  * - Student form: CBC history, transitions, transport/meal subscriptions
- * - Transport Route: subscriber + revenue rollup
  * - Daily Meal Record: total cost calculation
  */
 
@@ -68,38 +67,6 @@ frappe.ui.form.on("Student", {
 	},
 });
 
-// Transport Route — subscriber and revenue rollup
-frappe.ui.form.on("Transport Route", {
-	refresh(frm) {
-		frm.trigger("calculate_revenue");
-	},
-
-	term_fee(frm) {
-		frm.trigger("calculate_revenue");
-	},
-
-	calculate_revenue(frm) {
-		if (frm.is_new()) return;
-		frappe.call({
-			method: "frappe.client.get_count",
-			args: {
-				doctype: "Transport Subscription",
-				filters: { route: frm.doc.name, subscription_status: "Active" },
-			},
-			callback(r) {
-				if (r.message === undefined) return;
-				const revenue = (r.message * (frm.doc.term_fee || 0)) / 3; // ~monthly (3-month term)
-				// Only write when stale, so opening the form never dirties it.
-				if (frm.doc.total_subscribers !== r.message) {
-					frm.set_value("total_subscribers", r.message);
-				}
-				if (frm.doc.monthly_revenue !== revenue) {
-					frm.set_value("monthly_revenue", revenue);
-				}
-			},
-		});
-	},
-});
 
 // Daily Meal Record — total cost calculation
 frappe.ui.form.on("Daily Meal Record", {

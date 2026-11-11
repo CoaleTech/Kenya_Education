@@ -1,0 +1,70 @@
+{
+ "doctype": "Workflow",
+ "name": "Kenya Bursary Award",
+ "workflow_name": "Kenya Bursary Award",
+ "document_type": "Bursary Award",
+ "is_active": 1,
+ "workflow_state_field": "workflow_state",
+ "send_email_alert": 0,
+ "states": [
+  {
+   "state": "Draft",
+   "doc_status": "0",
+   "allow_edit": "Bursar"
+  },
+  {
+   "state": "Pending Approval",
+   "doc_status": "0",
+   "allow_edit": "Head Teacher"
+  },
+  {
+   "state": "Approved",
+   "doc_status": "0",
+   "allow_edit": "Bursar"
+  },
+  {
+   "state": "Rejected",
+   "doc_status": "0",
+   "allow_edit": "Head Teacher"
+  },
+  {
+   "state": "Allocated",
+   "doc_status": "0",
+   "allow_edit": "Bursar"
+  }
+ ],
+ "transitions": [
+  {
+   "state": "Draft",
+   "action": "Submit for Approval",
+   "next_state": "Pending Approval",
+   "allowed": "Bursar",
+   "allow_self_approval": 1,
+   "condition": ""
+  },
+  {
+   "state": "Pending Approval",
+   "action": "Approve Award",
+   "next_state": "Approved",
+   "allowed": "Head Teacher",
+   "allow_self_approval": 1,
+   "condition": ""
+  },
+  {
+   "state": "Pending Approval",
+   "action": "Reject Award",
+   "next_state": "Rejected",
+   "allowed": "Head Teacher",
+   "allow_self_approval": 1,
+   "condition": ""
+  },
+  {
+   "state": "Approved",
+   "action": "Allocate",
+   "next_state": "Allocated",
+   "allowed": "Bursar",
+   "allow_self_approval": 1,
+   "condition": ""
+  }
+ ]
+}

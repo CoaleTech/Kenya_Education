@@ -1,0 +1,192 @@
+{
+ "doctype": "DocType",
+ "name": "Electronic Collection",
+ "module": "Frappe Education Kenya",
+ "engine": "InnoDB",
+ "autoname": "format:EDK-EC-{#####}",
+ "field_order": [
+  "channel",
+  "transaction_code",
+  "amount",
+  "sender",
+  "account_reference",
+  "received_at",
+  "raw_payload",
+  "student",
+  "fees",
+  "sales_invoice",
+  "status",
+  "workflow_state",
+  "payment_entry",
+  "approved_by",
+  "approved_on",
+  "rejection_reason"
+ ],
+ "fields": [
+  {
+   "fieldname": "channel",
+   "label": "Channel",
+   "fieldtype": "Link",
+   "reqd": 1,
+   "in_list_view": 1,
+   "options": "Payment Channel"
+  },
+  {
+   "fieldname": "transaction_code",
+   "label": "Transaction Code",
+   "fieldtype": "Data",
+   "reqd": 1,
+   "unique": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "amount",
+   "label": "Amount",
+   "fieldtype": "Currency",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "sender",
+   "label": "Sender",
+   "fieldtype": "Data"
+  },
+  {
+   "fieldname": "account_reference",
+   "label": "Account Reference",
+   "fieldtype": "Data",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "received_at",
+   "label": "Received At",
+   "fieldtype": "Datetime",
+   "reqd": 1,
+   "default": "Now"
+  },
+  {
+   "fieldname": "raw_payload",
+   "label": "Raw Payload",
+   "fieldtype": "Code",
+   "permlevel": 1,
+   "print_hide": 1,
+   "options": "JSON"
+  },
+  {
+   "fieldname": "student",
+   "label": "Student",
+   "fieldtype": "Link",
+   "options": "Student"
+  },
+  {
+   "fieldname": "fees",
+   "label": "Fees",
+   "fieldtype": "Link",
+   "options": "Fees"
+  },
+  {
+   "fieldname": "sales_invoice",
+   "label": "Sales Invoice",
+   "fieldtype": "Link",
+   "options": "Sales Invoice"
+  },
+  {
+   "fieldname": "status",
+   "label": "Status",
+   "fieldtype": "Select",
+   "read_only": 1,
+   "default": "New",
+   "in_list_view": 1,
+   "options": "New\nMatched\nNeeds Review\nApproved\nPosted\nRejected"
+  },
+  {
+   "fieldname": "workflow_state",
+   "label": "Workflow State",
+   "fieldtype": "Link",
+   "read_only": 1,
+   "default": "New",
+   "options": "Workflow State"
+  },
+  {
+   "fieldname": "payment_entry",
+   "label": "Payment Entry",
+   "fieldtype": "Link",
+   "read_only": 1,
+   "options": "Payment Entry"
+  },
+  {
+   "fieldname": "approved_by",
+   "label": "Approved By",
+   "fieldtype": "Link",
+   "read_only": 1,
+   "options": "User"
+  },
+  {
+   "fieldname": "approved_on",
+   "label": "Approved On",
+   "fieldtype": "Datetime",
+   "read_only": 1
+  },
+  {
+   "fieldname": "rejection_reason",
+   "label": "Rejection Reason",
+   "fieldtype": "Small Text"
+  }
+ ],
+ "permissions": [
+  {
+   "role": "Bursar",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "permlevel": 0
+  },
+  {
+   "role": "Head Teacher",
+   "read": 1,
+   "write": 0,
+   "create": 0,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "permlevel": 0
+  },
+  {
+   "role": "Bursar",
+   "read": 1,
+   "write": 1,
+   "create": 0,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "permlevel": 1
+  },
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "permlevel": 0
+  },
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 0,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "permlevel": 1
+  }
+ ],
+ "track_changes": 1,
+ "istable": 0,
+ "editable_grid": 1
+}

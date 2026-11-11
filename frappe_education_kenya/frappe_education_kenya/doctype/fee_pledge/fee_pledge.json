@@ -1,0 +1,124 @@
+{
+ "doctype": "DocType",
+ "name": "Fee Pledge",
+ "module": "Frappe Education Kenya",
+ "engine": "InnoDB",
+ "autoname": "format:EDK-FP-{#####}",
+ "field_order": [
+  "student",
+  "guardian",
+  "fees",
+  "amount",
+  "pledge_date",
+  "due_date",
+  "status",
+  "reminder_days_before",
+  "met_amount",
+  "reminders"
+ ],
+ "fields": [
+  {
+   "fieldname": "student",
+   "label": "Student",
+   "fieldtype": "Link",
+   "reqd": 1,
+   "in_list_view": 1,
+   "options": "Student"
+  },
+  {
+   "fieldname": "guardian",
+   "label": "Guardian",
+   "fieldtype": "Link",
+   "reqd": 1,
+   "options": "Guardian"
+  },
+  {
+   "fieldname": "fees",
+   "label": "Fees",
+   "fieldtype": "Link",
+   "options": "Fees"
+  },
+  {
+   "fieldname": "amount",
+   "label": "Amount",
+   "fieldtype": "Currency",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "pledge_date",
+   "label": "Pledge Date",
+   "fieldtype": "Date",
+   "default": "Today",
+   "reqd": 1
+  },
+  {
+   "fieldname": "due_date",
+   "label": "Due Date",
+   "fieldtype": "Date",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "status",
+   "label": "Status",
+   "fieldtype": "Select",
+   "default": "Open",
+   "in_list_view": 1,
+   "options": "Open\nPartly Met\nMet\nBroken\nCancelled"
+  },
+  {
+   "fieldname": "reminder_days_before",
+   "label": "Reminder Days Before",
+   "fieldtype": "Int"
+  },
+  {
+   "fieldname": "met_amount",
+   "label": "Met Amount",
+   "fieldtype": "Currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "reminders",
+   "label": "Reminders",
+   "fieldtype": "Table",
+   "read_only": 1,
+   "options": "Pledge Reminder"
+  }
+ ],
+ "permissions": [
+  {
+   "role": "Bursar",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "permlevel": 0
+  },
+  {
+   "role": "Head Teacher",
+   "read": 1,
+   "write": 0,
+   "create": 0,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "permlevel": 0
+  },
+  {
+   "role": "Guardian",
+   "read": 1,
+   "write": 0,
+   "create": 0,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "permlevel": 0
+  }
+ ],
+ "track_changes": 1,
+ "istable": 0,
+ "editable_grid": 1
+}

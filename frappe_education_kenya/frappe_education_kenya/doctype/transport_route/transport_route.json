@@ -17,7 +17,7 @@
   "section_break_details",
   "route_distance_km",
   "estimated_duration_minutes",
-  "term_fee",
+  "fares",
   "applicable_days",
   "column_break_2",
   "pickup_points",
@@ -86,10 +86,10 @@
    "label": "Estimated Duration (minutes)"
   },
   {
-   "fieldname": "term_fee",
-   "fieldtype": "Currency",
-   "label": "Term Fee",
-   "reqd": 1
+   "fieldname": "fares",
+   "fieldtype": "Table",
+   "label": "Effective Transport Fares",
+   "options": "Transport Fare"
   },
   {
    "fieldname": "applicable_days",
@@ -160,7 +160,12 @@
   },
   {
    "read": 1,
-   "role": "Academic Admin"
+   "role": "Bursar"
+  },
+  {
+   "read": 1,
+   "write": 1,
+   "role": "Head Teacher"
   }
  ],
  "sort_field": "route_code",

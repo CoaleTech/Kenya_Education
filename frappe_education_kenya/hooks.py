@@ -33,29 +33,30 @@ required_apps = ["frappe/erpnext", "frappe/education"]
 # ──────────────────────────────────────────────────────────────────────────────
 # DESK ASSETS
 # ──────────────────────────────────────────────────────────────────────────────
-# Bundles compiled by frappe's esbuild pipeline from:
-#   public/js/education_kenya.bundle.js
-#   public/scss/education_kenya.bundle.scss
+# Bundle compiled by frappe's esbuild pipeline from public/js/education_kenya.bundle.js.
+# No app stylesheet: Desk surfaces use the Espresso tokens as shipped.
 app_include_js = "education_kenya.bundle.js"
-app_include_css = "education_kenya.bundle.css"
 
 # ──────────────────────────────────────────────────────────────────────────────
 # DESKTOP ICONS & WORKSPACES
 # ──────────────────────────────────────────────────────────────────────────────
 #
-# SINGLE DESK SURFACE + SINGLE HOME. Frappe Education is the primary app; this
-# app localises it. We deliberately do NOT register an app tile (no
-# `add_to_apps_screen`) and do NOT ship a second sidebar or a second workspace.
-# Instead, on install and every migrate:
-#   * install.setup_unified_navigation() folds Kenya links into the shared
-#     "Education" sidebar and suppresses the auto standalone Kenya tile/sidebar;
-#   * workspace_home.merge_kenya_home_into_education() injects the Kenya CBC
-#     analytics (number cards + charts) and navigation into the single
-#     "Education" workspace home, then retires the standalone "Kenya Education"
-#     workspace.
-# Do NOT add `add_to_apps_screen` or ship a workspace JSON here — either would
-# recreate a second, competing desk home.
+# ONE SIDEBAR, SHARED WITH EDUCATION. Frappe Education is the primary app; this app
+# localises it, so it has no app tile (no `add_to_apps_screen`), no dock entry and no
+# sidebar of its own. Its navigation lives inside the Education sidebar:
+#   * fixtures/custom_sidebar.json  a site-layer `Custom Sidebar` on the Education
+#     module whose rows are all `added`, so Desk appends them after Education's own
+#     rows and Education upgrades still reach the sidebar (`frappe.desk.layers`);
+#   * <module>/workspace            the "Education Kenya" home, linked from that
+#     sidebar, with the CBC number cards + charts (<module>/number_card,
+#     <module>/dashboard_chart, all `is_standard`).
+# `code_only_modules` below tells Desk this module ships no navigation and names
+# Education as its heir, so Kenya doctypes open inside the Education sidebar.
+# Nothing here edits the Education app's own sidebar or workspace.
+# Do NOT add `add_to_apps_screen`: it would give this app a second tile.
 # ──────────────────────────────────────────────────────────────────────────────
+
+code_only_modules = {"Frappe Education Kenya": ["Education"]}
 
 # ──────────────────────────────────────────────────────────────────────────────
 # DOC EVENTS — Server Scripts
@@ -71,7 +72,26 @@ doc_events = {
 	# On save, tag the base Assessment Result with its CBC Performance Level,
 	# resolved from the "CBC Performance Levels" grading scale.
 	"Assessment Result": {
-		"validate": "frappe_education_kenya.frappe_education_kenya.assessment.map_assessment_to_performance_level",
+		"validate": [
+			"frappe_education_kenya.frappe_education_kenya.assessment.map_assessment_to_performance_level",
+			"frappe_education_kenya.parent_ops.validate_result_publication",
+		],
+		# validate does not run for edits of submitted documents.
+		"before_update_after_submit": "frappe_education_kenya.parent_ops.validate_result_publication",
+	},
+	"Course Schedule": {
+		"validate": "frappe_education_kenya.timetable.protect_course_schedule",
+		"on_trash": "frappe_education_kenya.timetable.protect_course_schedule",
+	},
+	"Question": {
+		"validate": "frappe_education_kenya.teaching.protect_question",
+		"on_trash": "frappe_education_kenya.teaching.protect_question",
+	},
+	"Payment Entry": {
+		"validate": "frappe_education_kenya.bursary.validate_payment",
+		"before_submit": "frappe_education_kenya.bursary.before_payment_submit",
+		"on_submit": "frappe_education_kenya.bursary.payment_rollup",
+		"on_cancel": "frappe_education_kenya.bursary.payment_rollup",
 	},
 	# When a Fee Structure is created, auto-add transport/meal components if applicable
 	"Fee Structure": {
@@ -89,7 +109,11 @@ doc_events = {
 # Background jobs for MoE reporting, reminders, and data maintenance
 
 scheduler_events = {
+	"hourly": [
+		"frappe_education_kenya.teaching.release_exam_papers",
+	],
 	"daily": [
+		"frappe_education_kenya.bursary.daily_reminders",
 		# Check for upcoming MoE report deadlines and notify responsible staff
 		"frappe_education_kenya.frappe_education_kenya.doctype.moe_return_submission.moe_return_submission.check_upcoming_deadlines",
 		# Generate daily attendance summary for MoE reporting
@@ -104,6 +128,9 @@ scheduler_events = {
 		"frappe_education_kenya.frappe_education_kenya.doctype.moe_return_submission.moe_return_submission.auto_generate_monthly_enrolment_return",
 	],
 	"cron": {
+		"*/5 * * * *": [
+			"frappe_education_kenya.messaging.dispatch_due",
+		],
 		# Transport insurance and inspection expiry checks — every Monday at 8am
 		"0 8 * * 1": [
 			"frappe_education_kenya.frappe_education_kenya.doctype.transport_vehicle.transport_vehicle.check_vehicle_compliance",
@@ -130,6 +157,8 @@ fixtures = [
 	{"dt": "Kenya Sub County", "filters": []},
 	# Kenya-specific settings
 	{"dt": "Education Kenya Settings", "filters": []},
+	# Kenya links appended to the Education sidebar (site layer, module Education)
+	{"dt": "Custom Sidebar", "filters": [["module", "=", "Education"], ["user", "is", "not set"]]},
 	# Custom fields (exported as Property Setters)
 	"Custom Field",
 	"Property Setter",
@@ -152,7 +181,42 @@ has_permission = {
 	"Transport Vehicle": "frappe_education_kenya.frappe_education_kenya.permissions.has_transport_permission",
 	"Daily Meal Record": "frappe_education_kenya.frappe_education_kenya.permissions.has_meals_permission",
 	"MoE Return Submission": "frappe_education_kenya.frappe_education_kenya.permissions.has_moe_permission",
+	"Library Circulation": "frappe_education_kenya.library.circulation_has_permission",
+	"Library Copy": "frappe_education_kenya.library.copy_has_permission",
+	"Timetable Availability": "frappe_education_kenya.timetable.availability_permission",
+	"Guardian Consent": "frappe_education_kenya.parent_ops.consent_permission",
+	"Student Pathway Choice": "frappe_education_kenya.pathways.choice_has_permission",
+	"Scheme of Work": "frappe_education_kenya.teaching.preparation_permission",
+	"Lesson Plan": "frappe_education_kenya.teaching.preparation_permission",
+	"Exam Paper": "frappe_education_kenya.teaching.preparation_permission",
+	"Question": "frappe_education_kenya.teaching.question_permission",
+	"Quiz": "frappe_education_kenya.teaching.quiz_permission",
+	"File": "frappe_education_kenya.teaching.file_permission",
+	"Fee Pledge": "frappe_education_kenya.bursary.guardian_finance_permission",
+	"Bursary Award": "frappe_education_kenya.bursary.guardian_finance_permission",
 }
+
+permission_query_conditions = {
+	"Library Circulation": "frappe_education_kenya.library.circulation_query_conditions",
+	"Library Copy": "frappe_education_kenya.library.copy_query_conditions",
+	"Guardian Consent": "frappe_education_kenya.parent_ops.consent_query",
+	"Student Pathway Choice": "frappe_education_kenya.pathways.choice_query_conditions",
+	"Scheme of Work": "frappe_education_kenya.teaching.scheme_query",
+	"Lesson Plan": "frappe_education_kenya.teaching.lesson_query",
+	"Exam Paper": "frappe_education_kenya.teaching.paper_query",
+	"Question": "frappe_education_kenya.teaching.question_query",
+	"Quiz": "frappe_education_kenya.teaching.quiz_query",
+	"File": "frappe_education_kenya.teaching.file_query",
+	"Fee Pledge": "frappe_education_kenya.bursary.fee_pledge_query",
+	"Bursary Award": "frappe_education_kenya.bursary.bursary_award_query",
+}
+
+extend_doctype_class = {
+	"File": ["frappe_education_kenya.teaching.ExamFileMixin"],
+	"Quiz": ["frappe_education_kenya.teaching.ExamQuizMixin"],
+}
+
+on_session_creation = ["frappe_education_kenya.parent_ops.on_session_creation"]
 
 # ──────────────────────────────────────────────────────────────────────────────
 # JINJA FILTERS (for report templates)

@@ -1,0 +1,92 @@
+{
+ "doctype": "DocType",
+ "name": "Library Copy",
+ "module": "Frappe Education Kenya",
+ "engine": "InnoDB",
+ "field_order": [
+  "article",
+  "barcode",
+  "status",
+  "condition"
+ ],
+ "fields": [
+  {
+   "fieldname": "article",
+   "fieldtype": "Link",
+   "label": "Article",
+   "options": "Article",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "barcode",
+   "fieldtype": "Data",
+   "label": "Barcode",
+   "unique": 1,
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Available\nIssued\nLost\nWithdrawn",
+   "default": "Available",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "condition",
+   "fieldtype": "Small Text",
+   "label": "Condition"
+  }
+ ],
+ "permissions": [
+  {
+   "role": "Librarian",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "print": 1,
+   "report": 1
+  },
+  {
+   "role": "Bursar",
+   "read": 1,
+   "print": 1
+  },
+  {
+   "role": "Head Teacher",
+   "read": 1,
+   "print": 1
+  },
+  {
+   "role": "Academic Admin",
+   "read": 1,
+   "print": 1
+  },
+  {
+   "role": "Instructor",
+   "read": 1,
+   "print": 1
+  },
+  {
+   "role": "Guardian",
+   "read": 1,
+   "print": 1
+  },
+  {
+   "role": "Student",
+   "read": 1,
+   "print": 1
+  }
+ ],
+ "track_changes": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "autoname": "field:barcode",
+ "title_field": "barcode",
+ "search_fields": "barcode,article",
+ "allow_rename": 0
+}

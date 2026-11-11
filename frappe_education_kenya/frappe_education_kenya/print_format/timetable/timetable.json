@@ -1,0 +1,15 @@
+{
+ "creation": "2026-11-10 00:00:00.000000",
+ "modified": "2026-11-10 00:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "doctype": "Print Format",
+ "name": "Timetable",
+ "doc_type": "Timetable Run",
+ "module": "Frappe Education Kenya",
+ "standard": "Yes",
+ "custom_format": 1,
+ "print_format_type": "Jinja",
+ "html": "<div class=\"print-heading\"><h2>{{ _(\"Timetable\") }}</h2></div>\n<p>{{ _(\"Academic Term\") }}: {{ doc.academic_term | e }} \u00b7 {{ _(doc.status) }}</p>\n{% set group = frappe.form_dict.get(\"student_group\") %}\n{% set teacher = frappe.form_dict.get(\"instructor\") %}\n{% if group %}<p>{{ _(\"Student Group\") }}: {{ group | e }}</p>{% endif %}\n{% if teacher %}<p>{{ _(\"Instructor\") }}: {{ teacher | e }}</p>{% endif %}\n{% if doc.status != \"Published\" %}<p><strong>{{ _(\"Draft weekly plan \u2014 not published\") }}</strong></p>{% endif %}\n<table class=\"table table-bordered\">\n<thead><tr><th>{{ _(\"Day\") }}</th><th>{{ _(\"Start\") }}</th><th>{{ _(\"End\") }}</th><th>{{ _(\"Student Group\") }}</th><th>{{ _(\"Course\") }}</th><th>{{ _(\"Instructor\") }}</th><th>{{ _(\"Room\") }}</th></tr></thead>\n<tbody>\n{% for slot in doc.slots if (not group or slot.student_group == group) and (not teacher or slot.instructor == teacher) %}\n<tr><td>{{ _(slot.day) }}</td><td>{{ frappe.format_value(slot.start_time, {\"fieldtype\": \"Time\"}) }}</td><td>{{ frappe.format_value(slot.end_time, {\"fieldtype\": \"Time\"}) }}</td><td>{{ slot.student_group | e }}</td><td>{{ slot.course | e }}</td><td>{{ slot.instructor | e }}</td><td>{{ slot.room | e }}</td></tr>\n{% else %}<tr><td colspan=\"7\">{{ _(\"No timetable slots match these filters.\") }}</td></tr>{% endfor %}\n</tbody></table>\n{% if doc.conflicts %}<p>{{ _(\"Unplaced lessons\") }}: {{ doc.conflicts | length }}</p>{% endif %}\n",
+ "css": "thead { display: table-header-group; } tr { page-break-inside: avoid; }"
+}

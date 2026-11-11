@@ -14,6 +14,11 @@ import frappe
 
 TEST_MODULES = [
 	"frappe_education_kenya.frappe_education_kenya.tests.test_assessment",
+	"frappe_education_kenya.frappe_education_kenya.tests.test_learner_ids",
+	"frappe_education_kenya.frappe_education_kenya.tests.test_transport_fares",
+	"frappe_education_kenya.frappe_education_kenya.tests.test_timetable_generator",
+	"frappe_education_kenya.frappe_education_kenya.tests.test_school_finance",
+	"frappe_education_kenya.frappe_education_kenya.tests.test_collections",
 	"frappe_education_kenya.frappe_education_kenya.doctype.student_transition.test_student_transition",
 	"frappe_education_kenya.frappe_education_kenya.doctype.moe_return_submission.test_moe_return_submission",
 	"frappe_education_kenya.frappe_education_kenya.doctype.transport_vehicle.test_transport_vehicle",

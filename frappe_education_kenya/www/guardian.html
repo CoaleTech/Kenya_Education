@@ -1,0 +1,120 @@
+{% extends "templates/web.html" %}
+{% block page_content %}
+<main class="guardian-page" id="guardian-main" aria-labelledby="guardian-title">
+  <h1 id="guardian-title">{{ _("Guardian self-service") }}</h1>
+  {% if not signed_in %}
+    <p>{{ _("Sign in to view your linked children and manage consent.") }}</p>
+    <a class="btn btn-primary" href="/login?redirect-to=%2Fguardian">{{ _("Sign in") }}</a>
+  {% elif not children %}
+    <p role="status">{{ _("No students are linked to your account. Contact the school office to verify your guardian link.") }}</p>
+  {% else %}
+    <form method="get" action="/guardian" class="guardian-selector">
+      <label for="guardian-child">{{ _("Student") }}</label>
+      <select id="guardian-child" name="student" class="form-control">
+        {% for child in children %}<option value="{{ child.name | e }}" {% if child.name == student %}selected{% endif %}>{{ child.student_name | e }} — {{ child.name | e }}</option>{% endfor %}
+      </select>
+      <input type="hidden" name="tab" value="{{ tab | e }}">
+      <button class="btn btn-default" type="submit">{{ _("View student") }}</button>
+    </form>
+    <nav aria-label="{{ _('Student sections') }}" class="guardian-tabs">
+      {% for item in tabs %}<a href="{{ item.url | e }}" {% if item.key == tab %}aria-current="page"{% endif %}>{{ item.label | e }}</a>{% endfor %}
+    </nav>
+    <p class="guardian-student">{{ student_name | e }}</p>
+    {% if error %}<p role="alert" class="guardian-feedback">{{ error | e }}</p>{% endif %}
+    {% if notice %}<p role="status" class="guardian-feedback">{{ notice | e }}</p>{% endif %}
+    {% for section in sections %}
+      <section aria-labelledby="section-{{ loop.index }}">
+        <h2 id="section-{{ loop.index }}">{{ section.title | e }}</h2>
+        {% for row in section.rows %}
+          <dl class="guardian-record">
+            {% for field, label, kind in section.columns %}
+              <div><dt>{{ label | e }}</dt><dd>{% if row.get(field) is not none and row.get(field) != '' %}{{ frappe.format(row.get(field), {"fieldtype": kind}, currency=row.get("currency")) | e }}{% else %}—{% endif %}</dd></div>
+            {% endfor %}
+          </dl>
+        {% else %}<p role="status">{{ _("No records in this section. If you expected a record, contact the school office.") }}</p>{% endfor %}
+      </section>
+    {% endfor %}
+    {% if sections %}<nav class="guardian-pagination" aria-label="{{ _('Record pages') }}">
+      {% if start > 0 %}<a class="btn btn-default" href="{{ prev_url | e }}">{{ _("Previous page") }}</a>{% endif %}
+      {% if has_more %}<a class="btn btn-default" href="{{ next_url | e }}">{{ _("Next page") }}</a>{% endif %}
+    </nav>{% endif %}
+    {% if tab == 'consent' %}
+      <section aria-labelledby="consent-title">
+        <h2 id="consent-title">{{ _("Your consent decisions") }}</h2>
+        <p>{{ _("Messaging requires active consent. Revoking consent stops future scheduled sends. Data Sharing consent is required to submit a pathway choice.") }}</p>
+        {% for decision in consent %}<p>{{ decision.guardian | e }} · {{ _(decision.purpose) | e }}: <strong>{{ _(decision.status) | e }}</strong></p>{% endfor %}
+        {% if is_guardian %}
+        <form method="post" action="/guardian" class="guardian-form">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token | e }}">
+          <input type="hidden" name="student" value="{{ student | e }}">
+          <input type="hidden" name="tab" value="consent"><input type="hidden" name="action" value="consent">
+          <label for="consent-purpose">{{ _("Purpose") }}</label>
+          <select class="form-control" id="consent-purpose" name="purpose" required>
+            {% for purpose in ['Messaging', 'Photo', 'Trip', 'Data Sharing'] %}<option value="{{ purpose | e }}">{{ _(purpose) | e }}</option>{% endfor %}
+          </select>
+          <label for="consent-decision">{{ _("Decision") }}</label>
+          <select class="form-control" id="consent-decision" name="granted" required>
+            <option value="">{{ _("Choose a decision") }}</option><option value="1">{{ _("Grant consent") }}</option><option value="0">{{ _("Revoke consent") }}</option>
+          </select>
+          <p>{{ _("This decision applies to all guardian profiles linked to your account and this student. Earlier decisions remain in the audit history.") }}</p>
+          <button class="btn btn-primary" type="submit">{{ _("Record consent decision") }}</button>
+        </form>
+        {% else %}<p role="status">{{ _("Only a linked guardian can grant or revoke consent.") }}</p>{% endif %}
+      </section>
+    {% elif tab == 'pathway' %}
+      <section aria-labelledby="pathway-title">
+        <h2 id="pathway-title">{{ _("Senior-school pathway choice") }}</h2>
+        {% if choice %}<p>{{ _("Status") }}: <strong>{{ _(choice.workflow_state) | e }}</strong></p>
+          <p>{{ _("First choice") }}: {{ choice.first_choice | e }}<br>{{ _("Second choice") }}: {{ (choice.second_choice or '—') | e }}</p>
+        {% endif %}
+        {% if can_edit_choice and combinations %}
+        <form method="post" action="/guardian" class="guardian-form">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token | e }}"><input type="hidden" name="student" value="{{ student | e }}">
+          <input type="hidden" name="tab" value="pathway"><input type="hidden" name="action" value="pathway">
+          {% for key, label in [('first', _('First choice')), ('second', _('Second choice'))] %}
+            <label for="pathway-{{ key }}">{{ label | e }}</label>
+            <select class="form-control" id="pathway-{{ key }}" name="{{ key }}" {% if key == 'first' %}required{% endif %}>
+              <option value="">{{ _("Choose a subject combination") }}</option>
+              {% for combination in combinations %}<option value="{{ combination.name | e }}" {% if choice and combination.name == choice.get(key + '_choice') %}selected{% endif %}>{{ combination.name | e }}</option>{% endfor %}
+            </select>
+          {% endfor %}
+          <label for="pathway-rationale">{{ _("Rationale") }}</label>
+          <textarea class="form-control" id="pathway-rationale" name="rationale" rows="3">{{ (choice.rationale if choice else '') | e }}</textarea>
+          <button class="btn btn-default" type="submit">{{ _("Save draft choice") }}</button>
+        </form>
+        {% elif not combinations %}<p role="status">{{ _("Subject combinations are not available yet. Contact the academic office.") }}</p>{% endif %}
+        {% if choice and choice.workflow_state == 'Draft' %}
+        <form method="post" action="/guardian" class="guardian-form">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token | e }}"><input type="hidden" name="student" value="{{ student | e }}">
+          <input type="hidden" name="tab" value="pathway"><input type="hidden" name="action" value="submit_pathway">
+          <input type="hidden" name="choice" value="{{ choice.name | e }}">
+          <p>{{ _("Submitting sends your saved draft to Academic Admin for approval and locks guardian editing. A linked guardian must first grant Data Sharing consent.") }}</p>
+          <label><input type="checkbox" required> {{ _("I confirm that this saved draft is ready for submission.") }}</label>
+          <button class="btn btn-primary" type="submit">{{ _("Submit saved pathway choice") }}</button>
+        </form>
+        {% elif choice %}<p role="status">{{ _("Your choice is with the academic office. Contact them for changes or placement information.") }}</p>{% endif %}
+      </section>
+    {% endif %}
+  {% endif %}
+</main>
+{% endblock %}
+{% block style %}
+<style>
+.guardian-page { color: var(--text-color); background: var(--bg-color); max-inline-size: var(--page-max-width); margin-inline: auto; }
+.guardian-page h1 { font-size: var(--text-2xl); }
+.guardian-page h2 { font-size: var(--text-xl); margin-block: var(--margin-xl) var(--margin-md); }
+.guardian-page a, .guardian-page button, .guardian-page select { min-block-size: calc(var(--padding-lg) * 2 + var(--padding-xs)); }
+.guardian-page button, .guardian-page select, .guardian-page textarea { max-inline-size: 100%; white-space: normal; }
+.guardian-page :focus-visible { outline: solid var(--primary); outline-offset: var(--padding-xs); }
+.guardian-selector, .guardian-form { display: grid; gap: var(--margin-sm); margin-block: var(--margin-md); }
+.guardian-tabs { display: flex; flex-wrap: wrap; gap: var(--margin-sm); margin-block: var(--margin-lg); }
+.guardian-tabs a { display: inline-flex; align-items: center; padding: var(--padding-sm) var(--padding-md); border: thin solid var(--border-color); border-radius: var(--border-radius); }
+.guardian-tabs a[aria-current] { color: var(--primary); font-weight: var(--weight-semibold); border-color: var(--primary); }
+.guardian-student { font-size: var(--text-lg); font-weight: var(--weight-semibold); }
+.guardian-feedback { padding: var(--padding-md); border: thin solid var(--border-color); }
+.guardian-record { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr)); gap: var(--margin-sm); padding-block: var(--padding-md); border-block-end: thin solid var(--border-color); overflow-wrap: anywhere; }
+.guardian-record dt { color: var(--text-muted); font-size: var(--text-sm); font-weight: var(--weight-regular); }
+.guardian-record dd { margin: 0; }
+.guardian-pagination { display: flex; gap: var(--margin-sm); margin-block: var(--margin-lg); }
+</style>
+{% endblock %}

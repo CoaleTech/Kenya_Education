@@ -1,0 +1,98 @@
+{
+ "creation": "2026-11-10 00:00:00.000000",
+ "modified": "2026-11-10 00:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "row_format": "Dynamic",
+ "states": [],
+ "links": [],
+ "actions": [],
+ "doctype": "DocType",
+ "name": "Timetable Slot",
+ "module": "Frappe Education Kenya",
+ "engine": "InnoDB",
+ "field_order": [
+  "requirement",
+  "period",
+  "room",
+  "instructor",
+  "student_group",
+  "course",
+  "day",
+  "start_time",
+  "end_time"
+ ],
+ "fields": [
+  {
+   "fieldname": "requirement",
+   "fieldtype": "Link",
+   "label": "Requirement",
+   "reqd": 1,
+   "in_list_view": 1,
+   "options": "Timetable Requirement"
+  },
+  {
+   "fieldname": "period",
+   "fieldtype": "Link",
+   "label": "Period",
+   "reqd": 1,
+   "in_list_view": 1,
+   "options": "Timetable Period"
+  },
+  {
+   "fieldname": "room",
+   "fieldtype": "Link",
+   "label": "Room",
+   "reqd": 1,
+   "in_list_view": 1,
+   "options": "Room"
+  },
+  {
+   "fieldname": "instructor",
+   "fieldtype": "Link",
+   "label": "Instructor",
+   "reqd": 1,
+   "in_list_view": 1,
+   "options": "Instructor"
+  },
+  {
+   "fieldname": "student_group",
+   "fieldtype": "Link",
+   "label": "Student Group",
+   "reqd": 1,
+   "options": "Student Group"
+  },
+  {
+   "fieldname": "course",
+   "fieldtype": "Link",
+   "label": "Course",
+   "reqd": 1,
+   "options": "Course"
+  },
+  {
+   "fieldname": "day",
+   "fieldtype": "Select",
+   "label": "Day",
+   "reqd": 1,
+   "options": "Mon\nTue\nWed\nThu\nFri\nSat\nSun"
+  },
+  {
+   "fieldname": "start_time",
+   "fieldtype": "Time",
+   "label": "Start Time",
+   "reqd": 1
+  },
+  {
+   "fieldname": "end_time",
+   "fieldtype": "Time",
+   "label": "End Time",
+   "reqd": 1
+  }
+ ],
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 0,
+ "autoname": "hash",
+ "istable": 1
+}

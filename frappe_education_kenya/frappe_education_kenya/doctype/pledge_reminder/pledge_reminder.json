@@ -1,0 +1,39 @@
+{
+ "doctype": "DocType",
+ "name": "Pledge Reminder",
+ "module": "Frappe Education Kenya",
+ "engine": "InnoDB",
+ "autoname": "format:EDK-PR-{#####}",
+ "field_order": [
+  "sent_on",
+  "channel",
+  "result"
+ ],
+ "fields": [
+  {
+   "fieldname": "sent_on",
+   "label": "Sent On",
+   "fieldtype": "Datetime",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "channel",
+   "label": "Channel",
+   "fieldtype": "Data",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "result",
+   "label": "Result",
+   "fieldtype": "Small Text",
+   "read_only": 1,
+   "in_list_view": 1
+  }
+ ],
+ "permissions": [],
+ "track_changes": 0,
+ "istable": 1,
+ "editable_grid": 1
+}

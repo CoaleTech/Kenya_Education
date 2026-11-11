@@ -1,0 +1,12 @@
+{
+ "doctype": "Print Format",
+ "name": "Library Receipt",
+ "doc_type": "Library Circulation",
+ "module": "Frappe Education Kenya",
+ "standard": "Yes",
+ "custom_format": 1,
+ "print_format_type": "Jinja",
+ "print_format_for": "DocType",
+ "disabled": 0,
+ "html": "<div class=\"print-heading\"><h2>{{ _(\"Library Receipt\") }}</h2><p>{{ doc.name | e }}</p></div>\n<table class=\"table table-bordered\">\n  <tbody>\n    <tr><th>{{ _(\"Copy / Barcode\") }}</th><td>{{ doc.copy | e }}</td></tr>\n    <tr><th>{{ _(\"Borrower Type\") }}</th><td>{{ _(doc.borrower_type) | e }}</td></tr>\n    <tr><th>{{ _(\"Borrower\") }}</th><td>{{ doc.borrower | e }}</td></tr>\n    <tr><th>{{ _(\"Issued On\") }}</th><td>{{ doc.get_formatted(\"issued_on\") }}</td></tr>\n    <tr><th>{{ _(\"Due On\") }}</th><td>{{ doc.get_formatted(\"due_on\") }}</td></tr>\n    <tr><th>{{ _(\"Returned On\") }}</th><td>{{ doc.get_formatted(\"returned_on\") }}</td></tr>\n    <tr><th>{{ _(\"Status\") }}</th><td>{{ _(doc.status) | e }}</td></tr>\n    <tr><th>{{ _(\"Recorded Fine\") }}</th><td>{{ doc.get_formatted(\"fine_amount\") }}</td></tr>\n    <tr><th>{{ _(\"Issued By\") }}</th><td>{{ (doc.issued_by or \"\") | e }}</td></tr>\n  </tbody>\n</table>\n<p>{{ _(\"This receipt records circulation only and is not proof of payment. Any fine invoice requires Bursar approval.\") }}</p>\n"
+}
