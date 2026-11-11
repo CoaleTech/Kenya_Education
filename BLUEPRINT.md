@@ -125,7 +125,6 @@ The CBC curriculum requires a hierarchical subject model that differs significan
 | `learning_area_code` | Data | Unique subject code (e.g., MAT, ENG, KIS, SCI) |
 | `learning_area_name` | Data | Full name (e.g., Mathematics, English Language) |
 | `applicable_levels` | Table MultiSelect | Linked to CBCLevel — which levels teach this area |
-| `strand_count` | Int | Number of strands |
 | `is_core` | Check | Whether compulsory for all learners |
 | `is_examinable` | Check | Whether assessed in national examinations |
 | `learning_area_category` | Select | Languages / Sciences / Humanities / Creative Arts / Technical / Life Skills |

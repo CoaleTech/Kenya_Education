@@ -94,3 +94,13 @@ class TestTopicCurriculum(FrappeTestCase):
 
 	def test_topic_without_curriculum_links_is_unaffected(self):
 		self.assertTrue(make_topic(None, None).name)
+
+	def test_saved_learning_area_loads_and_deletes(self):
+		# A Table field pointing at a non-child doctype once made every saved area fail to load.
+		area = frappe.get_doc("CBC Learning Area", "TC-LA")
+		self.assertEqual([row.cbc_level for row in area.applicable_levels], self.cbc.levels)
+		for doctype, names in (("CBC Sub Strand", self.cbc.sub_strands), ("CBC Strand", self.cbc.strands)):
+			for name in names:
+				frappe.delete_doc(doctype, name, force=True, ignore_permissions=True)
+		frappe.delete_doc("CBC Learning Area", "TC-LA", ignore_permissions=True)
+		self.assertFalse(frappe.db.exists("CBC Learning Area", "TC-LA"))

@@ -37,6 +37,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Program Enrollment creates its transition already approved, links it through the new `program_enrollment` field, and cancels it when the enrollment is cancelled (`on_cancel` hook).
 - The Kenya `Custom Sidebar` fixture now names every Education row and places Student Transition, Student Pathway Choice, CBC Pathway, CBC Track, CBC Subject Combination and CBC Student Settings inside Education's Student Management section, not in a Kenya section. `tests/test_navigation.py` fails when the fixture drifts from Education's sidebar.
 
+### Fixed
+- A saved `CBC Learning Area` could not be opened or deleted (`Unknown column 'parent'`): its `strands` field was a Table pointing at `CBC Strand`, which is not a child table. Removed the `strands` table and the never-populated `strand_count` counter; a strand's `learning_area` link already gives the reverse list. No data migration: a Table field has no column.
+
 ## [1.0.0] - 2026-07-29
 
 Frappe Cloud Marketplace readiness, aligned to the CoaleTech app conventions.

@@ -15,10 +15,7 @@
   "is_examinable",
   "is_standard_fixture",
   "section_break_levels",
-  "applicable_levels",
-  "section_break_strands",
-  "strand_count",
-  "strands"
+  "applicable_levels"
  ],
  "fields": [
   {
@@ -78,23 +75,6 @@
    "label": "Applicable CBC Levels",
    "options": "CBC Learning Area Level",
    "reqd": 1
-  },
-  {
-   "fieldname": "section_break_strands",
-   "fieldtype": "Section Break",
-   "label": "Strands"
-  },
-  {
-   "fieldname": "strand_count",
-   "fieldtype": "Int",
-   "label": "Number of Strands",
-   "read_only": 1
-  },
-  {
-   "fieldname": "strands",
-   "fieldtype": "Table",
-   "label": "Strands",
-   "options": "CBC Strand"
   }
  ],
  "index_web_pages_for_search": 1,
