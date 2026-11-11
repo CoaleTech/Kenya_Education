@@ -8,6 +8,7 @@ from frappe.tests import IntegrationTestCase
 from frappe.utils import now_datetime
 
 from frappe_education_kenya import teaching
+from frappe_education_kenya.frappe_education_kenya.tests.test_curriculum import make_curriculum, make_topic
 
 STUDENT = "edk-exam-student@example.com"
 GUARDIAN = "edk-exam-guardian@example.com"
@@ -210,6 +211,9 @@ class TestExamPaper(TeachingIntegration):
 
 class TestTeachingWorkflows(TeachingIntegration):
 	def make_scheme(self):
+		cbc = make_curriculum()
+		self.topic = make_topic(cbc.levels[0], cbc.strands[0], cbc.sub_strands[0])
+		self.cbc = cbc
 		frappe.set_user(INSTRUCTOR)
 		try:
 			return frappe.get_doc(
@@ -218,13 +222,17 @@ class TestTeachingWorkflows(TeachingIntegration):
 					"instructor": self.instructor,
 					"course": self.academics.course,
 					"academic_term": self.academics.term,
-					"weeks": [
-						{"week_no": 1, "strand": "Living Things", "outcomes": "<p>Classify plants</p>"}
-					],
+					"weeks": [{"week_no": 1, "topic": self.topic.name, "outcomes": "<p>Classify plants</p>"}],
 				}
 			).insert()
 		finally:
 			frappe.set_user("Administrator")
+
+	def test_scheme_week_follows_its_topics_strand(self):
+		week = self.make_scheme().weeks[0]
+		self.assertEqual(
+			(week.cbc_strand, week.cbc_sub_strand), (self.cbc.strands[0], self.cbc.sub_strands[0])
+		)
 
 	def test_scheme_and_lesson_plan_happy_and_role_denied(self):
 		scheme = self.make_scheme()

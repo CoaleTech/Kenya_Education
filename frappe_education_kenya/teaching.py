@@ -218,6 +218,19 @@ def protect_question(doc, method=None):
 		frappe.throw(_("This question belongs to a confidential examination."), frappe.PermissionError)
 
 
+def validate_topic_curriculum(doc, method=None):
+	"""A Topic's strand sits at its level and its sub-strand under that strand (the pickers only narrow the list)."""
+	strand, sub_strand = doc.get("cbc_strand"), doc.get("cbc_sub_strand")
+	if strand and frappe.db.get_value("CBC Strand", strand, "cbc_level") != doc.get("cbc_level"):
+		frappe.throw(
+			_("Strand {0} is not in the level {1}.").format(strand, doc.get("cbc_level") or _("(none)"))
+		)
+	if sub_strand and frappe.db.get_value("CBC Sub Strand", sub_strand, "strand") != strand:
+		frappe.throw(
+			_("Sub-strand {0} is not under the strand {1}.").format(sub_strand, strand or _("(none)"))
+		)
+
+
 class ExamQuizMixin:
 	"""Education's portal get_quiz/evaluate_quiz bypass Question DocPerm; guard their shared methods."""
 
@@ -438,7 +451,7 @@ def scheme_weeks(scheme: str):
 	frappe.has_permission("Scheme of Work", "read", doc=doc, throw=True)
 	if doc.workflow_state != "Approved":
 		frappe.throw(_("Select an approved Scheme of Work."))
-	return [{"name": row.name, "week_no": row.week_no, "strand": row.strand} for row in doc.weeks]
+	return [{"name": row.name, "week_no": row.week_no, "topic": row.topic} for row in doc.weeks]
 
 
 def release_exam_papers():

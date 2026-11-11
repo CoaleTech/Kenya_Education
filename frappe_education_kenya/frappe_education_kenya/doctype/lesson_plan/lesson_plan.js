@@ -25,7 +25,7 @@ async function choose_scheme_week(frm) {
 	const response = await frappe.call({method: "frappe_education_kenya.teaching.scheme_weeks", type: "GET", args: {scheme: frm.doc.scheme_of_work}});
 	const weeks = response.message || [];
 	if (!weeks.length) return frappe.msgprint(__("The approved scheme has no weeks."));
-	const labels = weeks.map((week) => `${week.week_no}: ${week.strand}`);
+	const labels = weeks.map((week) => `${week.week_no}: ${week.topic}`);
 	frappe.prompt([{fieldname: "week", fieldtype: "Select", label: __("Scheme Week"), options: labels.join("\n"), reqd: 1}],
 		(values) => frm.set_value("scheme_week", weeks[labels.indexOf(values.week)].name), __("Choose Scheme Week"), __("Select"));
 }

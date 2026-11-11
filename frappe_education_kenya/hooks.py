@@ -87,6 +87,7 @@ doc_events = {
 		"validate": "frappe_education_kenya.teaching.protect_question",
 		"on_trash": "frappe_education_kenya.teaching.protect_question",
 	},
+	"Topic": {"validate": "frappe_education_kenya.teaching.validate_topic_curriculum"},
 	"Payment Entry": {
 		"validate": "frappe_education_kenya.bursary.validate_payment",
 		"before_submit": "frappe_education_kenya.bursary.before_payment_submit",

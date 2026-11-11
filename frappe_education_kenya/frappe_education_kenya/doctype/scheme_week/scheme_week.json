@@ -5,7 +5,9 @@
  "engine": "InnoDB",
  "field_order": [
   "week_no",
-  "strand",
+  "topic",
+  "cbc_strand",
+  "cbc_sub_strand",
   "outcomes",
   "activities",
   "assessment"
@@ -19,11 +21,29 @@
    "in_list_view": 1
   },
   {
-   "fieldname": "strand",
-   "fieldtype": "Data",
-   "label": "Strand",
+   "fieldname": "topic",
+   "fieldtype": "Link",
+   "label": "Topic",
+   "options": "Topic",
    "reqd": 1,
    "in_list_view": 1
+  },
+  {
+   "fieldname": "cbc_strand",
+   "fieldtype": "Link",
+   "label": "CBC Strand",
+   "options": "CBC Strand",
+   "fetch_from": "topic.cbc_strand",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "cbc_sub_strand",
+   "fieldtype": "Link",
+   "label": "CBC Sub-Strand",
+   "options": "CBC Sub Strand",
+   "fetch_from": "topic.cbc_sub_strand",
+   "read_only": 1
   },
   {
    "fieldname": "outcomes",

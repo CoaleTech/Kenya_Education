@@ -93,7 +93,7 @@ The app integrates with Frappe Education at multiple layers:
 | **Assessment Result** | Server Script Override | Map to CBC Performance Levels |
 | **Program/Grade** | New DocType + Link Fields | CBC level structure |
 | **Fee Structure** | Custom Fields + Server Scripts | Kenya fee components and MoE reporting |
-| **Course** | Extended Model | CBC learning areas and strands |
+| **Course / Topic** | Custom Fields | `Course.cbc_learning_area`; `Topic.cbc_level`, `cbc_strand`, `cbc_sub_strand` (validated). A Scheme Week reads strand and sub-strand from its Topic |
 | **Report Generation** | Custom Reports | MoE standard format reports |
 
 ---

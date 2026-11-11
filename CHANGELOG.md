@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Library: copies, circulation (issue/return, loan limits, fines, waiver) and draft fine invoices for students.
 - Timetabling: periods, requirements, instructor availability, conflict-checked generation and publish to Course Schedule.
 - Teaching preparation: scheme of work, lesson plan and layered exam-paper confidentiality with timed release.
+- CBC curriculum links on Education's own records, as custom fields: `Course.cbc_learning_area`, and `Topic.cbc_level` / `cbc_strand` / `cbc_sub_strand` (pickers narrowed by level and strand; the server rejects a strand outside the level or a sub-strand outside the strand). A Scheme Week now names a `Topic` and shows that topic's strand and sub-strand (read-only, refreshed on save), replacing the free-text `strand` (no migration: the doctype has not been released).
 - Fee pledges, bursary awards/allocations, payment channels and electronic collections with Bursar-only reconciliation.
 - Guardian consent, scheduled messages, parent login log and a mobile-first `/guardian` self-service page.
 - CBC pathways, tracks, subject combinations and guardian-submitted pathway choices with approval workflow.

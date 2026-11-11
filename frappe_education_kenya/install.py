@@ -283,6 +283,48 @@ def create_custom_fields():
 				"insert_after": "cbc_sub_strand",
 			},
 		],
+		"Course": [
+			{
+				"fieldname": "cbc_learning_area",
+				"label": "CBC Learning Area",
+				"fieldtype": "Link",
+				"options": "CBC Learning Area",
+				"insert_after": "department",
+			},
+		],
+		"Topic": [
+			{
+				"fieldname": "cbc_section",
+				"label": "CBC Curriculum",
+				"fieldtype": "Section Break",
+				"insert_after": "hero_image",
+			},
+			{
+				"fieldname": "cbc_level",
+				"label": "CBC Level",
+				"fieldtype": "Link",
+				"options": "CBC Level",
+				"insert_after": "cbc_section",
+			},
+			{
+				"fieldname": "cbc_strand",
+				"label": "CBC Strand",
+				"fieldtype": "Link",
+				"options": "CBC Strand",
+				"depends_on": "eval:doc.cbc_level",
+				"link_filters": '[["CBC Strand", "cbc_level", "=", "eval:doc.cbc_level"]]',
+				"insert_after": "cbc_level",
+			},
+			{
+				"fieldname": "cbc_sub_strand",
+				"label": "CBC Sub-Strand",
+				"fieldtype": "Link",
+				"options": "CBC Sub Strand",
+				"depends_on": "eval:doc.cbc_strand",
+				"link_filters": '[["CBC Sub Strand", "strand", "=", "eval:doc.cbc_strand"]]',
+				"insert_after": "cbc_strand",
+			},
+		],
 		"Program": [
 			{
 				"fieldname": "cbc_level_mapping",
