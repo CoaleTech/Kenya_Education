@@ -97,9 +97,10 @@ doc_events = {
 	"Fee Structure": {
 		"validate": "frappe_education_kenya.frappe_education_kenya.doctype.cbc_fee_settings.cbc_fee_settings.validate_kenya_fee_structure",
 	},
-	# When Program Enrollment happens, auto-create CBC level progression record
+	# When Program Enrollment is submitted or cancelled, record or reverse its CBC level transition
 	"Program Enrollment": {
 		"on_submit": "frappe_education_kenya.frappe_education_kenya.doctype.student_transition.student_transition.after_program_enrollment",
+		"on_cancel": "frappe_education_kenya.frappe_education_kenya.doctype.student_transition.student_transition.after_program_enrollment_cancel",
 	},
 }
 

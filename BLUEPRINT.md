@@ -221,18 +221,20 @@ The student lifecycle in Kenya involves specific transitions and identifiers:
 | `kenya_county` | Link | County of residence |
 | `kenya_ward` | Data | Ward (electoral area) |
 
-**Student Transition** (`StudentTransition`) — Tracks movement between CBC levels:
+**Student Transition** (`StudentTransition`) — Submittable record of an approved movement between CBC levels or out of the school. Submitting approves it and syncs the Student register; cancelling reverses it:
 
 | Field | Type | Description |
 |---|---|---|
 | `student` | Link | Student |
 | `from_level` | Link | Previous CBC level |
 | `to_level` | Link | New CBC level |
-| `transition_type` | Select | Automatic Progression / Exam-Based / Transfer In / Transfer Out / Repeat |
+| `transition_type` | Select | Automatic Progression / Exam-Based Promotion / Transfer In / Transfer Out / Repeat / Dropout / Graduation |
 | `transition_date` | Date | Effective date |
+| `program_enrollment` | Link | Enrollment that created this transition (automatic ones) |
 | `examination_number` | Data | KPSEA/KJSEA/KACSE number (if applicable) |
 | `examination_results` | Attach | Result slip attachment |
-| `approved_by` | Link | Head teacher / Principal |
+| `approved_by` | Link | User who submitted (read-only, set on submit) |
+| `approval_date` | Date | Date submitted (read-only) |
 | `moef_notification_sent` | Check | Whether transition was reported to MoE |
 
 ### 4.4 Transport Management Model

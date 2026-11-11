@@ -32,6 +32,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Removed the app stylesheet (`education_kenya.bundle.scss`, loaded on every Desk page): none of its CBC, route, vehicle, meal, MoE or widget classes was emitted by any template, script or fixture.
 - The current academic year now lives only in `Education Settings`. `Education Kenya Settings` lost `current_academic_year`, `current_term`, `term_start_date` and `term_end_date` (the term dates had no reader; `Academic Term` holds them). Patch `consolidate_academic_year_setting` copies a Kenya year or term into Education Settings when that field is empty there, then deletes the four values.
 - One guardian-to-students lookup: `parent_ops.guardian_students` / `linked_students` replace three private copies in `bursary`, `library` and `portal`.
+- Student Transition is now submittable: submitting is the approval (`approved_by`, `approval_date` are set and read-only), and amend/cancel are enabled. Approval syncs the Student register: a level change sets `kenya_cbc_level`; Transfer Out, Dropout and Graduation disable the student and record `date_of_leaving` and `reason_for_leaving`; a later transition re-admits a student who has a leaving date. Cancelling restores the register from the latest remaining approved transition. The `Student Transitions` number card counts submitted transitions only.
+- Program Enrollment creates its transition already approved, links it through the new `program_enrollment` field, and cancels it when the enrollment is cancelled (`on_cancel` hook).
+- The Kenya `Custom Sidebar` fixture now names every Education row and places Student Transition, Student Pathway Choice, CBC Pathway, CBC Track, CBC Subject Combination and CBC Student Settings inside Education's Student Management section, not in a Kenya section. `tests/test_navigation.py` fails when the fixture drifts from Education's sidebar.
 
 ## [1.0.0] - 2026-07-29
 

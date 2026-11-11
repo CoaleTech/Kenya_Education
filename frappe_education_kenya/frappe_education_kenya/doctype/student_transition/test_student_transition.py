@@ -117,5 +117,97 @@ class TestStudentTransition(FrappeTestCase):
 		transitions = frappe.get_all("Student Transition", filters={"student": self.student.name})
 		self.assertEqual(len(transitions), 0)
 
+	def _enroll(self, program, on=None):
+		pe = frappe.new_doc("Program Enrollment")
+		pe.student = self.student.name
+		pe.program = program
+		pe.academic_year = TEST_ACADEMIC_YEAR
+		pe.enrollment_date = on or nowdate()
+		pe.insert(ignore_permissions=True)
+		pe.submit()
+		return pe
+
+	def _transition(self, transition_type, on=None, **fields):
+		doc = frappe.new_doc("Student Transition")
+		doc.student = self.student.name
+		doc.transition_type = transition_type
+		doc.transition_date = on or nowdate()
+		doc.update(fields)
+		doc.insert(ignore_permissions=True)
+		return doc
+
+	def _register(self):
+		return frappe.db.get_value(
+			"Student",
+			self.student.name,
+			["enabled", "date_of_leaving", "reason_for_leaving", "kenya_cbc_level"],
+			as_dict=True,
+		)
+
+	def test_enrollment_transition_is_approved_linked_and_sets_level(self):
+		pe = self._enroll(self.program_a)
+
+		transition = frappe.get_doc("Student Transition", {"program_enrollment": pe.name})
+		self.assertEqual(transition.docstatus, 1)
+		self.assertEqual(transition.approved_by, frappe.session.user)
+		self.assertEqual(transition.to_program, self.program_a)
+		self.assertEqual(self._register().kenya_cbc_level, "PRI_G6")
+
+	def test_cancelling_enrollment_reverses_its_transition_and_level(self):
+		self._enroll(self.program_a)
+		pe2 = self._enroll(self.program_b, add_days(nowdate(), 365))
+		self.assertEqual(self._register().kenya_cbc_level, "JSS_G7")
+
+		pe2.cancel()
+
+		transition = frappe.get_doc("Student Transition", {"program_enrollment": pe2.name})
+		self.assertEqual(transition.docstatus, 2)
+		self.assertEqual(self._register().kenya_cbc_level, "PRI_G6")
+
+	def test_exit_disables_student_and_cancel_restores_them(self):
+		exit_ = self._transition("Transfer Out", from_level="PRI_G6", to_school="Moi Primary")
+		exit_.submit()
+
+		register = self._register()
+		self.assertEqual(register.enabled, 0)
+		self.assertEqual(str(register.date_of_leaving), nowdate())
+		self.assertEqual(register.reason_for_leaving, "Transfer Out - Moi Primary")
+
+		exit_.cancel()
+
+		register = self._register()
+		self.assertEqual(register.enabled, 1)
+		self.assertIsNone(register.date_of_leaving)
+		self.assertIsNone(register.reason_for_leaving)
+
+	def test_later_transition_readmits_only_a_student_with_a_leaving_date(self):
+		self._transition("Dropout").submit()
+		self._transition("Transfer In", add_days(nowdate(), 30), to_level="PRI_G6").submit()
+		self.assertEqual(self._register().enabled, 1)
+		self.assertIsNone(self._register().date_of_leaving)
+
+		frappe.db.set_value("Student", self.student.name, "enabled", 0)
+		self._transition("Repeat", add_days(nowdate(), 60), to_level="PRI_G6").submit()
+		self.assertEqual(self._register().enabled, 0)
+
+	def test_cancelling_an_older_transition_keeps_the_latest_level(self):
+		first = self._transition("Transfer In", to_level="PRI_G6")
+		first.submit()
+		self._transition(
+			"Exam-Based Promotion", add_days(nowdate(), 365), from_level="PRI_G6", to_level="JSS_G7"
+		).submit()
+
+		first.cancel()
+
+		self.assertEqual(self._register().kenya_cbc_level, "JSS_G7")
+
+	def test_validation_rejects_incomplete_or_impossible_transitions(self):
+		with self.assertRaises(frappe.ValidationError):
+			self._transition("Transfer In")  # no destination level
+		with self.assertRaises(frappe.ValidationError):
+			self._transition("Exam-Based Promotion", to_level="JSS_G7")  # no origin level
+		with self.assertRaises(frappe.ValidationError):
+			self._transition("Dropout", add_days(nowdate(), -30))  # before joining
+
 	def tearDown(self):
 		frappe.db.rollback()

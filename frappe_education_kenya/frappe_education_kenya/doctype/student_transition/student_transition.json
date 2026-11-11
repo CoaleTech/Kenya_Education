@@ -20,6 +20,7 @@
   "column_break_2",
   "from_school",
   "to_school",
+  "program_enrollment",
   "section_break_exam",
   "examination_number",
   "examination_results",
@@ -28,7 +29,8 @@
   "approval_date",
   "section_break_moe",
   "moef_notification_sent",
-  "moe_notification_date"
+  "moe_notification_date",
+  "amended_from"
  ],
  "fields": [
   {
@@ -109,6 +111,14 @@
    "label": "To School"
   },
   {
+   "fieldname": "program_enrollment",
+   "fieldtype": "Link",
+   "label": "Program Enrollment",
+   "no_copy": 1,
+   "options": "Program Enrollment",
+   "read_only": 1
+  },
+  {
    "fieldname": "section_break_exam",
    "fieldtype": "Section Break",
    "label": "Examination Details"
@@ -132,12 +142,16 @@
    "fieldname": "approved_by",
    "fieldtype": "Link",
    "label": "Approved By",
-   "options": "User"
+   "no_copy": 1,
+   "options": "User",
+   "read_only": 1
   },
   {
    "fieldname": "approval_date",
    "fieldtype": "Date",
-   "label": "Approval Date"
+   "label": "Approval Date",
+   "no_copy": 1,
+   "read_only": 1
   },
   {
    "fieldname": "section_break_moe",
@@ -145,18 +159,30 @@
    "label": "MoE Notification"
   },
   {
+   "allow_on_submit": 1,
    "default": "0",
    "fieldname": "moef_notification_sent",
    "fieldtype": "Check",
    "label": "MoE Notification Sent"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "moe_notification_date",
    "fieldtype": "Date",
    "label": "MoE Notification Date"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Student Transition",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
  "modified": "2026-07-07 00:00:00.000000",
  "modified_by": "Administrator",
@@ -166,6 +192,8 @@
  "owner": "Administrator",
  "permissions": [
   {
+   "amend": 1,
+   "cancel": 1,
    "create": 1,
    "delete": 1,
    "email": 1,
@@ -175,9 +203,12 @@
    "report": 1,
    "role": "System Manager",
    "share": 1,
+   "submit": 1,
    "write": 1
   },
   {
+   "amend": 1,
+   "cancel": 1,
    "create": 1,
    "delete": 1,
    "email": 1,
@@ -187,6 +218,7 @@
    "report": 1,
    "role": "Academic Admin",
    "share": 1,
+   "submit": 1,
    "write": 1
   },
   {
