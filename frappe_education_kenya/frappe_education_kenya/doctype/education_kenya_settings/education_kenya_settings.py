@@ -1,4 +1,4 @@
-"""Education Kenya Settings (one page, four tabs) and the Kenya-specific Student validation it drives."""
+"""Education Kenya Settings (one page, three tabs) and the Kenya-specific Student validation it drives."""
 
 import frappe
 from frappe import _

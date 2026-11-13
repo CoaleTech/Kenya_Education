@@ -14,7 +14,7 @@ ROLES = ["System Manager", "Bursar", "Head Teacher", "Academic Admin"]
 
 
 def dispatch_enabled():
-	return bool(cint(frappe.db.get_single_value("Education Kenya Settings", "enable_scheduled_messages")))
+	return bool(cint(frappe.db.get_single_value("Education Settings", "kenya_enable_scheduled_messages")))
 
 
 def validated_filters(audience, raw):

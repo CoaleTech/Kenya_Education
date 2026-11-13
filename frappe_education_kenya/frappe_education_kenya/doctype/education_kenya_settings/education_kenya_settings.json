@@ -59,12 +59,7 @@
   "cost_center",
   "default_payment_account",
   "default_payment_mode",
-  "transport_item",
-  "tab_communications",
-  "section_break_communications",
-  "pledge_reminder_days",
-  "enable_pledge_reminders",
-  "enable_scheduled_messages"
+  "transport_item"
  ],
  "fields": [
   {
@@ -377,41 +372,12 @@
    "fieldtype": "Link",
    "label": "Transport Invoice Item",
    "options": "Item"
-  },
-  {
-   "fieldname": "tab_communications",
-   "fieldtype": "Tab Break",
-   "label": "Communications"
-  },
-  {
-   "fieldname": "section_break_communications",
-   "fieldtype": "Section Break",
-   "label": "Parent Communications"
-  },
-  {
-   "default": "3",
-   "fieldname": "pledge_reminder_days",
-   "fieldtype": "Int",
-   "label": "Pledge Reminder Days Before Due",
-   "non_negative": 1
-  },
-  {
-   "default": "0",
-   "fieldname": "enable_pledge_reminders",
-   "fieldtype": "Check",
-   "label": "Enable Pledge Reminders"
-  },
-  {
-   "default": "0",
-   "fieldname": "enable_scheduled_messages",
-   "fieldtype": "Check",
-   "label": "Enable Scheduled Messages"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2026-11-12 00:00:00.000000",
+ "modified": "2026-11-13 00:00:00.000000",
  "modified_by": "Administrator",
  "module": "Frappe Education Kenya",
  "name": "Education Kenya Settings",

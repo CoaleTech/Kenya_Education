@@ -117,12 +117,15 @@ After installation, configure the three settings pages:
 
 ### Education Kenya Settings
 
-One page, four tabs:
+One page, three tabs:
 
 - **School**: school identity and MoE registration, and the module switches (CBC assessments, Transport, Meals, MoE Compliance).
 - **Students**: required student identifiers (UPIN, NEMIS, birth certificate), CBC level by program, special-needs categories, boarding types, and transport/meals integration.
 - **Finance**: currency, company, cost center and the default fee, transport, meals and payment accounts.
-- **Communications**: pledge reminders and scheduled messages (both off by default).
+
+### Education Settings
+
+The app adds a **Communications** tab to Education's own settings page: pledge reminder lead time, *Enable Pledge Reminders* and *Enable Scheduled Messages* (both off by default). They are Custom Fields (`kenya_*`), created on install and on every migrate.
 
 ### Billing
 

@@ -340,6 +340,36 @@ def create_custom_fields():
 				"insert_after": "department",
 			},
 		],
+		"Education Settings": [
+			{
+				"fieldname": "kenya_tab_communications",
+				"label": "Communications",
+				"fieldtype": "Tab Break",
+				"insert_after": "school_college_logo",
+			},
+			{
+				"fieldname": "kenya_pledge_reminder_days",
+				"label": "Pledge Reminder Days Before Due",
+				"fieldtype": "Int",
+				"default": "3",
+				"non_negative": 1,
+				"insert_after": "kenya_tab_communications",
+			},
+			{
+				"fieldname": "kenya_enable_pledge_reminders",
+				"label": "Enable Pledge Reminders",
+				"fieldtype": "Check",
+				"default": "0",
+				"insert_after": "kenya_pledge_reminder_days",
+			},
+			{
+				"fieldname": "kenya_enable_scheduled_messages",
+				"label": "Enable Scheduled Messages",
+				"fieldtype": "Check",
+				"default": "0",
+				"insert_after": "kenya_enable_pledge_reminders",
+			},
+		],
 	}
 
 	for doctype, fields in custom_fields.items():

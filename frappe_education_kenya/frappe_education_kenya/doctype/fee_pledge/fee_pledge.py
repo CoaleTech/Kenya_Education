@@ -13,7 +13,7 @@ class FeePledge(Document):
 			frappe.throw(_("Due date cannot precede pledge date"))
 		if self.reminder_days_before is None:
 			self.reminder_days_before = (
-				frappe.db.get_single_value("Education Kenya Settings", "pledge_reminder_days") or 3
+				frappe.db.get_single_value("Education Settings", "kenya_pledge_reminder_days") or 3
 			)
 		if cint(self.reminder_days_before) < 0:
 			frappe.throw(_("Reminder days cannot be negative"))

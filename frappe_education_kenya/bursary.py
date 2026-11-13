@@ -314,7 +314,7 @@ def daily_reminders():
 	from frappe_education_kenya.parent_ops import has_messaging_consent
 
 	# Default 0 settings are explicit kill switches; absent consent still logs a reason.
-	config = frappe.get_single("Education Kenya Settings")
+	config = frappe.get_single("Education Settings")
 	for name in frappe.get_all(
 		"Fee Pledge", filters={"status": ["in", ["Open", "Partly Met"]]}, pluck="name"
 	):
@@ -326,7 +326,7 @@ def daily_reminders():
 		result = _("Disabled")
 		if not has_messaging_consent(doc.guardian, doc.student):
 			result = _("No active consent")
-		elif config.get("enable_pledge_reminders") and config.get("enable_scheduled_messages"):
+		elif config.get("kenya_enable_pledge_reminders") and config.get("kenya_enable_scheduled_messages"):
 			mobile = frappe.db.get_value("Guardian", doc.guardian, "mobile_number")
 			if not mobile or not frappe.db.get_single_value("SMS Settings", "sms_gateway_url"):
 				result = _("Missing guardian mobile or SMS gateway")

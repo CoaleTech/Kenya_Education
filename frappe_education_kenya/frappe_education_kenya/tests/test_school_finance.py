@@ -168,16 +168,18 @@ class TestSchoolFinance(TestCase):
 
 	def test_reminder_without_consent_logs_and_never_sends(self):
 		pledge, send = self.reminder_run(
-			False, {"enable_pledge_reminders": 1, "enable_scheduled_messages": 1}
+			False, {"kenya_enable_pledge_reminders": 1, "kenya_enable_scheduled_messages": 1}
 		)
 		send.assert_not_called()
 		self.assertEqual(pledge.append.call_args.args[1]["result"], "No active consent")
 
 	def test_reminder_needs_both_explicit_settings(self):
-		for settings in ({}, {"enable_pledge_reminders": 1}, {"enable_scheduled_messages": 1}):
+		for settings in ({}, {"kenya_enable_pledge_reminders": 1}, {"kenya_enable_scheduled_messages": 1}):
 			with self.subTest(settings=settings):
 				pledge, send = self.reminder_run(True, settings)
 				send.assert_not_called()
 				self.assertEqual(pledge.append.call_args.args[1]["result"], "Disabled")
-		pledge, send = self.reminder_run(True, {"enable_pledge_reminders": 1, "enable_scheduled_messages": 1})
+		pledge, send = self.reminder_run(
+			True, {"kenya_enable_pledge_reminders": 1, "kenya_enable_scheduled_messages": 1}
+		)
 		send.assert_called_once()
