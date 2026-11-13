@@ -9,6 +9,8 @@ and configures role permissions.
 import frappe
 from frappe import _
 
+from frappe_education_kenya.workspace_home import merge_home
+
 
 def before_install():
 	"""
@@ -36,6 +38,7 @@ def after_install():
 		create_custom_fields()
 		seed_cbc_grading_scale()
 		seed_meal_types()
+		seed_student_categories()
 		create_roles()
 		seed_cbc_levels()
 		seed_kenya_counties()
@@ -44,6 +47,7 @@ def after_install():
 		from frappe_education_kenya.school_operations import setup
 
 		setup()
+		merge_home()
 
 		frappe.db.commit()
 		frappe.logger().info("Frappe Education Kenya installation completed successfully.")
@@ -63,9 +67,11 @@ def after_migrate():
 	create_custom_fields()
 	seed_cbc_grading_scale()
 	seed_meal_types()
+	seed_student_categories()
 	from frappe_education_kenya.school_operations import setup
 
 	setup()
+	merge_home()
 	frappe.db.commit()
 
 
@@ -134,7 +140,7 @@ def create_custom_fields():
 				"fieldname": "kenya_boarder_status",
 				"label": "Boarder Status",
 				"fieldtype": "Select",
-				"options": "\nDay Scholar\nBoarder (Full)\nQuarter Boarder\nWeekly Boarder",
+				"options": "\nDay Scholar\nBoarder\nQuarter Boarder\nWeekly Boarder",
 				"insert_after": "kenya_orphan_status",
 			},
 			{
@@ -719,24 +725,24 @@ def create_default_settings():
 		settings.enable_meals = 0
 		settings.enable_moe_compliance = 0
 		settings.default_currency = "KES"
+		settings.require_upin = 1
+		settings.require_nemis_number = 1
+		settings.track_special_needs = 1
+		settings.track_boarding_status = 1
 		settings.save()
 
-	if not frappe.db.exists("CBC Student Settings", "CBC Student Settings"):
-		st_settings = frappe.new_doc("CBC Student Settings")
-		st_settings.require_upin = 1
-		st_settings.require_nemis_number = 1
-		st_settings.track_special_needs = 1
-		st_settings.track_boarding_status = 1
-		st_settings.save()
 
-	if not frappe.db.exists("CBC Fee Settings", "CBC Fee Settings"):
-		fee_settings = frappe.new_doc("CBC Fee Settings")
-		fee_settings.auto_generate_transport_invoice = 1
-		fee_settings.auto_generate_meals_invoice = 1
-		fee_settings.billing_day_of_month = 1
-		fee_settings.enable_fee_waivers = 1
-		fee_settings.max_waiver_percentage = 100
-		fee_settings.save()
+def seed_student_categories():
+	"""Ensure the Student Categories that Fee Structures, Fee Schedules and enrollments bill by exist.
+
+	The names equal the `Student.kenya_boarder_status` options, so an enrollment can copy its
+	student's boarder status straight into `student_category`. Idempotent.
+	"""
+	for category in ("Day Scholar", "Boarder", "Quarter Boarder", "Weekly Boarder"):
+		if not frappe.db.exists("Student Category", category):
+			frappe.get_doc({"doctype": "Student Category", "category": category}).insert(
+				ignore_permissions=True
+			)
 
 
 def seed_meal_types():

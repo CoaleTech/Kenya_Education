@@ -44,8 +44,8 @@ It **extends** the base Education app in place rather than replacing it: one uni
 - **Transport management** — routes, vehicle fleet with NTSA insurance/inspection expiry checks, and term-based student subscriptions
 - **Meals & food services** — NSNP-compatible feeding programmes, daily meal records, and student meal subscriptions
 - **Kenya-specific student data** — UPIN and NEMIS tracking, county/sub-county/ward residence, special-needs and boarder/day-scholar classification
-- **Localised fees** — CBC fee components, transport/meal fee automation, and government capitation tracking wired into the base Fee Structure
-- **Companion desk navigation** — one Education sidebar: the Kenya links are added to it by a site-layer `Custom Sidebar` fixture, with the student links (Student Transition, pathway choice and masters, CBC Student Settings) inside Education's own Student Management section (no app tile, no dock entry, no second sidebar, no edits to the Education app). The Education Kenya workspace carries the CBC number cards and charts
+- **Day Scholar / Boarder fees** — Fee Structures and Fee Schedules are keyed by Student Category (Day Scholar, Boarder, Quarter Boarder, Weekly Boarder), so each group is billed from its own structure through Education's own Fee Structure → Fee Schedule → Sales Invoice chain
+- **Companion desk navigation** — one Education sidebar and one Education Home. The Kenya links are added to the sidebar by a site-layer `Custom Sidebar` fixture, with the student links (Student Transition, pathway choice and masters, CBC Student Settings) inside Education's own Student Management section. The CBC number cards, charts, shortcuts and link cards are folded into Education's Home on install and migrate (`workspace_home.py`, from `home.json`). No app tile, no dock entry, no second sidebar or workspace, no edits to the Education app
 - **Approved student movement** — a Student Transition is submitted to approve it. Approval keeps the Student register in step (CBC level; an exit disables the student and records the leaving date and reason) and cancelling reverses it. Program Enrollment creates and approves its own transition and cancels it with the enrollment
 - **29 DocTypes** across curriculum, student lifecycle, school operations, MoE compliance, and finance
 - **25 unit tests** — all passing
@@ -73,8 +73,9 @@ Education Kenya hooks into base Education DocTypes via `doc_events`:
 
 - **Student** save → validates and normalises Kenya identifiers (UPIN, NEMIS)
 - **Assessment Result** save → resolves the CBC Performance Level from the grading scale
-- **Fee Structure** save → wires in transport and meal fee components
-- **Program Enrollment** submit → records the student's CBC level progression
+- **Fee Structure** save → requires a Student Category and warns on Kenya fee conventions
+- **Fee Schedule** save → its Student Category must match its Fee Structure's
+- **Program Enrollment** save → defaults the Student Category from the student's Boarder Status; submit → records the student's CBC level progression
 
 Scheduled jobs handle MoE reporting and compliance — daily deadline checks and attendance snapshots, weekly NEMIS completeness validation, monthly enrolment-return drafts, and weekly vehicle-compliance checks. CBC curriculum, Kenya counties, and MoE return templates install as **fixtures**, so the app is usable immediately after installation.
 
@@ -116,15 +117,16 @@ After installation, configure the three settings pages:
 
 ### Education Kenya Settings
 
-School identity and MoE registration, academic year and term, module enablement flags (Transport, Meals, MoE Compliance), and default accounting accounts.
+One page, four tabs:
 
-### CBC Student Settings
+- **School**: school identity and MoE registration, and the module switches (CBC assessments, Transport, Meals, MoE Compliance).
+- **Students**: required student identifiers (UPIN, NEMIS, birth certificate), CBC level by program, special-needs categories, boarding types, and transport/meals integration.
+- **Finance**: currency, company, cost center and the default fee, transport, meals and payment accounts.
+- **Communications**: pledge reminders and scheduled messages (both off by default).
 
-Required student identifiers (UPIN, NEMIS, birth certificate), special-needs categories, boarding types, and transport/meals integration.
+### Billing
 
-### CBC Fee Settings
-
-Fee components (tuition, activity, exam, development), billing automation, fee-waiver policies, and government capitation tracking.
+There is no billing settings page. Bill Day Scholars and Boarders with one Fee Structure per program × category × term, a Fee Schedule with the same category, one Student Group per class, then *Create Fees*. A Fee Structure must name its Student Category (`billing.validate_kenya_fee_structure`). Add Transport or Meals as Fee Components yourself; nothing adds them.
 
 ---
 
@@ -159,8 +161,10 @@ frappe_education_kenya/
 │   ├── doctype/            # 29 DocTypes: CBC curriculum, student lifecycle,
 │   │                       #   transport, meals, MoE compliance, finance
 │   ├── assessment.py       # CBC Performance Level mapping (grading-scale based)
-│   ├── dashboard_chart/ number_card/ workspace/
-│   │                       # Standard Desk analytics + Kenya home workspace
+│   ├── dashboard_chart/ number_card/
+│   │                       # Standard Desk analytics shown on the Education Home
+│   ├── home.json           # Kenya blocks folded into Education's Home
+│   ├── workspace_home.py   # merge_home(): idempotent fold, run on install / migrate
 │   ├── fixtures/custom_sidebar.json
 │   │                       # Kenya links added to the Education sidebar (student links inside Student Management)
 │   ├── install.py          # Install / migrate hooks

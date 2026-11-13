@@ -47,9 +47,10 @@ app_include_js = "education_kenya.bundle.js"
 #   * fixtures/custom_sidebar.json  a site-layer `Custom Sidebar` on the Education
 #     module whose rows are all `added`, so Desk appends them after Education's own
 #     rows and Education upgrades still reach the sidebar (`frappe.desk.layers`);
-#   * <module>/workspace            the "Education Kenya" home, linked from that
-#     sidebar, with the CBC number cards + charts (<module>/number_card,
-#     <module>/dashboard_chart, all `is_standard`).
+#   * home.json + workspace_home.py the CBC number cards, charts (<module>/number_card,
+#     <module>/dashboard_chart, all `is_standard`), shortcuts and link cards, folded
+#     into Education's own Home on install and migrate (it is not a standard
+#     workspace, so it has no site layer).
 # `code_only_modules` below tells Desk this module ships no navigation and names
 # Education as its heir, so Kenya doctypes open inside the Education sidebar.
 # Nothing here edits the Education app's own sidebar or workspace.
@@ -66,8 +67,8 @@ code_only_modules = {"Frappe Education Kenya": ["Education"]}
 doc_events = {
 	# When a Student is created/updated, validate Kenya-specific fields
 	"Student": {
-		"validate": "frappe_education_kenya.frappe_education_kenya.doctype.cbc_student_settings.cbc_student_settings.validate_student_kenya_fields",
-		"on_update": "frappe_education_kenya.frappe_education_kenya.doctype.cbc_student_settings.cbc_student_settings.sync_student_to_nemis_fields",
+		"validate": "frappe_education_kenya.frappe_education_kenya.doctype.education_kenya_settings.education_kenya_settings.validate_student_kenya_fields",
+		"on_update": "frappe_education_kenya.frappe_education_kenya.doctype.education_kenya_settings.education_kenya_settings.sync_student_to_nemis_fields",
 	},
 	# On save, tag the base Assessment Result with its CBC Performance Level,
 	# resolved from the "CBC Performance Levels" grading scale.
@@ -91,15 +92,25 @@ doc_events = {
 	"Payment Entry": {
 		"validate": "frappe_education_kenya.bursary.validate_payment",
 		"before_submit": "frappe_education_kenya.bursary.before_payment_submit",
-		"on_submit": "frappe_education_kenya.bursary.payment_rollup",
+		"on_submit": [
+			"frappe_education_kenya.bursary.payment_rollup",
+			"frappe_education_kenya.messaging.fee_payment_notifications",
+		],
 		"on_cancel": "frappe_education_kenya.bursary.payment_rollup",
 	},
-	# When a Fee Structure is created, auto-add transport/meal components if applicable
+	# Fee Structure save: require a Student Category and warn on Kenya fee conventions.
+	# Nothing adds transport/meal components for you; add them as Fee Components.
 	"Fee Structure": {
-		"validate": "frappe_education_kenya.frappe_education_kenya.doctype.cbc_fee_settings.cbc_fee_settings.validate_kenya_fee_structure",
+		"validate": "frappe_education_kenya.billing.validate_kenya_fee_structure",
 	},
-	# When Program Enrollment is submitted or cancelled, record or reverse its CBC level transition
+	# Fee Schedule save: its category must be set and match its Fee Structure's
+	"Fee Schedule": {
+		"validate": "frappe_education_kenya.billing.validate_schedule_category",
+	},
+	# Program Enrollment: default the Student Category from the boarder status on save;
+	# on submit/cancel record or reverse its CBC level transition
 	"Program Enrollment": {
+		"validate": "frappe_education_kenya.billing.set_enrollment_category",
 		"on_submit": "frappe_education_kenya.frappe_education_kenya.doctype.student_transition.student_transition.after_program_enrollment",
 		"on_cancel": "frappe_education_kenya.frappe_education_kenya.doctype.student_transition.student_transition.after_program_enrollment_cancel",
 	},
@@ -123,7 +134,7 @@ scheduler_events = {
 	],
 	"weekly": [
 		# Validate NEMIS data completeness and flag incomplete records
-		"frappe_education_kenya.frappe_education_kenya.doctype.cbc_student_settings.cbc_student_settings.validate_nemis_data_completeness",
+		"frappe_education_kenya.frappe_education_kenya.doctype.education_kenya_settings.education_kenya_settings.validate_nemis_data_completeness",
 	],
 	"monthly": [
 		# Auto-generate monthly MoE enrolment return draft

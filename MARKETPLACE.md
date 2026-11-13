@@ -15,14 +15,14 @@ Education Kenya localises Frappe Education for Kenyan schools: it aligns assessm
 - **Transport management** — routes, vehicle fleet with NTSA insurance/inspection expiry checks, and term-based student subscriptions
 - **Meals & food services** — NSNP-compatible feeding programmes, daily meal records, and student meal subscriptions
 - **Kenya-specific student data** — UPIN and NEMIS tracking, county/sub-county/ward residence, special-needs and boarder/day-scholar classification
-- **Localised fees** — CBC fee components, transport/meal fee automation, and government capitation tracking wired into the base Fee Structure
+- **Day Scholar / Boarder fees** — Fee Structures and Fee Schedules keyed by Student Category, so day scholars and boarders are billed from separate structures through Education's own chain
 - **Single unified desk** — folds Kenya links and CBC analytics into the shared Education workspace instead of adding a competing app tile or second sidebar
 - **29 DocTypes** across curriculum, student lifecycle, school operations, MoE compliance, and finance
 - **Automated test suite** — 25 unit tests, all passing
 
 ## How It Works
 
-Education Kenya hooks into base Education DocTypes via `doc_events`. On **Student** save it validates and normalises Kenya identifiers (UPIN, NEMIS); on **Assessment Result** save it resolves the CBC Performance Level from the grading scale; on **Fee Structure** save it wires in transport and meal components; on **Program Enrollment** submit it records the student's CBC level progression. Scheduled jobs handle MoE reporting — daily deadline checks and attendance snapshots, weekly NEMIS completeness validation, monthly enrolment-return drafts, and weekly vehicle-compliance checks. CBC curriculum, Kenya counties, and MoE return templates install as fixtures, so the app is usable immediately after installation.
+Education Kenya hooks into base Education DocTypes via `doc_events`. On **Student** save it validates and normalises Kenya identifiers (UPIN, NEMIS); on **Assessment Result** save it resolves the CBC Performance Level from the grading scale; on **Fee Structure** and **Fee Schedule** save it requires and matches the Student Category; on **Program Enrollment** save it defaults that category from the student's Boarder Status, and on submit it records the student's CBC level progression. Scheduled jobs handle MoE reporting — daily deadline checks and attendance snapshots, weekly NEMIS completeness validation, monthly enrolment-return drafts, and weekly vehicle-compliance checks. CBC curriculum, Kenya counties, and MoE return templates install as fixtures, so the app is usable immediately after installation.
 
 ## Installation
 

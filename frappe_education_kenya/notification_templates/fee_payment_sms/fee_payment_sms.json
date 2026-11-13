@@ -1,0 +1,1 @@
+{"name":"Fee Payment SMS","document_type":"Sales Invoice","event":"Method","method":"on_fee_payment","channel":"SMS","enabled":1,"condition":"doc.docstatus == 1 and doc.student","message_type":"Plain Text","recipients":[{"receiver_by_document_field":"customer"}],"send_system_notification":0,"send_to_all_assignees":0}

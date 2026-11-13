@@ -92,6 +92,11 @@ def validate_subscription(doc):
 		frappe.throw(_("An invoiced subscription cannot change its student, fare selection or discount."))
 	if doc.get("end_date") and getdate(doc.end_date) < getdate(doc.start_date):
 		frappe.throw(_("End date cannot be before start date."))
+	if (
+		doc.get("subscription_status") == "Active"
+		and frappe.db.get_value("Student", doc.student, "kenya_boarder_status") == "Boarder"
+	):
+		frappe.throw(_("A full boarder cannot have an Active transport subscription."))
 	route = frappe.get_doc("Transport Route", doc.route)
 	fare = select_fare(route.fares, doc.trip_type, doc.start_date)
 	doc.fee_amount = flt(fare, doc.precision("fee_amount"))

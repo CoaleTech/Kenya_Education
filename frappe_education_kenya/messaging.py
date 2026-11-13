@@ -187,3 +187,33 @@ def dispatch_message(name):
 			failed = True
 	doc.status = "Failed" if failed else "Sent"
 	doc.save()
+
+
+def setup():
+	"""Install the app's SMS Notifications; existing ones are left as the school edited them."""
+	from frappe.email.doctype.notification.notification import (
+		create_notifications,
+		get_notification_templates,
+	)
+
+	create_notifications(
+		get_notification_templates(frappe.get_app_path("frappe_education_kenya", "notification_templates"))
+	)
+
+
+def fee_payment_notifications(doc, method=None):
+	"""Payment Entry on_submit: fire the "on_fee_payment" Notification on each student invoice it settles.
+
+	ERPNext updates the invoice outstanding with a raw set_value, so no Value Change event ever runs.
+	"""
+	if doc.payment_type != "Receive":
+		return
+	for row in doc.references:
+		if row.reference_doctype != "Sales Invoice":
+			continue
+		invoice = frappe.get_doc("Sales Invoice", row.reference_name)
+		if not invoice.get("student"):
+			continue
+		invoice.flags.fee_payment_amount = row.allocated_amount
+		invoice.flags.fee_payment_entry = doc.name
+		invoice.run_method("on_fee_payment")

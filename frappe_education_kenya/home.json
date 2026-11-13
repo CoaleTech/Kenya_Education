@@ -1,4 +1,157 @@
 {
+ "bottom": [
+  {
+   "data": {
+    "col": 12
+   },
+   "id": "9fb5226042",
+   "type": "spacer"
+  },
+  {
+   "data": {
+    "col": 12,
+    "text": "<span class=\"h5\"><b>Kenya Shortcuts</b></span>"
+   },
+   "id": "92b9f4d8f3",
+   "type": "header"
+  },
+  {
+   "data": {
+    "col": 3,
+    "shortcut_name": "CBC Levels"
+   },
+   "id": "1b1bd711f5",
+   "type": "shortcut"
+  },
+  {
+   "data": {
+    "col": 3,
+    "shortcut_name": "Learning Areas"
+   },
+   "id": "f97ba29ab7",
+   "type": "shortcut"
+  },
+  {
+   "data": {
+    "col": 3,
+    "shortcut_name": "Assessments"
+   },
+   "id": "090c9e5ea6",
+   "type": "shortcut"
+  },
+  {
+   "data": {
+    "col": 3,
+    "shortcut_name": "Results (CBC)"
+   },
+   "id": "27062c818e",
+   "type": "shortcut"
+  },
+  {
+   "data": {
+    "col": 3,
+    "shortcut_name": "Transitions"
+   },
+   "id": "704bacf328",
+   "type": "shortcut"
+  },
+  {
+   "data": {
+    "col": 3,
+    "shortcut_name": "Transport Routes"
+   },
+   "id": "5b8e7cb200",
+   "type": "shortcut"
+  },
+  {
+   "data": {
+    "col": 3,
+    "shortcut_name": "Meals"
+   },
+   "id": "36e2f7d8ae",
+   "type": "shortcut"
+  },
+  {
+   "data": {
+    "col": 3,
+    "shortcut_name": "MoE Submissions"
+   },
+   "id": "b71f98fa99",
+   "type": "shortcut"
+  },
+  {
+   "data": {
+    "col": 12,
+    "text": "<span class=\"h5\"><b>Kenya Masters &amp; Settings</b></span>"
+   },
+   "id": "f309280164",
+   "type": "header"
+  },
+  {
+   "data": {
+    "card_name": "Kenya CBC Curriculum",
+    "col": 4
+   },
+   "id": "1f8f075485",
+   "type": "card"
+  },
+  {
+   "data": {
+    "card_name": "Kenya Assessment",
+    "col": 4
+   },
+   "id": "7791d14b74",
+   "type": "card"
+  },
+  {
+   "data": {
+    "card_name": "Kenya Student Lifecycle",
+    "col": 4
+   },
+   "id": "577a9dd3ac",
+   "type": "card"
+  },
+  {
+   "data": {
+    "card_name": "Kenya Transport",
+    "col": 4
+   },
+   "id": "3865ea223d",
+   "type": "card"
+  },
+  {
+   "data": {
+    "card_name": "Kenya Meals & Feeding",
+    "col": 4
+   },
+   "id": "6226ea723b",
+   "type": "card"
+  },
+  {
+   "data": {
+    "card_name": "Kenya MoE Compliance",
+    "col": 4
+   },
+   "id": "7269d68935",
+   "type": "card"
+  },
+  {
+   "data": {
+    "card_name": "Kenya Geography",
+    "col": 4
+   },
+   "id": "1cccc63301",
+   "type": "card"
+  },
+  {
+   "data": {
+    "card_name": "Kenya Settings",
+    "col": 4
+   },
+   "id": "84b0069b9d",
+   "type": "card"
+  }
+ ],
  "charts": [
   {
    "chart_name": "Enrollments by Program",
@@ -21,16 +174,6 @@
    "label": "CBC Assessment Performance Levels"
   }
  ],
- "content": "[{\"id\":\"90f161737d\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>School Analytics</b></span>\",\"col\":12}},{\"id\":\"817d778567\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Students\",\"col\":3}},{\"id\":\"70ee2dee70\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Instructors\",\"col\":3}},{\"id\":\"fb65a07e89\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Program Enrollments\",\"col\":3}},{\"id\":\"a2e9785f0b\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Student Applicants\",\"col\":3}},{\"id\":\"4b99852f7f\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"CBC Transport Routes\",\"col\":3}},{\"id\":\"2a4ab50d02\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"CBC Meal Programmes\",\"col\":3}},{\"id\":\"f469ae194d\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"MoE Return Submissions\",\"col\":3}},{\"id\":\"29c0b0fe39\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Student Transitions\",\"col\":3}},{\"id\":\"9a9dc05f05\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Enrollments by Program\",\"col\":6}},{\"id\":\"c5e8c13058\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Applicants by Status\",\"col\":6}},{\"id\":\"7e5876a51a\",\"type\":\"chart\",\"data\":{\"chart_name\":\"CBC Students by Level\",\"col\":6}},{\"id\":\"ce2df8f7b6\",\"type\":\"chart\",\"data\":{\"chart_name\":\"CBC Students by Boarder Status\",\"col\":6}},{\"id\":\"6b90bc8890\",\"type\":\"chart\",\"data\":{\"chart_name\":\"CBC Assessment Performance Levels\",\"col\":12}},{\"id\":\"92b9f4d8f3\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h5\\\"><b>Kenya Shortcuts</b></span>\",\"col\":12}},{\"id\":\"1b1bd711f5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"CBC Levels\",\"col\":3}},{\"id\":\"f97ba29ab7\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Learning Areas\",\"col\":3}},{\"id\":\"090c9e5ea6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Assessments\",\"col\":3}},{\"id\":\"27062c818e\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Results (CBC)\",\"col\":3}},{\"id\":\"704bacf328\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Transitions\",\"col\":3}},{\"id\":\"5b8e7cb200\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Transport Routes\",\"col\":3}},{\"id\":\"36e2f7d8ae\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Meals\",\"col\":3}},{\"id\":\"b71f98fa99\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"MoE Submissions\",\"col\":3}},{\"id\":\"f309280164\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h5\\\"><b>Kenya Masters &amp; Settings</b></span>\",\"col\":12}},{\"id\":\"1f8f075485\",\"type\":\"card\",\"data\":{\"card_name\":\"Kenya CBC Curriculum\",\"col\":4}},{\"id\":\"7791d14b74\",\"type\":\"card\",\"data\":{\"card_name\":\"Kenya Assessment\",\"col\":4}},{\"id\":\"577a9dd3ac\",\"type\":\"card\",\"data\":{\"card_name\":\"Kenya Student Lifecycle\",\"col\":4}},{\"id\":\"3865ea223d\",\"type\":\"card\",\"data\":{\"card_name\":\"Kenya Transport\",\"col\":4}},{\"id\":\"6226ea723b\",\"type\":\"card\",\"data\":{\"card_name\":\"Kenya Meals & Feeding\",\"col\":4}},{\"id\":\"7269d68935\",\"type\":\"card\",\"data\":{\"card_name\":\"Kenya MoE Compliance\",\"col\":4}},{\"id\":\"1cccc63301\",\"type\":\"card\",\"data\":{\"card_name\":\"Kenya Geography\",\"col\":4}},{\"id\":\"84b0069b9d\",\"type\":\"card\",\"data\":{\"card_name\":\"Kenya Settings\",\"col\":4}}]",
- "creation": "2026-11-11 12:00:00.000000",
- "custom_blocks": [],
- "docstatus": 0,
- "doctype": "Workspace",
- "for_user": "",
- "icon": "flag",
- "idx": 0,
- "is_hidden": 0,
- "label": "Education Kenya",
  "links": [
   {
    "hidden": 0,
@@ -135,16 +278,6 @@
    "label": "Student Transition",
    "link_count": 0,
    "link_to": "Student Transition",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "CBC Student Settings",
-   "link_count": 0,
-   "link_to": "CBC Student Settings",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -303,22 +436,8 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "CBC Fee Settings",
-   "link_count": 0,
-   "link_to": "CBC Fee Settings",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
   }
  ],
- "modified": "2026-11-11 12:00:00.000000",
- "modified_by": "Administrator",
- "module": "Frappe Education Kenya",
- "name": "Education Kenya",
  "number_cards": [
   {
    "label": "Total Students",
@@ -353,11 +472,6 @@
    "number_card_name": "Student Transitions"
   }
  ],
- "owner": "Administrator",
- "parent_page": "",
- "public": 1,
- "quick_lists": [],
- "roles": [],
  "shortcuts": [
   {
    "color": "Green",
@@ -408,7 +522,118 @@
    "type": "DocType"
   }
  ],
- "standard": 1,
- "title": "Education Kenya",
- "type": "Workspace"
+ "top": [
+  {
+   "data": {
+    "col": 12,
+    "text": "<span class=\"h4\"><b>School Analytics</b></span>"
+   },
+   "id": "90f161737d",
+   "type": "header"
+  },
+  {
+   "data": {
+    "col": 3,
+    "number_card_name": "Total Students"
+   },
+   "id": "817d778567",
+   "type": "number_card"
+  },
+  {
+   "data": {
+    "col": 3,
+    "number_card_name": "Instructors"
+   },
+   "id": "70ee2dee70",
+   "type": "number_card"
+  },
+  {
+   "data": {
+    "col": 3,
+    "number_card_name": "Program Enrollments"
+   },
+   "id": "fb65a07e89",
+   "type": "number_card"
+  },
+  {
+   "data": {
+    "col": 3,
+    "number_card_name": "Student Applicants"
+   },
+   "id": "a2e9785f0b",
+   "type": "number_card"
+  },
+  {
+   "data": {
+    "col": 3,
+    "number_card_name": "CBC Transport Routes"
+   },
+   "id": "4b99852f7f",
+   "type": "number_card"
+  },
+  {
+   "data": {
+    "col": 3,
+    "number_card_name": "CBC Meal Programmes"
+   },
+   "id": "2a4ab50d02",
+   "type": "number_card"
+  },
+  {
+   "data": {
+    "col": 3,
+    "number_card_name": "MoE Return Submissions"
+   },
+   "id": "f469ae194d",
+   "type": "number_card"
+  },
+  {
+   "data": {
+    "col": 3,
+    "number_card_name": "Student Transitions"
+   },
+   "id": "29c0b0fe39",
+   "type": "number_card"
+  },
+  {
+   "data": {
+    "chart_name": "Enrollments by Program",
+    "col": 6
+   },
+   "id": "9a9dc05f05",
+   "type": "chart"
+  },
+  {
+   "data": {
+    "chart_name": "Applicants by Status",
+    "col": 6
+   },
+   "id": "c5e8c13058",
+   "type": "chart"
+  },
+  {
+   "data": {
+    "chart_name": "CBC Students by Level",
+    "col": 6
+   },
+   "id": "7e5876a51a",
+   "type": "chart"
+  },
+  {
+   "data": {
+    "chart_name": "CBC Students by Boarder Status",
+    "col": 6
+   },
+   "id": "ce2df8f7b6",
+   "type": "chart"
+  },
+  {
+   "data": {
+    "chart_name": "CBC Assessment Performance Levels",
+    "col": 12
+   },
+   "id": "6b90bc8890",
+   "type": "chart"
+  }
+ ]
 }

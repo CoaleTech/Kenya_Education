@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Day Scholar / Boarder fee structures through Education's own chain (Fee Structure → Fee Schedule → Sales Invoice, no new DocType): Program Enrollment copies the student's Boarder Status into a blank Student Category (a current or future year with neither is rejected; past years may stay blank), Fee Structure requires a Student Category, and a Fee Schedule must carry its Fee Structure's category. Bill with one Fee Structure per program × category × term, a Fee Schedule with the same category, one Student Group per class, then *Create Fees*. Leave Program Enrollment `fees` empty: Education's auto-fill is dead.
+- `install.seed_student_categories()` seeds the Student Categories `Day Scholar`, `Boarder`, `Quarter Boarder`, `Weekly Boarder` on install and migrate.
 - Transport fares by trip type with effective dates and approved discounts (replaces the single term fee; patch `convert_transport_term_fee_to_fares`).
 - Library: copies, circulation (issue/return, loan limits, fines, waiver) and draft fine invoices for students.
 - Timetabling: periods, requirements, instructor availability, conflict-checked generation and publish to Course Schedule.
@@ -26,7 +28,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - KCB and Co-operative Bank callbacks and USSD are not implemented: provider payloads and an aggregator are still required.
 
 ### Changed
-- Desk navigation is now one shared Education sidebar. The Kenya links ship as a site-layer `Custom Sidebar` fixture on the Education module, whose rows Desk appends after Education's own, so Education upgrades still reach the sidebar. The app declares `code_only_modules = {"Frappe Education Kenya": ["Education"]}` and no longer ships a Dock or Sidebar. It keeps a Workspace with CBC number cards and charts (`is_standard`, no hardcoded colours). Previously the Kenya links were written into the archived `Workspace Sidebar`, which Desk no longer reads, so they never showed.
+- `Student.kenya_boarder_status` option `Boarder (Full)` is now `Boarder`, matching its Student Category (patch `rename_full_boarder_status` converts the options and existing students).
+- A full Boarder cannot have an Active Transport Subscription; Quarter and Weekly Boarders can.
+- The Fee Structure validation warning no longer implies automatic Transport or Meals components: nothing adds them, add a Fee Component. The README, BLUEPRINT, MARKETPLACE and `hooks.py` claims of automatic transport/meal fee components and mid-term proration are corrected.
+- Desk navigation is now one shared Education sidebar and one Education Home. The Kenya links ship as a site-layer `Custom Sidebar` fixture on the Education module, whose rows Desk appends after Education's own, so Education upgrades still reach the sidebar. The app declares `code_only_modules = {"Frappe Education Kenya": ["Education"]}` and no longer ships a Dock, Sidebar or Workspace of its own. Previously the Kenya links were written into the archived `Workspace Sidebar`, which Desk no longer reads, so they never showed.
+- The "Education Kenya" workspace is gone (its "Kenya Home" sidebar row too). Education's Home is not a standard workspace, so Desk gives it no site layer: `workspace_home.merge_home()` folds the CBC number cards, charts, shortcuts and link cards from `home.json` into Education's Home on install and on every migrate. It is idempotent (a re-run or an Education resync never duplicates a block), keeps Education's own rows, and the widgets stay `is_standard` with no hardcoded colours.
 - The fixture is authoritative: it is re-imported on every migrate, so a hand-edited site-layer Education sidebar is reset to it.
 - Patch `retire_runtime_navigation` removes the blocks, rows and site-created cards/charts the old code injected into the Education workspace, plus the legacy "Kenya Education" workspace.
 - `/guardian` page uses the defined `--border-radius` token (`--radius` does not exist).
@@ -35,10 +41,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - One guardian-to-students lookup: `parent_ops.guardian_students` / `linked_students` replace three private copies in `bursary`, `library` and `portal`.
 - Student Transition is now submittable: submitting is the approval (`approved_by`, `approval_date` are set and read-only), and amend/cancel are enabled. Approval syncs the Student register: a level change sets `kenya_cbc_level`; Transfer Out, Dropout and Graduation disable the student and record `date_of_leaving` and `reason_for_leaving`; a later transition re-admits a student who has a leaving date. Cancelling restores the register from the latest remaining approved transition. The `Student Transitions` number card counts submitted transitions only.
 - Program Enrollment creates its transition already approved, links it through the new `program_enrollment` field, and cancels it when the enrollment is cancelled (`on_cancel` hook).
-- The Kenya `Custom Sidebar` fixture now names every Education row and places Student Transition, Student Pathway Choice, CBC Pathway, CBC Track, CBC Subject Combination and CBC Student Settings inside Education's Student Management section, not in a Kenya section. `tests/test_navigation.py` fails when the fixture drifts from Education's sidebar.
+- The Kenya `Custom Sidebar` fixture now names every Education row and places Student Transition, Student Pathway Choice, CBC Pathway, CBC Track and CBC Subject Combination inside Education's Student Management section, not in a Kenya section. `tests/test_navigation.py` fails when the fixture drifts from Education's sidebar.
+- Kenya settings are one page: `CBC Student Settings` is now the **Students** tab of `Education Kenya Settings` (tabs: School, Students, Finance, Communications). Patch `merge_student_settings_into_kenya_settings` moves the stored values and the child rows (program level mapping, special-needs categories, boarding types) before the old DocType is dropped. `Library Settings` stays a separate page: a Single grants write per page, and Librarians must not edit the finance defaults.
+
+### Removed
+- Every `CBC Fee Settings` field (`billing_day_of_month`, `prorate_for_late_enrolment`, `prorate_for_early_withdrawal`, `enable_fee_waivers`, `waiver_approval_required`, `max_waiver_percentage`, `track_government_capitation`, `capitation_per_student`, `government_bursary_fund`, `auto_generate_transport_invoice`, `auto_generate_meals_invoice`): nothing read them. Patch `remove_unused_fee_settings` deletes their stored values. The `CBC Fee Settings` page itself is gone; its Fee Structure validation hook now lives in `billing.py`.
 
 ### Fixed
 - A saved `CBC Learning Area` could not be opened or deleted (`Unknown column 'parent'`): its `strands` field was a Table pointing at `CBC Strand`, which is not a child table. Removed the `strands` table and the never-populated `strand_count` counter; a strand's `learning_area` link already gives the reverse list. No data migration: a Table field has no column.
+- `Special Needs Categories` and `Boarding Types` (Education Kenya Settings, Students tab; formerly on `CBC Student Settings`) were Table MultiSelect fields whose child tables have only a Data field. Desk needs a Link field there, so it threw on load and showed a blank form. They are now plain Tables; stored rows are unchanged. A test checks every Table MultiSelect child in this app has a Link field.
 
 ## [1.0.0] - 2026-07-29
 

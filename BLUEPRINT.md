@@ -210,7 +210,7 @@ The student lifecycle in Kenya involves specific transitions and identifiers:
 | `kenya_birth_certificate_no` | Data | Birth certificate number |
 | `kenya_special_needs_category` | Select | None / Physical / Visual / Hearing / Intellectual / Autism / Multiple |
 | `kenya_orphan_status` | Select | Not Applicable / Partial Orphan / Total Orphan |
-| `kenya_boarder_status` | Select | Day Scholar / Boarder / Quarter Boarder |
+| `kenya_boarder_status` | Select | Day Scholar / Boarder / Quarter Boarder / Weekly Boarder (names equal the Student Category rows seeded on install) |
 | `kenya_transport_route` | Link | Assigned transport route |
 | `kenya_meal_programme` | Check | Enrolled in school feeding |
 | `kenya_dietary_requirements` | Text | Allergies, religious restrictions |
@@ -383,7 +383,7 @@ The transport module handles the complete lifecycle of school transport operatio
 **Operational Workflow:**
 1. **Route Setup** — Administrator defines routes with pickup points, assigns vehicles and drivers
 2. **Student Assignment** — Students are assigned to routes based on residence; system suggests nearest route
-3. **Fee Billing** — Transport fees are auto-added to student fee structures per term
+3. **Fee Billing** — Transport is billed separately, one draft Sales Invoice per subscription; it is never added to a Fee Structure. A full Boarder cannot hold an Active subscription
 4. **Daily Operations** — Driver marks attendance; GPS tracking (if enabled) records actual route adherence
 5. **Safety Monitoring** — Insurance and inspection certificate expiry alerts; incident reporting
 6. **Reporting** — Utilisation reports, revenue by route, cost per student
@@ -391,7 +391,7 @@ The transport module handles the complete lifecycle of school transport operatio
 **Key Features:**
 - **Route Optimisation Suggestions** — Based on student residence locations
 - **Parent Notifications** — SMS/email alerts for delays, route changes
-- **Term-based Billing** — Automatic prorated billing for mid-term enrolments
+- **Fare Billing** — Effective-dated fares by trip type with approved discounts
 - **Multi-vehicle Coordination** — Fleet management for schools with multiple vehicles
 - **SACCO Integration** — Links to Kenya's transport SACCO regulatory framework
 
@@ -445,15 +445,25 @@ The system pre-configures all standard MoE returns with field mappings. When a r
 **NEMIS Integration:**
 The system supports both manual export (CSV upload to NEMIS portal) and API integration (when NEMIS API becomes available). The export format follows the exact column structure required by the NEMIS bulk upload templates.
 
+### 5.5 Day Scholar and Boarder Fees
+
+Education bills through Fee Structure → Fee Schedule → Sales Invoice, and a Fee Schedule separates students only by `Program Enrollment.student_category`. The app keeps that category filled in and consistent:
+
+- **Program Enrollment** copies the student's `kenya_boarder_status` into a blank `student_category`; an enrollment in a current or future Academic Year with neither is rejected. Past years may stay blank.
+- **Fee Structure** requires a Student Category. **Fee Schedule** requires one that equals its Fee Structure's.
+- Nothing adds Transport or Meals components to a Fee Structure; add them as Fee Components.
+
+Billing route: one Fee Structure per program × category × term → a Fee Schedule with the same category → one Student Group per class → *Create Fees*. Leave Program Enrollment `fees` empty: its auto-fill is dead.
+
 ---
 
 ## 6. User Interface Design
 
 ### 6.1 Workspace Organisation
 
-The app adds a **"Kenya Education"** workspace alongside Frappe Education's default workspaces:
+The app adds no workspace of its own. Its analytics, shortcuts and link cards are folded into Frappe Education's **Home** workspace (`workspace_home.merge_home()`, from `home.json`), and its links sit in the Education sidebar:
 
-**Kenya Education Workspace:**
+**Kenya blocks on the Education Home:**
 - **CBC Curriculum** — Learning Areas, Strands, Assessments, Performance Levels
 - **Students Kenya** — Student list with CBC filters, transitions, special needs
 - **Transport** — Routes, Vehicles, Subscriptions, Daily operations

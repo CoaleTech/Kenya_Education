@@ -8,6 +8,7 @@ from frappe_education_kenya import (
 	collections,
 	learner_ids,
 	library,
+	messaging,
 	parent_ops,
 	pathways,
 	teaching,
@@ -76,4 +77,5 @@ def setup():
 	collections.setup()
 	pathways.setup()
 	teaching.setup()
+	messaging.setup()
 	grant_permissions()

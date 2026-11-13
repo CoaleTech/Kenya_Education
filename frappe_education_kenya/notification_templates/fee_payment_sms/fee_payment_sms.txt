@@ -1,0 +1,1 @@
+Fees payment of {{ frappe.utils.fmt_money(doc.flags.fee_payment_amount, currency=doc.currency) }} for {{ doc.customer_name }} received, receipt {{ doc.flags.fee_payment_entry }}. New balance: {{ doc.get_formatted("outstanding_amount") }}. Thank you. {{ doc.company }}

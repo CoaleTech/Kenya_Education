@@ -1,9 +1,9 @@
-"""Tests for CBC Student Settings Kenya field validation and NEMIS sync hooks."""
+"""Tests for the Kenya Student field validation and NEMIS sync hooks driven by Education Kenya Settings."""
 
 import frappe
 from frappe.tests.utils import FrappeTestCase
 
-from frappe_education_kenya.frappe_education_kenya.doctype.cbc_student_settings.cbc_student_settings import (
+from frappe_education_kenya.frappe_education_kenya.doctype.education_kenya_settings.education_kenya_settings import (
 	sync_student_to_nemis_fields,
 	validate_nemis_data_completeness,
 	validate_student_kenya_fields,
@@ -12,7 +12,7 @@ from frappe_education_kenya.frappe_education_kenya.doctype.cbc_student_settings.
 TEST_EMAIL = "kenya.student.settings.test@example.com"
 
 
-class TestCBCStudentSettingsHooks(FrappeTestCase):
+class TestEducationKenyaSettingsHooks(FrappeTestCase):
 	def setUp(self):
 		if frappe.db.exists("Student", {"student_email_id": TEST_EMAIL}):
 			frappe.delete_doc(
@@ -68,3 +68,14 @@ class TestCBCStudentSettingsHooks(FrappeTestCase):
 
 	def tearDown(self):
 		frappe.db.rollback()
+
+
+class TestKenyaTableMultiSelect(FrappeTestCase):
+	def test_every_table_multiselect_child_has_a_link_field(self):
+		# Desk throws on render, leaving a blank form, when the child table has no Link field.
+		bad = []
+		for name in frappe.get_all("DocType", filters={"module": "Frappe Education Kenya"}, pluck="name"):
+			for df in frappe.get_meta(name).get("fields", {"fieldtype": "Table MultiSelect"}):
+				if not any(f.fieldtype == "Link" for f in frappe.get_meta(df.options).fields):
+					bad.append(f"{name}.{df.fieldname} -> {df.options}")
+		self.assertEqual(bad, [])
